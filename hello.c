@@ -2,6 +2,6 @@
 
 int main(int argc, const char * argv[])
 {
-	printf("OS is fantastic!!\n")
+	printf("OS is fantastic!!\n");
 	return 0;
 }
