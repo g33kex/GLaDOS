@@ -1,0 +1,15 @@
+sudo: required
+language: c
+services:
+	- docker
+before_install:
+	- docker pull ev3dev/debian-jessie-armel-cross:latest
+	- docker run -itd --name build debian-jessie-cross
+	- docker exec build git clone https://github.com/g33kex/GLaDOS.git /repo
+	- docker exec build git --git-dir=/repo/.git submodule update --init --recursive
+install:
+	- docker exec build cd /repo/ev3dev-c/source/ev3/ && make && make install 
+script:
+	- docker exec cd /repo/ && make 
+
+
