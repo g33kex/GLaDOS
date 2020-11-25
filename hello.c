@@ -12,6 +12,7 @@ int main( void )
 	printf( "Hello, OS!\n" );
 
 	ev3_init();
+	printf("initializing sensors..\n");
 	ev3_sensor_init();
 	printf( "Found sensors:\n" );
     	for ( i = 0; i < DESC_LIMIT; i++ ) {
