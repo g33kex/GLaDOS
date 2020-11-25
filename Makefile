@@ -1,16 +1,46 @@
-hello.o: hello.c
-	docker exec compiler arm-linux-gnueabi-gcc -I/usr/local/include hello.c -o hello.o /usr/local/lib/libev3dev-c.a
+## Manual Parameters
 
-run: hello.o
-	docker exec compiler qemu-arm-static hello.o
+CC := arm-linux-gnueabi-gcc
+
+## Automatic Parameters (DO NOT TOUCH)
+
+CROSS_COMPILE := $(shell uname -n)
+
+ifneq ($(CROSS_COMPILE), ev3dev)
+CC := docker exec compiler $(CC)
+EXEC := docker exec compiler qemu-arm-static
+endif
+
+## Rules
+
+default: compile
+
+all: hello.o
+
+hello.o: hello.c
+	$(CC) -I/usr/local/include hello.c -o hello.o /usr/local/lib/libev3dev-c.a
+
+run: compile
+	$(EXEC) ./hello.o
+
+## PONEY rules
+
+.PONEY: clean run_docker stop_docker
 
 run_docker: 
-	docker run --rm -dit --name compiler -v `pwd`:/src -w /src ev3cc
-	docker exec compiler bash -c 'cd ev3dev-c/source/ev3/;make;make install' 
-	docker exec compiler bash -c "cd ev3dev-c;pwd"
+	./setup_docker.sh
 
 stop_docker:
 	docker stop compiler
 
 clean:
 	-rm -f *.o
+
+## Generated Rules
+
+ifeq ($(CROSS_COMPILE), ev3dev)
+compile: all
+else
+compile: run_docker all
+endif
+
