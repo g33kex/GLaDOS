@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <unistd.h>
 
 #include "ev3.h"
 #include "ev3_light.h"
@@ -43,7 +44,7 @@ int main( void )
             		}		
             		printf( "%s \n", color[ val ]);
             		// fflush( stdout ); useless ?
-                        sleep( 200 );
+                        sleep( 10 );
        		}
    	}
 
