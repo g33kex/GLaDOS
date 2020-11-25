@@ -11,16 +11,17 @@ endif
 
 ## Rules
 
-ifeq ($(CROSS_COMPILE), ev3dev)
-default: all
-else
-default: run_docker all
-endif
+default: compile
 
 all: hello.o
 
 hello.o: hello.c
 	$(CC) -I/usr/local/include hello.c -o hello.o /usr/local/lib/libev3dev-c.a
+
+run: compile
+	$(EXEC) ./hello.o
+
+## PONEY rules
 
 .PONEY: clean run_docker stop_docker
 
@@ -32,4 +33,12 @@ stop_docker:
 
 clean:
 	-rm -f *.o
+
+## Generated Rules
+
+ifeq ($(CROSS_COMPILE), ev3dev)
+compile: all
+else
+compile: run_docker all
+endif
 
