@@ -4,11 +4,14 @@
 #include "ev3_light.h"
 #include "ev3_port.h"
 #include "ev3_sensor.h"
+const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "WHITE", "BROWN" };
+#define COLOR_COUNT  (( int )( sizeof( color ) / sizeof( color[ 0 ])))
 
 int main( void )
 {
 	char s[ 256 ];
     	int val , n, i, ii;
+	uint8_t sn_color;
 	printf( "Hello, OS!\n" );
 
 	ev3_init();
@@ -31,6 +34,19 @@ int main( void )
             		}
         	}
     	}
+	if ( ev3_search_sensor( LEGO_EV3_COLOR, &sn_color, 0 )) {
+        	printf( "COLOR sensor is found, reading COLOR...\n" );
+        	set_sensor_mode( sn_color, "COL-COLOR" );
+        	for ( i = 0  ; i < 5 ; i++ ) {
+            		if ( !get_sensor_value( 0, sn_color, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
+                		val = 0;
+            		}		
+            		printf( "%s \n", color[ val ]);
+            		// fflush( stdout ); useless ?
+                        sleep( 200 );
+       		}
+   	}
+
 	switch ( get_light( LIT_LEFT )) {
 
 	case LIT_GREEN:
