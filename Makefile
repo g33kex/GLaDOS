@@ -1,7 +1,9 @@
 ## Manual Parameters
+
 CC := arm-linux-gnueabi-gcc
 
 ## Automatic Parameters (DO NOT TOUCH)
+
 CROSS_COMPILE := $(shell uname -n)
 
 ifneq ($(CROSS_COMPILE), ev3dev)
