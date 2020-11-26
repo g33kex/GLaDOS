@@ -3,6 +3,9 @@
 #include "ev3.h"
 #include "ev3_light.h"
 
+#include "hello.h"
+#include "test.h"
+
 int main( void )
 {
 	printf( "Hello, OS!\n" );
@@ -24,5 +27,11 @@ int main( void )
 	}
 	ev3_uninit();
 
-	return 0;
+	print_hello();
+
+	return test();
+}
+
+void print_hello() {
+	printf("Hello, world!\n");
 }
