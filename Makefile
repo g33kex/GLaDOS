@@ -35,6 +35,9 @@ default: compile
 $(TARGET): $(OBJECTS)
 	$(CC) -o $@ $^ $(LIBS)
 
+mkdir: 
+	@mkdir -p $(TRGDIR)
+
 run: compile
 	@-$(EXEC) $(TARGET) || true
 
@@ -57,12 +60,12 @@ stop_docker:
 	@-docker stop compiler
 
 clean:
-	-rm -f $(TRGDIR)/*
+	-rm -rf $(TRGDIR)
 
 ## Generated Rules
 
 ifeq ($(UNAME), ev3dev)
-compile: $(TARGET)
+compile: mkdir $(TARGET)
 else
-compile: run_docker $(TARGET)
+compile: mkdir run_docker $(TARGET)
 endif
