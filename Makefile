@@ -1,46 +1,71 @@
 ## Manual Parameters
 
 CC := arm-linux-gnueabi-gcc
+FLAGS := -Wall
+
+SRCDIR := src
+TRGDIR := bin
+INCDIR := include
+
+INSTDIR := /home/robot/bin
+
+TARGET := GLaDOS
+
+LIBS += /usr/local/lib/libev3dev-c.a
 
 ## Automatic Parameters (DO NOT TOUCH)
 
-CROSS_COMPILE := $(shell uname -n)
+OBJECTS := $(patsubst $(SRCDIR)/%.c,$(TRGDIR)/%.o,$(wildcard $(SRCDIR)/*.c))
+TARGET := $(TRGDIR)/$(TARGET)
 
-ifneq ($(CROSS_COMPILE), ev3dev)
+UNAME := $(shell uname -n)
+
+ifneq ($(UNAME), ev3dev)
 CC := docker exec compiler $(CC)
 EXEC := docker exec compiler qemu-arm-static
+INSTALL := scp $(TARGET) robot:$(INSTDIR) 
+else
+INSTALL := cp $(TARGET) $(INSTDIR)
 endif
 
 ## Rules
 
 default: compile
 
-all: hello.o
+$(TARGET): $(OBJECTS)
+	$(CC) -o $@ $^ $(LIBS)
 
-hello.o: hello.c
-	$(CC) -I/usr/local/include hello.c -o hello.o /usr/local/lib/libev3dev-c.a
+mkdir: 
+	@mkdir -p $(TRGDIR)
 
 run: compile
-	$(EXEC) ./hello.o
+	@-$(EXEC) $(TARGET) || true
+
+install: compile
+	$(INSTALL) 
+
+## Automatic rules
+
+$(TRGDIR)/%.o: $(SRCDIR)/%.c $(INCDIR)/%.h
+	$(CC) $(FLAGS) -I/usr/local/include -c $< -o $@ -I$(INCDIR) 
 
 ## PONEY rules
 
 .PONEY: clean run_docker stop_docker
 
 run_docker: 
-	./setup_docker.sh
+	@-./setup_docker.sh
 
 stop_docker:
-	docker stop compiler
+	@-docker stop compiler
 
 clean:
-	-rm -f *.o
+	-rm -rf $(TRGDIR)
 
 ## Generated Rules
 
-ifeq ($(CROSS_COMPILE), ev3dev)
-compile: all
+ifeq ($(UNAME), ev3dev)
+compile: mkdir $(TARGET)
 else
-compile: run_docker all
+compile: mkdir run_docker $(TARGET)
 endif
-

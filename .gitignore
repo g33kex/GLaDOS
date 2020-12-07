@@ -1,3 +1,4 @@
 *.o
 ev3dev-ct/**
+bin/
 
