@@ -5,6 +5,12 @@
 #include <stdint.h>
 #include <math.h>
 
+#include "ev3.h"
+#include "ev3_tacho.h"
+
+#include "sensors.h"
+
+
 /* Macros */
 #define PI 3.14159265
 #define abs(x) (x>=0?x:-(x))

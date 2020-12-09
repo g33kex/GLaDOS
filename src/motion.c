@@ -1,8 +1,5 @@
 #include "motion.h"
 
-#include "ev3.h"
-#include "ev3_tacho.h"
-
 #include <stdio.h>
 #include <unistd.h>
 
@@ -70,7 +67,7 @@ void test_dynamic_wheel() {
 }
 
 void move_to(Point target) {
-    robot_pos.rotation = get_rotation();
+    robot_pos.rotation = get_orientation();
 }
 
 /** Run the motor by a given amount.
