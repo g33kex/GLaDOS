@@ -34,6 +34,8 @@ typedef struct {
     int y;
 } Point;
 
+extern inline bool point_equals(Point p1, Point p2) { return p1.x == p2.x && p1.y == p2.y; }
+
 typedef struct {
     Point p;
     int rotation;
@@ -70,8 +72,9 @@ int robot_rotate(int angle);
 
 void test_dynamic_wheel(void);
 
-/** Move to target in a straight-ish line **/
-void move_to(Point target);
+/** Move to target in a straight-ish line 
+  * Returns true if we think move was successful */
+bool move_to(Point target);
 
 
 #endif // MOTION_H

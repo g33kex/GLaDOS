@@ -66,9 +66,43 @@ void test_dynamic_wheel() {
     set_tacho_command_inx(right_wheel, TACHO_STOP);
 }
 
-void move_to(Point target) {
-    robot_pos.rotation = get_orientation();
+bool move_to(Point target) {
+    int l;
+    int r;
+    int distance;
+    int wheel_pos;
+
+    //set_orientation(0); //Temporary, should be relative to TP room
+    robot_pos.rotation = 0;
+
+    set_tacho_position(left_wheel, 0);
+    set_tacho_position(right_wheel, 0);
+    wheel_pos=0;
+
+    set_tacho_duty_cycle_sp(left_wheel, 1);
+    set_tacho_duty_cycle_sp(right_wheel, 1);
+    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
+    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
+
+    while(!point_equals(target, robot_pos.p)) {
+        robot_pos.rotation = get_orientation();
+
+        get_tacho_position(left_wheel, &l); 
+        get_tacho_position(right_wheel, &r);
+        if(l!=r) {
+            printf("Fatal error, l=%d!=r=%d\n", l, r);
+            return false;
+        }
+
+        distance = l-wheel_pos;
+        wheel_pos = l;
+
+        robot_pos.p.x += distance*cos(radians(robot_pos.rotation)); 
+        robot_pos.p.y += distance*sin(radians(robot_pos.rotation));
+    }
+    return true;
 }
+
 
 /** Run the motor by a given amount.
   * rot is in degrees **/

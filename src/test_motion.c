@@ -18,7 +18,9 @@ bool test_motion() {
     robot_move(-100);
     robot_move(100);
     robot_move(-100);*/
-    test_dynamic_wheel();
+    //test_dynamic_wheel();
+    Point target = (Point) {10,15};
+    move_to(target);
     printf("test_motion passed\n");
     return true;
 }
