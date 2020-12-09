@@ -14,7 +14,7 @@ int main( void )
 	printf( "Hello, OS!\n" );
 
 	ev3_init();
-	ev3_sensor_init();
+	sensor_init();
 	printf( "Found sensors:\n" );
 	int i, ii, val;
 	uint32_t n;
@@ -43,10 +43,10 @@ if(sensor_init()){
 }
 	int j;
 	for(j = 0 ; j < 100 ; j++){
-		testColor();
+		//testColor();
 		testIntensity();
-		testOrientation();
-		testDistance();
+		// testOrientation();
+		// testDistance();
 		sleep(1);
 	}
 

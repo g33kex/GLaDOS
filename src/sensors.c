@@ -52,28 +52,27 @@ const char * get_color(){
 
 
 int get_intensity(){
-  et_sensor_mode( sn_color_front, "COL-AMBIENT" );
-  int val;
-  if ( !get_sensor_value( 0, sn_color_front, &val )) {
-      val = 0;
+  set_sensor_mode( sn_color_front, "COL-AMBIENT" );
+  int value;
+  if ( !get_sensor_value( 0, sn_color_front, &value )) {
+      value = 0;
   }
   fflush( stdout );
-  return (int) value;
+  return value;
 }
 
 int get_distance(){
   float value;
-  printf("SONAR found, reading sonar...\n");
   if ( !get_sensor_value0(sn_sonar, &value )) {
     value = 0;
   }
   fflush( stdout );
+  printf("%f\n",value );
   return (int) value;
 }
 
 int get_orientation(){
   float value;
-  printf("COMPASS found, reading compass...\n");
   if ( !get_sensor_value0(sn_compass, &value )) {
     value = 0;
   }
