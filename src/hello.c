@@ -35,13 +35,17 @@ int main( void )
         	}
     	}
 
-	int j;
-	for(j = 0 ; j < 100 ; j++){
-		testColor();
-		testOrientation();
-		testDistance();
-		sleep(1);
-	}
+
+if(sensor_init(void)){
+	printf("YESSAI CA MARCHE\n", );
+}
+	// int j;
+	// for(j = 0 ; j < 100 ; j++){
+	// 	testColor();
+	// 	testOrientation();
+	// 	testDistance();
+	// 	sleep(1);
+	// }
 
 
 
