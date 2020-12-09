@@ -16,12 +16,13 @@ bool sensor_init(void) {
         return false;
     if(!ev3_search_sensor_plugged_in(COMPASS_PORT, 0, &sn_compass, 0))
         return false;
-    if(!ev3_search_sensor_plugged_in(SONAR_PORT, 0, &sn_sonar, 0))
+/*    if(!ev3_search_sensor_plugged_in(SONAR_PORT, 0, &sn_sonar, 0))
         return false;
     if(!ev3_search_sensor_plugged_in(COLOR_FRONT_PORT, 0, &sn_color_front, 0))
         return false;
     if(!ev3_search_sensor_plugged_in(COLOR_PINCE_PORT, 0, &sn_color_pince, 0))
         return false;
+        */
     return true;
 }
 

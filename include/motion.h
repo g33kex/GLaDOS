@@ -35,9 +35,6 @@ typedef struct {
     int y;
 } Point;
 
-extern bool point_equals(Point p1, Point p2) { return p1.x == p2.x && p1.y == p2.y; }
-extern int point_distance(Point p1, Point p2) { return (int) sqrt(pow(p1.x-p2.x, 2)+pow(p1.y-p2.y,2)); }
-
 typedef struct {
     Point p;
     int rotation;
@@ -50,7 +47,7 @@ uint8_t left_wheel;
 uint8_t right_wheel;
 
 /** Motors parameters **/
-static const int moving_speed = MAX_SPEED/4;
+static const int moving_speed = MAX_SPEED/10;
 
 
 /** Position of the robot **/

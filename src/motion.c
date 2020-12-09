@@ -10,6 +10,22 @@
 static void init_motor(uint8_t);
 static void run_motor(uint8_t, int, int);
 
+//static bool point_equals(Point p1, Point p2) { return p1.x == p2.x && p1.y == p2.y; }
+static int point_distance(Point p1, Point p2) { return (int) sqrt(pow(p1.x-p2.x, 2)+pow(p1.y-p2.y,2)); }
+
+static int angle_to_point(Point target) {
+        int deltax=target.x-robot_pos.p.x;
+        int deltay=target.y-robot_pos.p.y;
+        int robot_angle = robot_pos.rotation==0?0:360-robot_pos.rotation;
+        int target_angle = (360+(int)degrees(atan2(deltax,deltay)))%360;
+        int angle = (target_angle-robot_angle)%360;
+        angle = angle>180?angle-360:angle;
+
+        printf("robot_angle %d target_angle %d angle %d\n", robot_angle, target_angle, angle);
+        printf("Robot orientation = %d\n",robot_pos.rotation);
+        return angle;
+}
+
 /* Functions implementation */
 
 bool motion_init(void) {
@@ -47,9 +63,9 @@ int robot_move(int distance) {
     int rot = (distance*3600)/WHEEL_CIRCUMFERENCE;
     printf("Running the motors %d degrees with speed %d\n", rot, moving_speed);
     run_motor(left_wheel, rot, moving_speed);
-    run_motor(right_wheel, rot, moving_speed);
+    //run_motor(right_wheel, rot, moving_speed);
 
-   Sleep ( 10000 );
+   //Sleep ( 10000 );
 
    return 0;
 }
@@ -67,14 +83,24 @@ void test_dynamic_wheel() {
 }
 
 bool move_to(Point target) {
+    
     int l;
     int r;
+    int lr;
     int distance;
     int wheel_pos;
+    int delta_wheel_pos;
 
-    int deltax;
-    int deltay;
     int angle;
+
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
+    while(1) {
+        Sleep ( 200 );
+        robot_pos.rotation=get_orientation();
+        angle = angle_to_point(target);
+    }
+    Sleep ( 1000 );
 
     //set_orientation(0); //Temporary, should be relative to TP room
     robot_pos.rotation = 0;
@@ -88,27 +114,27 @@ bool move_to(Point target) {
     set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
 
-    while(point_distance(target, robot_pos.p)<=5) {
+    while(point_distance(target, robot_pos.p)>=5) {
+        Sleep ( 100 );
         robot_pos.rotation = get_orientation();
 
         get_tacho_position(left_wheel, &l); 
         get_tacho_position(right_wheel, &r);
         if(l!=r) {
             printf("Fatal error, l=%d!=r=%d\n", l, r);
-            return false;
         }
-
-        distance = l-wheel_pos;
-        wheel_pos = l;
+        lr = (l+r)/2;
+        
+        delta_wheel_pos = lr-wheel_pos;
+        wheel_pos += delta_wheel_pos;
+        distance = delta_wheel_pos*WHEEL_CIRCUMFERENCE/360;
+        printf("delta_wheel_pos=%d, wheel_pos=%d, d=%d\n",delta_wheel_pos, wheel_pos, distance);
 
         robot_pos.p.x += distance*cos(radians(robot_pos.rotation)); 
         robot_pos.p.y += distance*sin(radians(robot_pos.rotation));
         printf("New position : x:%d, y:%d, rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
 
-        deltax=target.x-robot_pos.p.x;
-        deltay=target.y-robot_pos.p.y;
-        angle = (int) robot_pos.rotation-atan2(deltax, deltay);
-        printf("Angle to target position is %d\n",angle); 
+        angle = angle_to_point(target);
 
         if(angle > 0) {
             set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
