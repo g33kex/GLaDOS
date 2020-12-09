@@ -14,6 +14,13 @@ int testColor(){
   printf("%s\n",get_color());
   return 0;
 }
+
+int testIntensity(){
+  printf("testing the get_intensity function\n");
+  printf("%s\n",get_intensity());
+  return 0;
+}
+
 int testDistance(){
   printf("testing the get_color function\n");
   printf( "%d \n", get_distance());

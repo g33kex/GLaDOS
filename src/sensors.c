@@ -42,8 +42,6 @@ bool sensor_init(void) {
 const char * get_color(){
   set_sensor_mode( sn_color_front, "COL-COLOR" );
   int val;
-  printf( "COLOR sensor is found, reading COLOR...\n" );
-  set_sensor_mode( sn_color_front, "COL-COLOR" );
   if ( !get_sensor_value( 0, sn_color_front, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
       val = 0;
   }
@@ -54,7 +52,13 @@ const char * get_color(){
 
 
 int get_intensity(){
-  return 0;
+  et_sensor_mode( sn_color_front, "COL-AMBIENT" );
+  int val;
+  if ( !get_sensor_value( 0, sn_color_front, &val )) {
+      val = 0;
+  }
+  fflush( stdout );
+  return (int) value;
 }
 
 int get_distance(){

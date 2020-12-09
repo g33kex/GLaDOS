@@ -41,13 +41,14 @@ int main( void )
 if(sensor_init()){
 	printf("YESSAI CA MARCHE\n");
 }
-	// int j;
-	// for(j = 0 ; j < 100 ; j++){
-	// 	testColor();
-	// 	testOrientation();
-	// 	testDistance();
-	// 	sleep(1);
-	// }
+	int j;
+	for(j = 0 ; j < 100 ; j++){
+		testColor();
+		testIntensity();
+		testOrientation();
+		testDistance();
+		sleep(1);
+	}
 
 
 
