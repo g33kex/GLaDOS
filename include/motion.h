@@ -24,6 +24,7 @@
 //Port D
 #define RIGHT_WHEEL_PORT 68
 
+#define INITIAL_DUTY 20
 #define MAX_SPEED 1500
 //Millimeters
 #define WHEEL_CIRCUMFERENCE 173 
@@ -34,7 +35,8 @@ typedef struct {
     int y;
 } Point;
 
-extern inline bool point_equals(Point p1, Point p2) { return p1.x == p2.x && p1.y == p2.y; }
+extern bool point_equals(Point p1, Point p2) { return p1.x == p2.x && p1.y == p2.y; }
+extern int point_distance(Point p1, Point p2) { return (int) sqrt(pow(p1.x-p2.x, 2)+pow(p1.y-p2.y,2)); }
 
 typedef struct {
     Point p;

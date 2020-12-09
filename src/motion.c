@@ -72,6 +72,10 @@ bool move_to(Point target) {
     int distance;
     int wheel_pos;
 
+    int deltax;
+    int deltay;
+    int angle;
+
     //set_orientation(0); //Temporary, should be relative to TP room
     robot_pos.rotation = 0;
 
@@ -79,12 +83,12 @@ bool move_to(Point target) {
     set_tacho_position(right_wheel, 0);
     wheel_pos=0;
 
-    set_tacho_duty_cycle_sp(left_wheel, 1);
-    set_tacho_duty_cycle_sp(right_wheel, 1);
+    set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
+    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
     set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
 
-    while(!point_equals(target, robot_pos.p)) {
+    while(point_distance(target, robot_pos.p)<=5) {
         robot_pos.rotation = get_orientation();
 
         get_tacho_position(left_wheel, &l); 
@@ -99,6 +103,27 @@ bool move_to(Point target) {
 
         robot_pos.p.x += distance*cos(radians(robot_pos.rotation)); 
         robot_pos.p.y += distance*sin(radians(robot_pos.rotation));
+        printf("New position : x:%d, y:%d, rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
+
+        deltax=target.x-robot_pos.p.x;
+        deltay=target.y-robot_pos.p.y;
+        angle = (int) robot_pos.rotation-atan2(deltax, deltay);
+        printf("Angle to target position is %d\n",angle); 
+
+        if(angle > 0) {
+            set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
+            set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY/2);
+        }
+        else if(angle < 0) {
+            set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY/2);
+            set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+        }
+        else {
+            set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
+            set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+        }
+
+         
     }
     return true;
 }

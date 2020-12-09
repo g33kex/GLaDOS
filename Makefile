@@ -33,7 +33,7 @@ endif
 default: compile
 
 $(TARGET): $(OBJECTS)
-	$(CC) -o $@ $^ $(LIBS)
+	$(CC) -lm -o $@ $^ $(LIBS)
 
 mkdir: 
 	@mkdir -p $(TRGDIR)
