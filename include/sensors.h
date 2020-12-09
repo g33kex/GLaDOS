@@ -34,23 +34,28 @@ uint8_t sn_color_front;
 uint8_t sn_color_pince;
 
 
-
 /* Functions */
 
 /** Initializes the sensor system
   * Returns false in case of an error **/
 bool sensor_init(void);
 
-
+/*give color*/
 const char * get_color();
 
 /** Gives the intensity of the light
   * Return intensity between 0 and 100%  **/
 int get_intensity();
-//const enum Color * get_color();
 
+/* give distance */
 int get_distance();
+
+/*gives orientation*/
 int get_orientation();
+
+/** Initializes the compass such has current orientation is the new North
+  * Returns false in case of an error **/
+bool set_orientation(int orientation);
 
 
 #endif // SENSORS_H

@@ -11,6 +11,8 @@ const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "W
 //const Color const *color[] = { UNKNOW, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN  };
 #define COLOR_COUNT  (( int )( sizeof( color ) / sizeof( color[ 0 ])))
 
+int orientation_zero = 0;
+
 bool sensor_init(void) {
     if(ev3_sensor_init()==-1){
       printf("PB AVEC INIT\n");
@@ -55,6 +57,7 @@ int get_intensity(){
   set_sensor_mode( sn_color_front, "COL-AMBIENT" );
   int value;
   if ( !get_sensor_value( 0, sn_color_front, &value )) {
+      printf("[X]ERROR while reading intensity value\n");
       value = 0;
   }
   fflush( stdout );
@@ -64,6 +67,7 @@ int get_intensity(){
 int get_distance(){
   float value;
   if ( !get_sensor_value0(sn_sonar, &value )) {
+    printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
   fflush( stdout );
@@ -74,8 +78,18 @@ int get_distance(){
 int get_orientation(){
   float value;
   if ( !get_sensor_value0(sn_compass, &value )) {
+    printf("[X]ERROR while reading orientation value\n");
     value = 0;
   }
   fflush( stdout );
+  value = value - orientation_zero;
+  if(value < 0) {
+    value = value + 360;
+  }
   return (int) value;
+}
+
+bool set_orientation(int orientation){
+  orientation_zero = orientation;
+  return true;
 }
