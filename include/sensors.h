@@ -5,4 +5,5 @@ enum Color
 };
 const char * get_color();
 //const enum Color * get_color();
-//get_distance();
+int get_distance();
+int get_orientation();

@@ -9,8 +9,20 @@
 
 
 
-int test1(){
-  printf("testing\n");
+int testColor(){
+  printf("testing the get_color function\n");
   printf("%s\n",get_color());
+  return 0;
+}
+int testDistance(){
+  printf("testing the get_color function\n");
+  printf( "%d \n", get_distance());
+  return 0;
+}
+
+int testOrientation(){
+  printf("testing the get_orientation function\n");
+  printf("%d\n", get_orientation());
+
   return 0;
 }

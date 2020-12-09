@@ -31,3 +31,32 @@ const char * get_color(){
 
 
 }
+
+int get_distance(){
+  uint8_t sn_sonar;
+  float value;
+  if (ev3_search_sensor(LEGO_EV3_US, &sn_sonar,0)){
+      printf("SONAR found, reading sonar...\n");
+      if ( !get_sensor_value0(sn_sonar, &value )) {
+        value = 0;
+      }
+      fflush( stdout );
+      return (int) value;
+    }
+
+  return 0;
+}
+
+int get_orientation(){
+  uint8_t sn_compass;
+  float value;
+  if (ev3_search_sensor(HT_NXT_COMPASS, &sn_compass,0)){
+      printf("COMPASS found, reading compass...\n");
+      if ( !get_sensor_value0(sn_compass, &value )) {
+        value = 0;
+      }
+      fflush( stdout );
+      return (int) value;
+    }
+    return 0;
+}

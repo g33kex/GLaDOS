@@ -1,1 +1,3 @@
-int test1();
+int testColor();
+int testDistance();
+int testOrientation();
