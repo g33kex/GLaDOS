@@ -125,6 +125,8 @@ bool move_to(Point target) {
 
          
     }
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
     return true;
 }
 
