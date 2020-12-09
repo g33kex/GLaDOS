@@ -47,7 +47,7 @@ const char * get_color();
   * Return intensity between 0 and 100%  **/
 int get_intensity();
 
-/* give distance */
+/* give distance in mm*/
 int get_distance();
 
 /*gives orientation*/

@@ -71,7 +71,8 @@ int get_distance(){
     value = 0;
   }
   fflush( stdout );
-  return (int) value;
+  value = (int) value;
+  return (int) (value * 10);
 }
 
 int get_orientation(){
