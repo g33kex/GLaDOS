@@ -5,16 +5,16 @@
 #include <stdint.h>
 
 //Port 0
-#define COMPASS_PORT 49
+#define COMPASS_PORT 52
 
 // Port 1
-#define SONAR_PORT 50
+#define SONAR_PORT 49
 
 //Port 2
-#define COLOR_FRONT_PORT 51
+#define COLOR_FRONT_PORT 50
 
 //Port 3
-#define COLOR_PINCE_PORT 52
+#define COLOR_PINCE_PORT 51
 
 
 /* Structures*/

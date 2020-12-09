@@ -43,10 +43,10 @@ if(sensor_init()){
 }
 	int j;
 	for(j = 0 ; j < 100 ; j++){
-		//testColor();
-		//testIntensity();
+		testColor();
+		testIntensity();
 		testOrientation();
-		// testDistance();
+			testDistance();
 		sleep(1);
 	}
 

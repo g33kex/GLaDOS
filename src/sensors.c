@@ -54,7 +54,7 @@ const char * get_color(){
 
 
 int get_intensity(){
-  set_sensor_mode( sn_color_front, "COL-AMBIENT" );
+  set_sensor_mode( sn_color_front, "COL-REFLECT" );
   int value;
   if ( !get_sensor_value( 0, sn_color_front, &value )) {
       printf("[X]ERROR while reading intensity value\n");
@@ -71,7 +71,6 @@ int get_distance(){
     value = 0;
   }
   fflush( stdout );
-  printf("%f\n",value );
   return (int) value;
 }
 
@@ -82,13 +81,23 @@ int get_orientation(){
     value = 0;
   }
   fflush( stdout );
-  printf(" orientation test : %d\n", value );
   value = value - orientation_zero;
   if(value < 0) {
     value = value + 360;
   }
   return value;
 }
+
+//  float value;
+//  if (ev3_search_sensor(HT_NXT_COMPASS, &sn_compass,0)){
+//      if ( !get_sensor_value0(sn_compass, &value )) {
+//        value = 0;
+//      }
+//      fflush( stdout );
+//      return (int) value;
+//    }
+//    return 0;
+// }
 
 bool set_orientation(int orientation){
   orientation_zero = orientation;
