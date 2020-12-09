@@ -44,8 +44,8 @@ if(sensor_init()){
 	int j;
 	for(j = 0 ; j < 100 ; j++){
 		//testColor();
-		testIntensity();
-		// testOrientation();
+		//testIntensity();
+		testOrientation();
 		// testDistance();
 		sleep(1);
 	}

@@ -76,17 +76,18 @@ int get_distance(){
 }
 
 int get_orientation(){
-  float value;
-  if ( !get_sensor_value0(sn_compass, &value )) {
+  int value;
+  if ( !get_sensor_value(0, sn_compass, &value )) {
     printf("[X]ERROR while reading orientation value\n");
     value = 0;
   }
   fflush( stdout );
+  printf(" orientation test : %d\n", value );
   value = value - orientation_zero;
   if(value < 0) {
     value = value + 360;
   }
-  return (int) value;
+  return value;
 }
 
 bool set_orientation(int orientation){
