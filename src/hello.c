@@ -7,6 +7,7 @@
 #include "hello.h"
 #include "test.h"
 #include "testSensor.h"
+#include "sensors.h"
 
 int main( void )
 {
@@ -15,7 +16,8 @@ int main( void )
 	ev3_init();
 	ev3_sensor_init();
 	printf( "Found sensors:\n" );
-	int i, ii, val, n;
+	int i, ii, val;
+	uint32_t n;
 	char s[ 256 ];
 
     	for ( i = 0; i < DESC_LIMIT; i++ ) {
@@ -36,8 +38,8 @@ int main( void )
     	}
 
 
-if(sensor_init(void)){
-	printf("YESSAI CA MARCHE\n", );
+if(sensor_init()){
+	printf("YESSAI CA MARCHE\n");
 }
 	// int j;
 	// for(j = 0 ; j < 100 ; j++){
