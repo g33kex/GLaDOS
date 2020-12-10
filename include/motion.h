@@ -8,15 +8,8 @@
 #include "ev3.h"
 #include "ev3_tacho.h"
 
+#include "vector.h"
 #include "sensors.h"
-
-
-/* Macros */
-#define PI 3.14159265
-#define abs(x) (x>=0?x:-(x))
-#define sign(x) (x>=0?1:-1)
-#define radians(x) ((PI*(x))/180)
-#define degrees(x) ((180*(x))/PI)
 
 /* Constants */
 //Port A
@@ -32,12 +25,7 @@
 
 /* Structures */
 typedef struct {
-    int x;
-    int y;
-} Point;
-
-typedef struct {
-    Point p;
+    Vector p;
     int rotation;
 } Position;
 
@@ -60,24 +48,12 @@ Position robot_pos;
   * Returns false in case of an error **/ 
 bool motion_init(void);
 
-/** Move the robot by given distance
-  * If distance < 0, moves backward
-  * If distance > 0, moves forward
-  * Returns the distance moved **/
-int robot_move(int distance);
-
-/** Rotate the robot by given angle
- ** Returns the actual rotation **/
-int robot_rotate(int angle);
-
-void test_dynamic_wheel(void);
-
 /** Move to target in a straight-ish line 
   * Returns true if we think move was successful */
-bool move_to(Point target);
+bool move_to(Vector target);
 
 /** Rotate the robot to face a given point */
-bool rotate_to(Point target);
+bool rotate_to(Vector target);
 
 
 #endif // MOTION_H

@@ -6,16 +6,18 @@
 #define PI 3.14159265
 #define abs(x) (x>=0?x:-(x))
 #define sign(x) (x>=0?1:-1)
-#define radians(x) ((PI*(x))/180)
+#define radians(x) ((PI*((float)x))/180)
 #define degrees(x) ((180*(x))/PI)
 
 typedef struct {
-    const int x;
-    const int y;
+    int x;
+    int y;
 } Vector;
 
+Vector vector_from_polar(int, int);
+
 Vector vector_add(Vector, Vector);
-Vector vertor_sub(Vector, Vector);
+Vector vector_sub(Vector, Vector);
 int vector_dot(Vector, Vector);
 int vector_det(Vector, Vector);
 
