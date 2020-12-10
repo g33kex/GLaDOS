@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
+#include "ev3_sensor.h"
+
 #define Sleep( msec ) usleep(( msec ) * 1000 )
 
 /* Private functions */
@@ -18,11 +20,13 @@ static int angle_to_point(Point target) {
         int deltay=target.y-robot_pos.p.y;
         int robot_angle = robot_pos.rotation==0?0:360-robot_pos.rotation;
         int target_angle = (360+(int)degrees(atan2(deltax,deltay)))%360;
-        int angle = (target_angle-robot_angle)%360;
-        angle = angle>180?angle-360:angle;
+        int angle = (360+target_angle-robot_angle)%360;
+        angle = angle>180?-angle+360:-angle;
 
         printf("robot_angle %d target_angle %d angle %d\n", robot_angle, target_angle, angle);
-        printf("Robot orientation = %d\n",robot_pos.rotation);
+        printf("Angle = %d\n",angle);
+
+  
         return angle;
 }
 
@@ -116,6 +120,23 @@ bool rotate_to(Point target) {
     return true;
 }
 
+void calibrate_compass() {
+    set_sensor_command(sn_compass, "END-CAL");
+    set_sensor_command(sn_compass, "BEGIN-CAL");
+
+    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY);
+    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+
+    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
+    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
+
+    Sleep ( 40000 );
+
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
+    set_sensor_command(sn_compass, "END-CAL");
+}
+
 bool move_to(Point target) {
     
     int l;
@@ -131,18 +152,22 @@ bool move_to(Point target) {
 
     set_tacho_command_inx(left_wheel, TACHO_STOP);
     set_tacho_command_inx(right_wheel, TACHO_STOP);
-    while(1) {
+
+    //calibrate_compass();
+    /*while(1) {
         Sleep ( 200 );
+        printf("Orientation %d\n",get_orientation());
+        continue;
         robot_pos.rotation=get_orientation();
         angle = angle_to_point(target);
-    }
+    }*/
     Sleep ( 1000 );
 
     //set_orientation(0); //Temporary, should be relative to TP room
     robot_pos.rotation = 0;
 
     /* Rotate to face the target */
-    rotate_to(target);
+    //rotate_to(target);
 
     /* Move to the target */
     set_tacho_position(left_wheel, 0);
@@ -155,28 +180,29 @@ bool move_to(Point target) {
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
 
     while(point_distance(target, robot_pos.p)>=5) {
-        Sleep ( 100 );
+        Sleep ( 400 );
+        printf("Distance = %d\n",point_distance(target,robot_pos.p));
         old_orientation = robot_pos.rotation;
         robot_pos.rotation = get_orientation();
 
         get_tacho_position(left_wheel, &l); 
         get_tacho_position(right_wheel, &r);
         if(l!=r) {
-            printf("Fatal error, l=%d!=r=%d\n", l, r);
+            //printf("Fatal error, l=%d!=r=%d\n", l, r);
         }
         lr = (l+r)/2;
 
         odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
-        printf("odometry_theta = %d\ncompass_theta=%d\n",odometry_theta,robot_pos.rotation-old_orientation);
+       // printf("odometry_theta = %d\ncompass_theta=%d\n",odometry_theta,robot_pos.rotation-old_orientation);
 
         
         delta_wheel_pos = lr-wheel_pos;
         wheel_pos += delta_wheel_pos;
         distance = delta_wheel_pos*WHEEL_CIRCUMFERENCE/360;
-        printf("delta_wheel_pos=%d, wheel_pos=%d, d=%d\n",delta_wheel_pos, wheel_pos, distance);
+      //  printf("delta_wheel_pos=%d, wheel_pos=%d, d=%d\n",delta_wheel_pos, wheel_pos, distance);
 
-        robot_pos.p.x += distance*cos(radians(robot_pos.rotation)); 
-        robot_pos.p.y += distance*sin(radians(robot_pos.rotation));
+        robot_pos.p.y += distance*cos(radians(robot_pos.rotation)); 
+        robot_pos.p.x += distance*sin(radians(robot_pos.rotation));
         printf("New position : x:%d, y:%d, rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
 
         angle = angle_to_point(target);

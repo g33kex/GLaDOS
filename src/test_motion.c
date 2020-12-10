@@ -21,7 +21,7 @@ bool test_motion() {
     //test_dynamic_wheel();
     //robot_move(-10);
     //y + = NORTH
-    Point target = (Point) {150,0};
+    Point target = (Point) {0,500};
     move_to(target);
     printf("test_motion passed\n");
     return true;

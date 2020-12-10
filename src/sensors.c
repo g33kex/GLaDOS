@@ -68,7 +68,7 @@ int get_distance(){
 int get_orientation(){
   float value;
   if (ev3_search_sensor(HT_NXT_COMPASS, &sn_compass,0)){
-      printf("COMPASS found, reading compass...\n");
+      //printf("COMPASS found, reading compass...\n");
       if ( !get_sensor_value0(sn_compass, &value )) {
         value = 0;
       }
