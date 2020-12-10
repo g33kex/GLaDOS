@@ -4,10 +4,11 @@
 #include "sensors.h"
 
 #include <stdio.h>
-
+/*
 int main(void) {
     return test_motion();
 }
+*/
 
 bool test_motion() {
     if(!motion_init() || !sensor_init()) {
