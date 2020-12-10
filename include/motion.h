@@ -28,6 +28,7 @@
 #define MAX_SPEED 1500
 //Millimeters
 #define WHEEL_CIRCUMFERENCE 173 
+#define WHEEL_DISTANCE 40
 
 /* Structures */
 typedef struct {
@@ -74,6 +75,9 @@ void test_dynamic_wheel(void);
 /** Move to target in a straight-ish line 
   * Returns true if we think move was successful */
 bool move_to(Point target);
+
+/** Rotate the robot to face a given point */
+bool rotate_to(Point target);
 
 
 #endif // MOTION_H

@@ -82,6 +82,40 @@ void test_dynamic_wheel() {
     set_tacho_command_inx(right_wheel, TACHO_STOP);
 }
 
+bool rotate_to(Point target) {
+    int angle;
+
+    angle = angle_to_point(target);
+    if(angle>0) {
+        set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY);
+        set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+    } else if(angle<0) {
+        set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
+        set_tacho_duty_cycle_sp(right_wheel, -INITIAL_DUTY);
+    }
+    else {
+        return true;
+    }
+
+    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
+    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
+
+    while(angle!=0) {
+        robot_pos.rotation=get_orientation();
+        angle = angle_to_point(target);
+        if(angle>0) {
+            set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY);
+            set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+        } else if(angle<0) {
+            set_tacho_duty_cycle_sp(left_wheel, INITIAL_DUTY);
+            set_tacho_duty_cycle_sp(right_wheel, -INITIAL_DUTY);
+        }
+    }
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
+    return true;
+}
+
 bool move_to(Point target) {
     
     int l;
@@ -92,6 +126,8 @@ bool move_to(Point target) {
     int delta_wheel_pos;
 
     int angle;
+    int old_orientation;
+    int odometry_theta;
 
     set_tacho_command_inx(left_wheel, TACHO_STOP);
     set_tacho_command_inx(right_wheel, TACHO_STOP);
@@ -105,6 +141,10 @@ bool move_to(Point target) {
     //set_orientation(0); //Temporary, should be relative to TP room
     robot_pos.rotation = 0;
 
+    /* Rotate to face the target */
+    rotate_to(target);
+
+    /* Move to the target */
     set_tacho_position(left_wheel, 0);
     set_tacho_position(right_wheel, 0);
     wheel_pos=0;
@@ -116,6 +156,7 @@ bool move_to(Point target) {
 
     while(point_distance(target, robot_pos.p)>=5) {
         Sleep ( 100 );
+        old_orientation = robot_pos.rotation;
         robot_pos.rotation = get_orientation();
 
         get_tacho_position(left_wheel, &l); 
@@ -124,6 +165,10 @@ bool move_to(Point target) {
             printf("Fatal error, l=%d!=r=%d\n", l, r);
         }
         lr = (l+r)/2;
+
+        odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
+        printf("odometry_theta = %d\ncompass_theta=%d\n",odometry_theta,robot_pos.rotation-old_orientation);
+
         
         delta_wheel_pos = lr-wheel_pos;
         wheel_pos += delta_wheel_pos;
