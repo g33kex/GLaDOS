@@ -14,17 +14,31 @@ int main(void) {
 		return -1;
 	if ( ev3_search_tacho_plugged_in(67,0, &hand, 0 )) {
 		init_motor(hand);
-		run_motor(hand,360, 500);
+		open_hand();
+		close_hand();
+		close_hand();
+		open_hand();
+		open_hand();
 	} else {			
-		printf( "LEGO_EV3_M_MOTOR 1 is NOT found\n" );		    
+		printf( "LEGO_EV3_M_MOTOR is NOT found\n" );		    
 	}
 	return 0;
+}
+
+void open_hand(){
+	run_motor(hand, 0, 400);
+	sleep(1);
+}
+
+void close_hand(){
+	run_motor(hand, 180, 400);
+	sleep(1);
 }
 
 static void run_motor(uint8_t motor, int rot, int speed) {
 	set_tacho_speed_sp(motor, speed);
 	set_tacho_position_sp(motor, rot);
-	set_tacho_command_inx(motor, TACHO_RUN_TO_REL_POS);
+	set_tacho_command_inx(motor, TACHO_RUN_TO_ABS_POS);
 }
 
 static void init_motor(uint8_t motor) {
