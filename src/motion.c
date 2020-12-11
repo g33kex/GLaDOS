@@ -5,8 +5,6 @@
 
 #include "ev3_sensor.h"
 
-#define Sleep( msec ) usleep(( msec ) * 1000 )
-
 /* Private variables */
 static int right_wheel_previous_pos = 0;
 static int left_wheel_previous_pos = 0;
@@ -72,11 +70,12 @@ static void update_position() {
 
 /* Functions implementation */
 void calibrate_compass() {
+    printf("Calibrating compass...\n");
     set_sensor_command(sn_compass, "END-CAL");
     set_sensor_command(sn_compass, "BEGIN-CAL");
 
-    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY);
-    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY);
+    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY*2);
+    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY*2);
 
     set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
@@ -108,9 +107,9 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=5) {
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=50) {
         printf("Distance : %d\n",vector_magnitude(vector_sub(target, robot_pos.p)));
-        Sleep ( 400 );
+        Sleep ( 100 );
         
         // Update robot position using odometry and compass
         update_position();
@@ -122,10 +121,10 @@ void move_to(Vector target) {
         printf("Angle : %d\n", angle);
 
         if(angle < 0) { // Turn Right
-            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY/2);
+            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-2);
         }
         else if(angle > 0) { // Turn Left
-            set_motors_duty(INITIAL_DUTY/2, INITIAL_DUTY);
+            set_motors_duty(INITIAL_DUTY-2, INITIAL_DUTY);
         }
         else { // Go Straight
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
@@ -141,16 +140,20 @@ void rotate_to(Vector target) {
 
     int angle;
     do {
+        Sleep ( 200 );
         update_rotation();
         Vector direction = vector_from_polar(100, robot_pos.rotation);
         angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
+        printf("Robot angle : %d\n",robot_pos.rotation);
+        printf("Direction : (%d, %d)\n", direction.x, direction.y);
+        printf("Angle : %d\n", angle);
 
         if(angle>0) {
             set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
         } else if(angle<0) {
             set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
         }
-    } while(angle!=0);
+    } while(abs(angle)>10);
 
     stop_motors();
 }

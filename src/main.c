@@ -51,16 +51,16 @@ int main(int argc, char **argv) {
     if(!init())
         return -1;
 
-    if(strcmp("stop", command)) {
+    if(!strcmp("stop", command)) {
         stop();
     }
-    else if(strcmp("calibrate", command)) {
+    else if(!strcmp("calibrate", command)) {
         calibrate();
     }
-    else if(strcmp("move", command)) {
+    else if(!strcmp("move", command)) {
         move();
     }
-    else if(strcmp("grab", command)) {
+    else if(!strcmp("grab", command)) {
         grab();
     }
     return 0;

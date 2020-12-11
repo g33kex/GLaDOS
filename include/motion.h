@@ -11,6 +11,8 @@
 #include "vector.h"
 #include "sensors.h"
 
+#define Sleep( msec ) usleep(( msec ) * 1000 )
+
 /* Constants */
 
 /** Port for the left wheel motor (A) **/
