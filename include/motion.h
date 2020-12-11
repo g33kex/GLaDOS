@@ -12,18 +12,21 @@
 #include "sensors.h"
 
 /* Constants */
-//Port A
+
+/** Port for the left wheel motor (A) **/
 #define LEFT_WHEEL_PORT 65
-//Port D
+/** Port for the right wheel motor (D) **/
 #define RIGHT_WHEEL_PORT 68
 
+/** Starting duty of the motors **/
 #define INITIAL_DUTY 20
-#define MAX_SPEED 1500
-//Millimeters
+/** Wheel circumference (mm) **/
 #define WHEEL_CIRCUMFERENCE 173 
+/** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40
 
 /* Structures */
+
 typedef struct {
     Vector p;
     int rotation;
@@ -35,25 +38,29 @@ typedef struct {
 uint8_t left_wheel;
 uint8_t right_wheel;
 
-/** Motors parameters **/
-static const int moving_speed = MAX_SPEED/10;
-
-
 /** Position of the robot **/
 Position robot_pos;
 
 /* Functions */
+/** Calibrate the compass **/
+//TODO : should be moved to sensors.h
+void calibrate_compass();
 
 /** Initializes the motion systme
   * Returns false in case of an error **/ 
 bool motion_init(void);
 
-/** Move to target in a straight-ish line 
-  * Returns true if we think move was successful */
-bool move_to(Vector target);
+/** Stop the robot **/
+void stop_robot(void);
 
-/** Rotate the robot to face a given point */
-bool rotate_to(Vector target);
+/** Rotate to target then move to target in a straight-ish line **/
+void rotate_move_to(Vector target);
+
+/** Move to target in a straight-ish line **/
+void move_to(Vector target);
+
+/** Rotate the robot to face a given point **/
+void rotate_to(Vector target);
 
 
 #endif // MOTION_H

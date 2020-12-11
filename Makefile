@@ -49,6 +49,9 @@ install: compile
 $(TRGDIR)/%.o: $(SRCDIR)/%.c $(INCDIR)/%.h
 	$(CC) $(FLAGS) -I/usr/local/include -c $< -o $@ -I$(INCDIR) 
 
+$(TRGDIR)/main.o: $(SRCDIR)/main.c
+	$(CC) $(FLAGS) -I/usr/local/include -c $< -o $@ -I$(INCDIR) 
+
 ## PONEY rules
 
 .PONEY: clean run_docker stop_docker

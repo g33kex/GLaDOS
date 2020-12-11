@@ -30,8 +30,8 @@ int vector_magnitude(Vector v) {
 int vector_angle2(Vector v1, Vector v2) {
     return degrees(atan2(vector_det(v1, v2), vector_dot(v1, v2)));
 }
-/*
-int main(void) {
+
+void test_vectors(void) {
     Vector target = {0, 500};
     Vector rpos = {-81, 34};
     int rrot = 53;
@@ -39,7 +39,4 @@ int main(void) {
     printf("Direction : (%d,%d)\n", direction.x, direction.y);
     int angle = vector_angle2(direction, vector_sub(target, rpos));
     printf("Angle : %d\n", angle);
- 
-    return 0;
 }
-*/

@@ -5,11 +5,6 @@
 
 #include <stdio.h>
 
-int main(void) {
-    return test_motion();
-}
-
-
 bool test_motion() {
     if(!motion_init() || !sensor_init()) {
         printf("test_motion failed at motion_init() or sensors_init()\n");
