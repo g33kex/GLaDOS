@@ -5,6 +5,7 @@
 #include <unistd.h>
 
 void lower();
+void lower_half();
 void lift();
 void open_hand();
 void close_hand();
