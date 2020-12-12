@@ -14,6 +14,7 @@ const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "W
 int orientation_zero = 0;
 
 bool sensor_init(void) {
+
     if(ev3_sensor_init()==-1){
       printf("PB AVEC INIT\n");
       return false;
@@ -76,6 +77,7 @@ int get_distance(){
 }
 
 int get_orientation(){
+
   int value;
   if ( !get_sensor_value(0, sn_compass, &value )) {
     printf("[X]ERROR while reading orientation value\n");
@@ -103,4 +105,5 @@ int get_orientation(){
 bool set_orientation(int orientation){
   orientation_zero = orientation;
   return true;
+
 }

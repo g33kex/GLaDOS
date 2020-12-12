@@ -1,0 +1,324 @@
+Running tacho init
+Searching for left motor
+Searching for right motor
+Distance : 500
+New position : (14, y:-2), rotation:352
+Direction : (99, -13)
+Angle : 99
+Distance : 502
+New position : (23, y:-3), rotation:352
+Direction : (99, -13)
+Angle : 100
+Distance : 503
+New position : (27, y:-3), rotation:353
+Direction : (99, -12)
+Angle : 99
+Distance : 503
+New position : (34, y:-3), rotation:354
+Direction : (99, -10)
+Angle : 99
+Distance : 504
+New position : (42, y:-3), rotation:355
+Direction : (99, -8)
+Angle : 99
+Distance : 504
+New position : (50, y:-3), rotation:356
+Direction : (99, -6)
+Angle : 99
+Distance : 505
+New position : (58, y:-3), rotation:357
+Direction : (99, -5)
+Angle : 99
+Distance : 506
+New position : (65, y:-3), rotation:358
+Direction : (99, -3)
+Angle : 99
+Distance : 507
+New position : (73, y:-3), rotation:359
+Direction : (99, -1)
+Angle : 98
+Distance : 508
+New position : (82, y:-3), rotation:0
+Direction : (100, 0)
+Angle : 99
+Distance : 509
+New position : (91, y:-3), rotation:0
+Direction : (100, 0)
+Angle : 100
+Distance : 511
+New position : (99, y:-3), rotation:1
+Direction : (99, 1)
+Angle : 100
+Distance : 512
+New position : (107, y:-3), rotation:2
+Direction : (99, 3)
+Angle : 100
+Distance : 514
+New position : (115, y:-3), rotation:4
+Direction : (99, 6)
+Angle : 99
+Distance : 515
+New position : (123, y:-3), rotation:5
+Direction : (99, 8)
+Angle : 99
+Distance : 517
+New position : (130, y:-3), rotation:6
+Direction : (99, 10)
+Angle : 98
+Distance : 519
+New position : (138, y:-2), rotation:8
+Direction : (99, 13)
+Angle : 97
+Distance : 520
+New position : (144, y:-1), rotation:9
+Direction : (98, 15)
+Angle : 97
+Distance : 521
+New position : (149, y:0), rotation:10
+Direction : (98, 17)
+Angle : 96
+Distance : 521
+New position : (155, y:1), rotation:12
+Direction : (97, 20)
+Angle : 95
+Distance : 522
+New position : (161, y:2), rotation:13
+Direction : (97, 22)
+Angle : 95
+Distance : 523
+New position : (166, y:3), rotation:14
+Direction : (97, 24)
+Angle : 94
+Distance : 523
+New position : (173, y:5), rotation:15
+Direction : (96, 25)
+Angle : 94
+Distance : 524
+New position : (180, y:7), rotation:17
+Direction : (95, 29)
+Angle : 93
+Distance : 524
+New position : (187, y:9), rotation:18
+Direction : (95, 30)
+Angle : 93
+Distance : 525
+New position : (193, y:11), rotation:20
+Direction : (93, 34)
+Angle : 91
+Distance : 525
+New position : (199, y:13), rotation:22
+Direction : (92, 37)
+Angle : 90
+Distance : 526
+New position : (206, y:16), rotation:24
+Direction : (91, 40)
+Angle : 89
+Distance : 526
+New position : (213, y:19), rotation:26
+Direction : (89, 43)
+Angle : 88
+Distance : 526
+New position : (220, y:22), rotation:27
+Direction : (89, 45)
+Angle : 87
+Distance : 526
+New position : (226, y:25), rotation:30
+Direction : (86, 50)
+Angle : 85
+Distance : 526
+New position : (232, y:29), rotation:31
+Direction : (85, 51)
+Angle : 85
+Distance : 525
+New position : (238, y:33), rotation:32
+Direction : (84, 52)
+Angle : 85
+Distance : 524
+New position : (244, y:37), rotation:34
+Direction : (82, 55)
+Angle : 83
+Distance : 523
+New position : (250, y:41), rotation:35
+Direction : (81, 57)
+Angle : 83
+Distance : 522
+New position : (256, y:45), rotation:37
+Direction : (79, 60)
+Angle : 82
+Distance : 522
+New position : (262, y:49), rotation:37
+Direction : (79, 60)
+Angle : 82
+Distance : 521
+New position : (267, y:53), rotation:39
+Direction : (77, 62)
+Angle : 82
+Distance : 520
+New position : (273, y:58), rotation:41
+Direction : (75, 65)
+Angle : 80
+Distance : 519
+New position : (278, y:62), rotation:42
+Direction : (74, 66)
+Angle : 80
+Distance : 518
+New position : (283, y:66), rotation:44
+Direction : (71, 69)
+Angle : 78
+Distance : 518
+New position : (287, y:70), rotation:45
+Direction : (70, 70)
+Angle : 78
+Distance : 516
+New position : (291, y:75), rotation:47
+Direction : (68, 73)
+Angle : 77
+Distance : 515
+New position : (296, y:80), rotation:48
+Direction : (66, 74)
+Angle : 76
+Distance : 513
+New position : (300, y:85), rotation:49
+Direction : (65, 75)
+Angle : 76
+Distance : 512
+New position : (304, y:90), rotation:50
+Direction : (64, 76)
+Angle : 76
+Distance : 510
+New position : (308, y:95), rotation:52
+Direction : (61, 78)
+Angle : 75
+Distance : 508
+New position : (312, y:101), rotation:54
+Direction : (58, 80)
+Angle : 73
+Distance : 506
+New position : (316, y:106), rotation:55
+Direction : (57, 81)
+Angle : 73
+Distance : 505
+New position : (319, y:111), rotation:56
+Direction : (55, 82)
+Angle : 73
+Distance : 503
+New position : (322, y:116), rotation:57
+Direction : (54, 83)
+Angle : 73
+Distance : 501
+New position : (325, y:121), rotation:58
+Direction : (52, 84)
+Angle : 72
+Distance : 499
+New position : (328, y:127), rotation:60
+Direction : (49, 86)
+Angle : 71
+Distance : 496
+New position : (331, y:133), rotation:60
+Direction : (49, 86)
+Angle : 71
+Distance : 494
+New position : (334, y:139), rotation:62
+Direction : (46, 88)
+Angle : 70
+Distance : 491
+New position : (337, y:145), rotation:63
+Direction : (45, 89)
+Angle : 70
+Distance : 489
+New position : (339, y:150), rotation:65
+Direction : (42, 90)
+Angle : 69
+Distance : 487
+New position : (341, y:155), rotation:66
+Direction : (40, 91)
+Angle : 68
+Distance : 485
+New position : (343, y:161), rotation:68
+Direction : (37, 92)
+Angle : 67
+Distance : 482
+New position : (345, y:167), rotation:69
+Direction : (35, 93)
+Angle : 66
+Distance : 479
+New position : (347, y:173), rotation:72
+Direction : (30, 95)
+Angle : 64
+Distance : 476
+New position : (349, y:179), rotation:73
+Direction : (29, 95)
+Angle : 64
+Distance : 474
+New position : (350, y:185), rotation:76
+Direction : (24, 97)
+Angle : 61
+Distance : 470
+New position : (351, y:191), rotation:76
+Direction : (24, 97)
+Angle : 62
+Distance : 467
+New position : (352, y:198), rotation:80
+Direction : (17, 98)
+Angle : 59
+Distance : 463
+New position : (353, y:204), rotation:78
+Direction : (20, 97)
+Angle : 61
+Distance : 460
+New position : (353, y:209), rotation:82
+Direction : (13, 99)
+Angle : 57
+Distance : 457
+New position : (353, y:214), rotation:87
+Direction : (5, 99)
+Angle : 53
+Distance : 454
+New position : (353, y:222), rotation:90
+Direction : (0, 99)
+Angle : 51
+Distance : 449
+New position : (352, y:228), rotation:103
+Direction : (-22, 97)
+Angle : 39
+Distance : 444
+New position : (349, y:235), rotation:117
+Direction : (-45, 89)
+Angle : 25
+Distance : 438
+New position : (343, y:235), rotation:183
+Direction : (-99, -5)
+Angle : -40
+Distance : 433
+New position : (341, y:240), rotation:119
+Direction : (-48, 87)
+Angle : 23
+Distance : 428
+New position : (335, y:238), rotation:200
+Direction : (-93, -34)
+Angle : -58
+Distance : 425
+New position : (334, y:243), rotation:107
+Direction : (-29, 95)
+Angle : 35
+Distance : 421
+New position : (332, y:238), rotation:242
+Direction : (-46, -88)
+Angle : -100
+Distance : 422
+New position : (332, y:242), rotation:81
+Direction : (15, 98)
+Angle : 60
+Distance : 420
+New position : (330, y:237), rotation:246
+Direction : (-40, -91)
+Angle : -104
+Distance : 421
+New position : (330, y:232), rotation:271
+Direction : (1, -99)
+Angle : -129
+Distance : 425
+New position : (328, y:232), rotation:161
+Direction : (-94, 32)
+Angle : -20
+Distance : 423

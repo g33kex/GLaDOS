@@ -1,0 +1,164 @@
+Running tacho init
+Searching for left motor
+Searching for right motor
+Distance : 500
+New position : (-11, y:0), rotation:184
+Direction : (-99, -6)
+Angle : -94
+Distance : 500
+New position : (-18, y:0), rotation:175
+Direction : (-99, 8)
+Angle : -87
+Distance : 500
+New position : (-25, y:1), rotation:166
+Direction : (-97, 24)
+Angle : -78
+Distance : 499
+New position : (-31, y:4), rotation:154
+Direction : (-89, 43)
+Angle : -67
+Distance : 496
+New position : (-36, y:7), rotation:146
+Direction : (-82, 55)
+Angle : -60
+Distance : 494
+New position : (-40, y:11), rotation:133
+Direction : (-68, 73)
+Angle : -47
+Distance : 490
+New position : (-43, y:15), rotation:126
+Direction : (-58, 80)
+Angle : -41
+Distance : 486
+New position : (-45, y:20), rotation:120
+Direction : (-50, 86)
+Angle : -35
+Distance : 482
+New position : (-46, y:25), rotation:107
+Direction : (-29, 95)
+Angle : -22
+Distance : 477
+New position : (-47, y:31), rotation:104
+Direction : (-24, 97)
+Angle : -19
+Distance : 471
+New position : (-48, y:37), rotation:100
+Direction : (-17, 98)
+Angle : -15
+Distance : 465
+New position : (-48, y:43), rotation:96
+Direction : (-10, 99)
+Angle : -11
+Distance : 459
+New position : (-48, y:50), rotation:90
+Direction : (0, 99)
+Angle : -6
+Distance : 452
+New position : (-48, y:56), rotation:85
+Direction : (8, 99)
+Angle : -1
+Distance : 446
+New position : (-48, y:61), rotation:82
+Direction : (13, 99)
+Angle : 1
+Distance : 441
+New position : (-48, y:66), rotation:86
+Direction : (6, 99)
+Angle : -2
+Distance : 436
+New position : (-48, y:71), rotation:81
+Direction : (15, 98)
+Angle : 2
+Distance : 431
+New position : (-48, y:76), rotation:82
+Direction : (13, 99)
+Angle : 1
+Distance : 426
+New position : (-48, y:80), rotation:88
+Direction : (3, 99)
+Angle : -4
+Distance : 422
+New position : (-48, y:84), rotation:83
+Direction : (12, 99)
+Angle : 0
+Distance : 418
+New position : (-47, y:95), rotation:81
+Direction : (15, 98)
+Angle : 2
+Distance : 407
+New position : (-46, y:102), rotation:82
+Direction : (13, 99)
+Angle : 0
+Distance : 400
+New position : (-44, y:114), rotation:81
+Direction : (15, 98)
+Angle : 2
+Distance : 388
+New position : (-44, y:121), rotation:84
+Direction : (10, 99)
+Angle : 0
+Distance : 381
+New position : (-43, y:132), rotation:83
+Direction : (12, 99)
+Angle : 0
+Distance : 370
+New position : (-40, y:144), rotation:76
+Direction : (24, 97)
+Angle : 7
+Distance : 358
+New position : (-38, y:150), rotation:70
+Direction : (34, 93)
+Angle : 13
+Distance : 352
+New position : (-41, y:147), rotation:230
+Direction : (-64, -76)
+Angle : -146
+Distance : 355
+New position : (-41, y:151), rotation:101
+Direction : (-19, 98)
+Angle : -17
+Distance : 351
+New position : (-40, y:155), rotation:76
+Direction : (24, 97)
+Angle : 7
+Distance : 347
+New position : (-40, y:150), rotation:271
+Direction : (1, -99)
+Angle : 172
+Distance : 352
+New position : (-42, y:145), rotation:243
+Direction : (-45, -89)
+Angle : -159
+Distance : 357
+New position : (-39, y:149), rotation:55
+Direction : (57, 81)
+Angle : 28
+Distance : 353
+New position : (-38, y:144), rotation:284
+Direction : (24, -97)
+Angle : 160
+Distance : 358
+New position : (-38, y:140), rotation:262
+Direction : (-13, -99)
+Angle : -178
+Distance : 362
+New position : (-38, y:136), rotation:280
+Direction : (17, -98)
+Angle : 164
+Distance : 365
+New position : (-38, y:132), rotation:275
+Direction : (8, -99)
+Angle : 169
+Distance : 369
+New position : (-38, y:128), rotation:263
+Direction : (-12, -99)
+Angle : -178
+Distance : 373
+New position : (-38, y:123), rotation:275
+Direction : (8, -99)
+Angle : 169
+Distance : 378
+New position : (-38, y:123), rotation:275
+Direction : (8, -99)
+Angle : 169
+Distance : 378
