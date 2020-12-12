@@ -49,17 +49,17 @@ int move_robot_to_random_cube(){
   }
   if (cubeFound) {
     int angle = i * 10;
-    printf("CUBE FOUND ! Going to cube\n", );
+    printf("CUBE FOUND ! Going to cube\n");
     int magnitude = 20;
     while(get_distance() > 50){ //50mm, peut être moi, peut être plus
-      target = vector_from_polar(magnitude,angle)
-      move_to(target)
+      target = vector_from_polar(magnitude,angle);
+      move_to(target);
       magnitude = magnitude + 10;
     }
-    printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n", );
+    printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
     return 1;
   } else {
-    printf("CUBE NOT FOUND\n", );
+    printf("CUBE NOT FOUND\n");
     return 0;
   }
 
