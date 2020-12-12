@@ -6,9 +6,10 @@
 #include "sensors.h"
 
 #include "test_motion.h"
+#include "test_sensors.h"
 
 void usage(void) {
-    printf("Usage : GLaDOS <command>\nList of commands:\n\tstop\t\tStop the robot\n\tcalibrate\tCalibrate the compass\n\tmove\t\tMove the robot to the origin cube\n\tgrab\t\tGrab a ball in front of the robot\n");
+    printf("Usage : GLaDOS <command>\nList of commands:\n\tstop\t\tStop the robot\n\tcalibrate\tCalibrate the compass\n\tmove\t\tMove the robot to the origin cube\n\tgrab\t\tGrab a ball in front of the robot\n\tmove_random\t\tSearch and got ot the random cube\n");
 }
 
 bool init() {
@@ -39,6 +40,10 @@ void grab() {
 
 }
 
+void move_random(){
+    move_robot_to_random_cube(); //in test_sensors, need to be moved ?
+}
+
 int main(int argc, char **argv) {
 
     if(argc!=2) {
@@ -63,5 +68,9 @@ int main(int argc, char **argv) {
     else if(!strcmp("grab", command)) {
         grab();
     }
+    else if(!strcmp("move_to_random", command)){
+      move_random();
+    }
+
     return 0;
 }

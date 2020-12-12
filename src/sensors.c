@@ -76,6 +76,26 @@ int get_distance(){
   return (int) (value * 10);
 }
 
+
+void calibrate_compass() {
+    printf("Calibrating compass...\n");
+    set_sensor_command(sn_compass, "END-CAL");
+    set_sensor_command(sn_compass, "BEGIN-CAL");
+
+    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY*2);
+    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY*2);
+
+    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
+    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
+
+    Sleep ( 40000 );
+
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
+    set_sensor_command(sn_compass, "END-CAL");
+}
+
+
 int get_orientation(){
 
   int value;
@@ -88,7 +108,7 @@ int get_orientation(){
   if(value < 0) {
     value = value + 360;
   }
-  return value;
+  return rot==0?0:360-rot;;
 }
 
 //  float value;

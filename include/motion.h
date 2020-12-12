@@ -23,7 +23,7 @@
 /** Starting duty of the motors **/
 #define INITIAL_DUTY 20
 /** Wheel circumference (mm) **/
-#define WHEEL_CIRCUMFERENCE 173 
+#define WHEEL_CIRCUMFERENCE 173
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40
 
@@ -44,12 +44,9 @@ uint8_t right_wheel;
 Position robot_pos;
 
 /* Functions */
-/** Calibrate the compass **/
-//TODO : should be moved to sensors.h
-void calibrate_compass();
 
 /** Initializes the motion systme
-  * Returns false in case of an error **/ 
+  * Returns false in case of an error **/
 bool motion_init(void);
 
 /** Stop the robot **/

@@ -53,6 +53,9 @@ int get_distance();
 /*gives orientation*/
 int get_orientation();
 
+/** Calibrate the compass **/
+void calibrate_compass();
+
 /** Initializes the compass such has current orientation is the new North
   * Returns false in case of an error **/
 bool set_orientation(int orientation);

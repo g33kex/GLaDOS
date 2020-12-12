@@ -49,7 +49,7 @@ static void update_position() {
     // Update encoder position and compute distance
     int l;
     int r;
-    get_tacho_position(left_wheel, &l); 
+    get_tacho_position(left_wheel, &l);
     get_tacho_position(right_wheel, &r);
     int SR = (r-right_wheel_previous_pos)*WHEEL_CIRCUMFERENCE/360;
     int LR = (l-left_wheel_previous_pos)*WHEEL_CIRCUMFERENCE/360;
@@ -69,23 +69,7 @@ static void update_position() {
 
 
 /* Functions implementation */
-void calibrate_compass() {
-    printf("Calibrating compass...\n");
-    set_sensor_command(sn_compass, "END-CAL");
-    set_sensor_command(sn_compass, "BEGIN-CAL");
 
-    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY*2);
-    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY*2);
-
-    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
-    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
-
-    Sleep ( 40000 );
-
-    set_tacho_command_inx(left_wheel, TACHO_STOP);
-    set_tacho_command_inx(right_wheel, TACHO_STOP);
-    set_sensor_command(sn_compass, "END-CAL");
-}
 
 void stop_robot() {
     stop_motors();
@@ -110,7 +94,7 @@ void move_to(Vector target) {
     while(vector_magnitude(vector_sub(target, robot_pos.p))>=50) {
         printf("Distance : %d\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
-        
+
         // Update robot position using odometry and compass
         update_position();
 
