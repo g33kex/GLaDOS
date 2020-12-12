@@ -37,11 +37,11 @@ int move_robot_to_random_cube(){
   Vector researchPoint = (Vector) {60,40};
   void move_to(researchPoint);
   bool cubeFound = false;
-  initialOrientation = robot_pos.rotation ; //should be 0 for the test6..
+  int initialOrientation = robot_pos.rotation ; //should be 0 for the test6..
   int i;
   Vector target;
   for (i = 0; i < 35 && !cubeFound ; ++i  ) { //on lui fait faire 35 petites rotations sauf s'il trouve le cube avant
-    target = vector_add(vector_from_polar(50, i *10),researchPoint)
+    target = vector_add(vector_from_polar(50, i *10),researchPoint);
     rotate_to(target);
     if (!strcmp("BLUE", get_color())){
       cubeFound = true;
@@ -62,5 +62,28 @@ int move_robot_to_random_cube(){
     printf("CUBE NOT FOUND\n");
     return 0;
   }
+
+}
+
+int drop_ball_in_pyramid(){
+  int distance_to_pyramid = get_distance();
+  int ecart_pince_US_sensor = 80; //à adapter
+  int distance_a_atteindre = ecart_pince_US_sensor  - 40 - 40; //
+  int current_distance = get_distance();
+  int ecart_de_distance = current_distance - distance_a_atteindre;
+  if(ecart_de_distance > 0){
+    printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
+    //avancer_robot(ecart_de_distance);
+  } else {
+    printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
+    //reculer_robot( 0 - ecart_de_distance)
+  }
+
+
+  open_hand();
+
+
+
+  return 1;
 
 }
