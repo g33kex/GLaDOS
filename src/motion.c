@@ -58,10 +58,11 @@ static void update_position() {
     left_wheel_previous_pos = l;
     int meanDistance = (SR+LR)/2;
 
+
+    //int odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
+    //robot_pos.rotation=(robot_pos.rotation+odometry_theta)%360;
+
     printf("Crossed %d at rotation %d\n",meanDistance, robot_pos.rotation);
-
-//      int odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
-
     // Update robot position
     //Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
     //It seems the position needs to be updated in reverse..
@@ -112,7 +113,7 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=50) {
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=10) {
         printf("Distance : %d\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
         
@@ -126,10 +127,10 @@ void move_to(Vector target) {
         printf("Angle : %d\n", angle);
 
         if(angle < 0) { // Turn Right
-            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-2);
+            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
         }
         else if(angle > 0) { // Turn Left
-            set_motors_duty(INITIAL_DUTY-2, INITIAL_DUTY);
+            set_motors_duty(INITIAL_DUTY-5, INITIAL_DUTY);
         }
         else { // Go Straight
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
