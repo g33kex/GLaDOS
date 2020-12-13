@@ -48,7 +48,7 @@ static void init_motor(uint8_t motor) {
 	//set_tacho_speed_sp(motor, max_speed/10);
 	set_tacho_ramp_up_sp(motor, 0);
 	set_tacho_ramp_down_sp(motor, 0);
-	set_tacho_stop_action_inx(motor, TACHO_BRAKE);
+	set_tacho_stop_action_inx(motor, TACHO_HOLD);
 }
 
 bool grab_init() {
