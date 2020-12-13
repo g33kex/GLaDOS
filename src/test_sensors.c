@@ -36,11 +36,13 @@ int testOrientation(){
 int move_robot_to_random_cube(){
   Vector researchPoint = (Vector) {60,40};
   void move_to(researchPoint);
+  printf("researchPoint atteint !!!\n");
   bool cubeFound = false;
   int initialOrientation = robot_pos.rotation ; //should be 0 for the test6..
   int i;
   Vector target;
   for (i = 0; i < 35 && !cubeFound ; ++i  ) { //on lui fait faire 35 petites rotations sauf s'il trouve le cube avant
+    printf("zizi %d\n",i);
     target = vector_add(vector_from_polar(50, i *10),researchPoint);
     rotate_to(target);
     if (!strcmp("BLUE", get_color())){
@@ -81,7 +83,7 @@ int drop_ball_in_pyramid(){
 
 
   open_hand();
-
+  close_hand();
 
 
   return 1;
