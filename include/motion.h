@@ -21,7 +21,7 @@
 #define RIGHT_WHEEL_PORT 68
 
 /** Starting duty of the motors **/
-#define INITIAL_DUTY 20
+#define INITIAL_DUTY 10
 /** Wheel circumference (mm) **/
 #define WHEEL_CIRCUMFERENCE 173
 /** Distance between the wheels (mm) **/
@@ -62,7 +62,7 @@ void move_to(Vector target);
 void rotate_to(Vector target);
 
 void tourner_un_peu(); //provisoire mais j'en ai besoin
-void aller_tout_droit(); //idem
+void aller_tout_droit(int time); //idem
 
 
 #endif // MOTION_H

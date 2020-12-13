@@ -88,6 +88,15 @@ int main(int argc, char **argv) {
     else if(!strcmp("test6", command)){
       move_random();
     }
+    else if(!strcmp("color", command)){
+      printf("couleur : %s\n",get_color() );;
+    }
+    else if(!strcmp("dist", command)){
+      printf("distance : %d\n",get_distance() );;
+    }
+    else if(!strcmp("compass", command)){
+      printf("orientation : %d\n",get_orientation() );;
+    }
 
     return 0;
 }
