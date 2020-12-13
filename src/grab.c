@@ -9,23 +9,6 @@ static void init_motor(uint8_t);
 static void run_motor(uint8_t, int, int);
 
 
-int main(void) {
-	if(ev3_tacho_init()==-1)
-		return -1;
-	if ( ev3_search_tacho_plugged_in(67,0, &hand, 0 ) && ev3_search_tacho_plugged_in(66,0, &lever,0)) {
-		init_motor(hand);
-		init_motor(lever);
-		lower_half();
-		open_hand();
-		lower();
-		close_hand();
-		lift();
-	} else {			
-		printf( "LEGO_EV3_M_MOTOR is NOT found\n" );		    
-	}
-	return 0;
-}
-
 void open_hand(){
 	run_motor(hand, 0, 400);
 	sleep(1);
@@ -65,5 +48,20 @@ static void init_motor(uint8_t motor) {
 	//set_tacho_speed_sp(motor, max_speed/10);
 	set_tacho_ramp_up_sp(motor, 0);
 	set_tacho_ramp_down_sp(motor, 0);
-	set_tacho_stop_action_inx(motor, TACHO_BRAKE);
+	set_tacho_stop_action_inx(motor, TACHO_HOLD);
 }
+
+bool grab_init() {
+	if(ev3_tacho_init()==-1)
+		return false;
+	if(!ev3_search_tacho_plugged_in(HAND_PORT,0,&hand,0))
+		return false;
+	if(!ev3_search_tacho_plugged_in(LEVER_PORT,0,&lever,0))
+		return false;
+
+	init_motor(hand);
+	init_motor(lever);
+
+	set_tacho_position(hand, 0);
+	set_tacho_position(lever, 0);
+	return true;

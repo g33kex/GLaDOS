@@ -6,57 +6,127 @@
 #include "ev3_port.h"
 #include "ev3_sensor.h"
 #include "sensors.h"
+#include "motion.h"
+#include "test_motion.h"
+#include "vector.h"
 
 const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "WHITE", "BROWN" };
 //const Color const *color[] = { UNKNOW, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN  };
 #define COLOR_COUNT  (( int )( sizeof( color ) / sizeof( color[ 0 ])))
 
+int orientation_zero = 0;
+
+bool sensor_init(void) {
+
+    if(ev3_sensor_init()==-1){
+      printf("PB AVEC INIT\n");
+      return false;
+    }
+
+    if(!ev3_search_sensor_plugged_in(COMPASS_PORT, 0, &sn_compass, 0)){
+      printf("PB AVEC COMPASS\n");
+      return false;
+    }
+
+    if(!ev3_search_sensor_plugged_in(SONAR_PORT, 0, &sn_sonar, 0)){
+      printf("PB AVEC SONAR\n");
+      return false;
+    }
+    if(!ev3_search_sensor_plugged_in(COLOR_FRONT_PORT, 0, &sn_color_front, 0)){
+      printf("PB AVEC FRONT\n");
+      return false;
+    }
+    if(!ev3_search_sensor_plugged_in(COLOR_PINCE_PORT, 0, &sn_color_pince, 0)){
+      printf("PB AVEC PINCE\n");
+      return false;
+    }
+    return true;
+}
+
+
 
 const char * get_color(){
-  uint8_t sn_color;
-
+  set_sensor_mode( sn_color_front, "COL-COLOR" );
   int val;
-  if ( ev3_search_sensor( LEGO_EV3_COLOR, &sn_color, 0 )) {
-          printf( "COLOR sensor is found, reading COLOR...\n" );
-          set_sensor_mode( sn_color, "COL-COLOR" );
-          if ( !get_sensor_value( 0, sn_color, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
-              val = 0;
-          }
-          return color[ val ];
-    }
-    else {
-      printf("[X] unable to find the color sensor !");
-      return color[0];
-    }
+  if ( !get_sensor_value( 0, sn_color_front, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
+      val = 0;
+  }
+  return color[ val ];
+
+}
 
 
+
+int get_intensity(){
+  set_sensor_mode( sn_color_front, "COL-REFLECT" );
+  int value;
+  if ( !get_sensor_value( 0, sn_color_front, &value )) {
+      printf("[X]ERROR while reading intensity value\n");
+      value = 0;
+  }
+  fflush( stdout );
+  return value;
 }
 
 int get_distance(){
-  uint8_t sn_sonar;
   float value;
-  if (ev3_search_sensor(LEGO_EV3_US, &sn_sonar,0)){
-      printf("SONAR found, reading sonar...\n");
-      if ( !get_sensor_value0(sn_sonar, &value )) {
-        value = 0;
-      }
-      fflush( stdout );
-      return (int) value;
-    }
-
-  return 0;
+  if ( !get_sensor_value0(sn_sonar, &value )) {
+    printf("[X]ERROR while reading distance value\n");
+    value = 0;
+  }
+  fflush( stdout );
+  value = (int) value;
+  return (int) (value * 10);
 }
 
+
+void calibrate_compass() {
+    printf("Calibrating compass...\n");
+    set_sensor_command(sn_compass, "END-CAL");
+    set_sensor_command(sn_compass, "BEGIN-CAL");
+
+    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY*2);
+    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY*2);
+
+    set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
+    set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
+
+    Sleep ( 40000 );
+
+    set_tacho_command_inx(left_wheel, TACHO_STOP);
+    set_tacho_command_inx(right_wheel, TACHO_STOP);
+    set_sensor_command(sn_compass, "END-CAL");
+}
+
+
 int get_orientation(){
-  uint8_t sn_compass;
-  float value;
-  if (ev3_search_sensor(HT_NXT_COMPASS, &sn_compass,0)){
-      printf("COMPASS found, reading compass...\n");
-      if ( !get_sensor_value0(sn_compass, &value )) {
-        value = 0;
-      }
-      fflush( stdout );
-      return (int) value;
-    }
-    return 0;
+
+  int rot;
+  if ( !get_sensor_value(0, sn_compass, &rot )) {
+    printf("[X]ERROR while reading orientation value\n");
+    rot = 0;
+  }
+  fflush( stdout );
+  rot = rot - orientation_zero;
+  if(rot < 0) {
+    rot = rot + 360;
+  }
+  return rot==0?0:360-rot;;
+}
+
+//  float value;
+//  if (ev3_search_sensor(HT_NXT_COMPASS, &sn_compass,0)){
+//      if ( !get_sensor_value0(sn_compass, &value )) {
+//        value = 0;
+//      }
+//      fflush( stdout );
+//      return (int) value;
+//    }
+//    return 0;
+// }
+
+bool set_orientation(int orientation){
+  orientation_zero = orientation;
+  return true;
+
 }

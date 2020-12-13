@@ -1,0 +1,142 @@
+Running tacho init
+Searching for left motor
+Searching for right motor
+Running tacho init
+Searching for left motor
+Searching for right motor
+Robot angle : 359
+Direction : (99, -1)
+Angle : -163
+Robot angle : 358
+Direction : (99, -3)
+Angle : -161
+Robot angle : 357
+Direction : (99, -5)
+Angle : -160
+Robot angle : 354
+Direction : (99, -10)
+Angle : -157
+Robot angle : 352
+Direction : (99, -13)
+Angle : -156
+Robot angle : 349
+Direction : (98, -19)
+Angle : -152
+Robot angle : 345
+Direction : (96, -25)
+Angle : -149
+Robot angle : 342
+Direction : (95, -30)
+Angle : -146
+Robot angle : 340
+Direction : (93, -34)
+Angle : -143
+Robot angle : 338
+Direction : (92, -37)
+Angle : -141
+Robot angle : 335
+Direction : (90, -42)
+Angle : -138
+Robot angle : 333
+Direction : (89, -45)
+Angle : -136
+Robot angle : 330
+Direction : (86, -50)
+Angle : -133
+Robot angle : 327
+Direction : (83, -54)
+Angle : -130
+Robot angle : 325
+Direction : (81, -57)
+Angle : -128
+Robot angle : 323
+Direction : (79, -60)
+Angle : -126
+Robot angle : 320
+Direction : (76, -64)
+Angle : -123
+Robot angle : 317
+Direction : (73, -68)
+Angle : -120
+Robot angle : 313
+Direction : (68, -73)
+Angle : -116
+Robot angle : 310
+Direction : (64, -76)
+Angle : -113
+Robot angle : 305
+Direction : (57, -81)
+Angle : -108
+Robot angle : 303
+Direction : (54, -83)
+Angle : -106
+Robot angle : 298
+Direction : (46, -88)
+Angle : -101
+Robot angle : 295
+Direction : (42, -90)
+Angle : -98
+Robot angle : 292
+Direction : (37, -92)
+Angle : -95
+Robot angle : 290
+Direction : (34, -93)
+Angle : -93
+Robot angle : 287
+Direction : (29, -95)
+Angle : -90
+Robot angle : 284
+Direction : (24, -97)
+Angle : -87
+Robot angle : 282
+Direction : (20, -97)
+Angle : -85
+Robot angle : 278
+Direction : (13, -99)
+Angle : -81
+Robot angle : 276
+Direction : (10, -99)
+Angle : -79
+Robot angle : 272
+Direction : (3, -99)
+Angle : -75
+Robot angle : 270
+Direction : (0, -99)
+Angle : -73
+Robot angle : 268
+Direction : (-3, -99)
+Angle : -71
+Robot angle : 264
+Direction : (-10, -99)
+Angle : -67
+Robot angle : 262
+Direction : (-13, -99)
+Angle : -66
+Robot angle : 258
+Direction : (-20, -97)
+Angle : -61
+Robot angle : 254
+Direction : (-27, -96)
+Angle : -57
+Robot angle : 251
+Direction : (-32, -94)
+Angle : -54
+Robot angle : 246
+Direction : (-40, -91)
+Angle : -49
+Robot angle : 242
+Direction : (-46, -88)
+Angle : -46
+Robot angle : 232
+Direction : (-61, -78)
+Angle : -35
+Robot angle : 223
+Direction : (-73, -68)
+Angle : -26
+Robot angle : 211
+Direction : (-85, -51)
+Angle : -14
+Robot angle : 196
+Direction : (-96, -27)
+Angle : 0
+test_motion passed
