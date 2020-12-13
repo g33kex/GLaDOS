@@ -4,6 +4,7 @@
 
 #include "motion.h"
 #include "sensors.h"
+#include "grab.h"
 
 #include "test_motion.h"
 #include "test_sensors.h"
@@ -21,6 +22,10 @@ bool init() {
         printf("Failed to initialize sensors!\n");
         return false;
     }
+    if(!grab_init()){
+    	printf("Failed to initialize hand!\n");
+	return false;
+    }
     return true;
 }
 
@@ -37,7 +42,11 @@ void move() {
 }
 
 void grab() {
-
+	lower_half();
+	open_hand();
+	lower();
+	close_hand();
+	lift();
 }
 
 void move_random(){

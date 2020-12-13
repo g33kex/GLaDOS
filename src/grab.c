@@ -10,12 +10,12 @@ static void run_motor(uint8_t, int, int);
 
 
 void open_hand(){
-	run_motor(hand, 0, 400);
+	run_motor(hand, -180, 400);
 	sleep(1);
 }
 
 void close_hand(){
-	run_motor(hand, 220, 400);
+	run_motor(hand, 0, 400);
 	sleep(1);
 }
 
@@ -65,3 +65,4 @@ bool grab_init() {
 	set_tacho_position(hand, 0);
 	set_tacho_position(lever, 0);
 	return true;
+}
