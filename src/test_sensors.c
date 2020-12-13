@@ -39,7 +39,7 @@ int testOrientation(){
 int move_robot_to_random_cube(){
   // Vector researchPoint = (Vector) {60,40};
   // void move_to(researchPoint);
-  aller_tout_droit( 1000 );
+  aller_tout_droit( 5000 );
   printf("researchPoint atteint !!!\n");
   bool cubeFound = false;
   int i;
@@ -57,11 +57,12 @@ int move_robot_to_random_cube(){
     //int angle = i * 10;
     printf("CUBE FOUND ! Going to cube\n");
     //int magnitude = 150;
-    while(get_distance() > 50){ //50mm, peut être moi, peut être plus
+    while(get_distance() > 100){ //100mm, peut être moi, peut être plus
       // target = vector_from_polar(magnitude,angle);
       // move_to(target);
       // magnitude = magnitude + 50;
       aller_tout_droit(500);
+      printf("distance du cube : %d\n",get_distance() );
     }
     printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
     return 1;

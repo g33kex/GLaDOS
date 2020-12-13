@@ -185,7 +185,7 @@ void aller_tout_droit(int time ){
   set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
   start_motors();
 
-  Sleep ( 5000 );
+  Sleep ( time );
 
   // Update robot position using odometry and compass
   update_position();
