@@ -17,6 +17,7 @@ bool test_motion() {
 //    rotate_to(target);
     Vector target = (Vector) {200,50};
     rotate_move_to(target);
+//    rotate_move_to(target);
     Sleep ( 2000 );
     target = (Vector) {0,0};
     rotate_move_to(target);

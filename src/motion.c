@@ -45,6 +45,7 @@ static void update_rotation() {
 /** Update the position of the robot using compass odometry **/
 static void update_position() {
     update_rotation();
+    printf("Old position : (%d, %d)\n", robot_pos.p.x, robot_pos.p.y);
 
     // Update encoder position and compute distance
     int l;
@@ -57,15 +58,17 @@ static void update_position() {
     left_wheel_previous_pos = l;
     int meanDistance = (SR+LR)/2;
 
+    printf("Crossed %d at rotation %d\n",meanDistance, robot_pos.rotation);
+
 //      int odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
 
     // Update robot position
     //Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
     //It seems the position needs to be updated in reverse..
-    Vector motion = {meanDistance*sin(radians(robot_pos.rotation)), meanDistance*cos(radians(robot_pos.rotation))};
+    Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
     robot_pos.p = vector_add(robot_pos.p,motion);
 
-    printf("New position : (%d, y:%d), rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
+    printf("New position : (%d, %d), rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
 }
 
 
@@ -155,7 +158,7 @@ void rotate_to(Vector target) {
         } else if(angle<0) {
             set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
         }
-    } while(abs(angle)>10);
+    } while(abs(angle)>5);
 
     stop_motors();
 }
