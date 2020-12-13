@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <math.h>
-
+#include <string.h>
 #include "ev3.h"
 #include "ev3_light.h"
 #include "ev3_port.h"
 #include "ev3_sensor.h"
+#include "ev3_tacho.h"
 #include "sensors.h"
 #include "motion.h"
-
+#include "grab.h"
+#include "test_motion.h"
+#include "test_sensors.h"
 
 int testColor(){
   printf("get_color function : %s\n",get_color());
@@ -34,29 +37,31 @@ int testOrientation(){
 
 
 int move_robot_to_random_cube(){
-  Vector researchPoint = (Vector) {60,40};
-  void move_to(researchPoint);
+  // Vector researchPoint = (Vector) {60,40};
+  // void move_to(researchPoint);
+  aller_tout_droit( 1000 );
   printf("researchPoint atteint !!!\n");
   bool cubeFound = false;
-  int initialOrientation = robot_pos.rotation ; //should be 0 for the test6..
   int i;
-  Vector target;
+  //Vector target;
   for (i = 0; i < 35 && !cubeFound ; ++i  ) { //on lui fait faire 35 petites rotations sauf s'il trouve le cube avant
     printf("zizi %d\n",i);
-    target = vector_add(vector_from_polar(50, i *10),researchPoint);
-    rotate_to(target);
+    // target = vector_add(vector_from_polar(50, i *10),researchPoint);
+    // rotate_to(target);
+    tourner_un_peu();
     if (!strcmp("BLUE", get_color())){
       cubeFound = true;
     }
   }
   if (cubeFound) {
-    int angle = i * 10;
+    //int angle = i * 10;
     printf("CUBE FOUND ! Going to cube\n");
-    int magnitude = 150;
+    //int magnitude = 150;
     while(get_distance() > 50){ //50mm, peut être moi, peut être plus
-      target = vector_from_polar(magnitude,angle);
-      move_to(target);
-      magnitude = magnitude + 50;
+      // target = vector_from_polar(magnitude,angle);
+      // move_to(target);
+      // magnitude = magnitude + 50;
+      aller_tout_droit(500);
     }
     printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
     return 1;
@@ -68,7 +73,7 @@ int move_robot_to_random_cube(){
 }
 
 int drop_ball_in_pyramid(){
-  int distance_to_pyramid = get_distance();
+  //int distance_to_pyramid = get_distance();
   int ecart_pince_US_sensor = 80; //à adapter
   int distance_a_atteindre = ecart_pince_US_sensor  - 40 - 40; //
   int current_distance = get_distance();

@@ -61,5 +61,8 @@ void move_to(Vector target);
 /** Rotate the robot to face a given point **/
 void rotate_to(Vector target);
 
+void tourner_un_peu(); //provisoire mais j'en ai besoin
+void aller_tout_droit(); //idem
+
 
 #endif // MOTION_H
