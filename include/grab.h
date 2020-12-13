@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include <unistd.h>
 
+#define LEVER_PORT 66;
+#define HAND_port 67;
+
 void lower();
 void lower_half();
 void lift();
