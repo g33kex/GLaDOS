@@ -50,3 +50,18 @@ static void init_motor(uint8_t motor) {
 	set_tacho_ramp_down_sp(motor, 0);
 	set_tacho_stop_action_inx(motor, TACHO_BRAKE);
 }
+
+bool grab_init() {
+	if(ev3_tacho_init()==-1)
+		return false;
+	if(!ev3_search_tacho_plugged_in(HAND_PORT,0,&hand,0))
+		return false;
+	if(!ev3_search_tacho_plugged_in(LEVER_PORT,0,&lever,0))
+		return false;
+
+	init_motor(hand);
+	init_motor(lever);
+
+	set_tacho_position(hand, 0);
+	set_tacho_position(lever, 0);
+	return true;
