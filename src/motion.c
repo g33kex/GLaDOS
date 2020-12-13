@@ -160,3 +160,36 @@ bool motion_init(void) {
     init_motor(right_wheel);
     return true;
 }
+
+
+
+
+void tourner_un_peu(){
+  set_motors_duty(0,0);
+  start_motors();
+  Sleep ( 200 );
+  update_rotation();
+  set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+  Sleep( 200 );
+  stop_motors();
+}
+
+void aller_tout_droit(int time ){
+  // Initialize previous wheel encoder pos
+  set_tacho_position(left_wheel, 0);
+  set_tacho_position(right_wheel, 0);
+  right_wheel_previous_pos=0;
+  left_wheel_previous_pos=0;
+
+  // Start the motors
+  set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
+  start_motors();
+
+  Sleep ( 100 );
+
+  // Update robot position using odometry and compass
+  update_position();
+  Sleep( time );
+
+  stop_motors();
+}
