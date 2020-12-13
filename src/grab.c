@@ -32,7 +32,7 @@ void open_hand(){
 }
 
 void close_hand(){
-	run_motor(hand, 200, 400);
+	run_motor(hand, 220, 400);
 	sleep(1);
 }
 
@@ -42,12 +42,12 @@ void lift(){
 }
 
 void lower_half() {
-	run_motor(lever, 288,400);
+	run_motor(lever, 144, 400);
 	sleep(2);
 }
 
 void lower(){
-	run_motor(lever, 288, 400);
+	run_motor(lever, 300, 400);
 	sleep(3);
 }
 
