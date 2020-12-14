@@ -54,7 +54,7 @@ int move_robot_to_random_cube(){
     tourner_un_peu();
     printf("couleur detectée : %s\n",get_color() );
     printf("distance detectée : %d\n",get_distance() );
-    if (!strcmp("BLUE", get_color()) || get_distance() < 300){
+    if (!strcmp("BLUE", get_color()) || get_distance() < 1000){
       cubeFound = true;
     }
   }
@@ -62,13 +62,14 @@ int move_robot_to_random_cube(){
     //int angle = i * 10;
     printf("CUBE FOUND ! Going to cube\n");
     //int magnitude = 150;
-    while(get_distance() > 80){ //100mm, peut être moi, peut être plus
-      // target = vector_from_polar(magnitude,angle);
-      // move_to(target);
-      // magnitude = magnitude + 50;
-      aller_tout_droit(1500);
-      printf("distance du cube : %d\n",get_distance() );
-    }
+    aller_tout_droit(5000);
+    // while(get_distance() > 300){ //100mm, peut être moi, peut être plus
+    //   // target = vector_from_polar(magnitude,angle);
+    //   // move_to(target);
+    //   // magnitude = magnitude + 50;
+    //   aller_tout_droit(1500);
+    //   printf("distance du cube : %d\n",get_distance() );
+    // }
     printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
     return 1;
   } else {
@@ -109,7 +110,7 @@ void test_sonar(){
   int i;
   for(i = 0 ; i < 35; ++i){
     rotate(10);
-    sleep(500);
+    sleep(5000);
     printf("%d\n",get_distance());
 
   }
