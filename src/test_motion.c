@@ -41,3 +41,9 @@ bool test_motion() {
     printf("test_motion passed\n");
     return true;
 }
+
+bool test_rotation() {
+
+    rotate(90);
+    return true;
+}

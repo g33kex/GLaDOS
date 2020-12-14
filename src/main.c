@@ -35,6 +35,10 @@ void move() {
     test_motion();
 }
 
+void rot() {
+    test_rotation();
+}
+
 void grab() {
 
 }
@@ -67,6 +71,9 @@ int main(int argc, char **argv) {
     }
     else if(!strcmp("move", command)) {
         move();
+    }
+    else if(!strcmp("rot", command)) {
+        rot();
     }
     else if(!strcmp("grab", command)) {
         grab();

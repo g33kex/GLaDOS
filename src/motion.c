@@ -172,7 +172,7 @@ void rotate(double angle) {
         Sleep ( 200 );
         int old_rotation = robot_pos.rotation;
         update_rotation();
-        angle=(angle-(robot_pos.rotation-old));
+        angle=(angle-(robot_pos.rotation-old_rotation));
 
         if(angle>0) {
             set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
