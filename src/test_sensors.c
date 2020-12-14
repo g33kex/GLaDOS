@@ -54,7 +54,7 @@ int move_robot_to_random_cube(){
     tourner_un_peu();
     printf("couleur detectée : %s\n",get_color() );
     printf("distance detectée : %d\n",get_distance() );
-    if (!strcmp("BLUE", get_color()) || get_distance() < 100){
+    if (!strcmp("BLUE", get_color()) || get_distance() < 300){
       cubeFound = true;
     }
   }
@@ -87,7 +87,7 @@ int drop_ball_in_pyramid(){
   printf("distance du cube : %d\n",get_distance() );
   if(ecart_de_distance > 0){
     printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    aller_tout_droit(ecart_de_distance * 10 + 200);
+    aller_tout_drovoid aller_tout_droit(int time); //idemit(ecart_de_distance * 10 + 200);
     printf("distance du cube : %d\n",get_distance() );
   } else {
     printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
