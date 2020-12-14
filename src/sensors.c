@@ -70,14 +70,14 @@ int get_intensity(){
 int get_distance(){
   set_sensor_mode( sn_sonar, "US-DIST-CM" );
 
-  float value;
-  if ( !get_sensor_value0(sn_sonar, &value )) {
+  int value;
+  if ( !get_sensor_value(0,sn_sonar, &value )) {
     printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
-  printf("%f\n", value );
+  printf("distance : %d\n", value );
   fflush( stdout );
-  return (int) (value * 10);
+  return (value);
 }
 
 
@@ -112,7 +112,7 @@ int get_orientation(){
   if(rot < 0) {
     rot = rot + 360;
   }
-  return rot==0?0:360-rot;;
+  return rot==0?0:360-rot;
 }
 
 //  float value;

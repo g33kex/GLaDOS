@@ -63,7 +63,7 @@ int move_robot_to_random_cube(){
       // target = vector_from_polar(magnitude,angle);
       // move_to(target);
       // magnitude = magnitude + 50;
-      aller_tout_droit(500);
+      aller_tout_droit(1500);
       printf("distance du cube : %d\n",get_distance() );
     }
     printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
@@ -84,7 +84,7 @@ int drop_ball_in_pyramid(){
   printf("distance du cube : %d\n",get_distance() );
   if(ecart_de_distance > 0){
     printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    aller_tout_droit(ecart_de_distance);
+    aller_tout_droit(ecart_de_distance * 10 + 200);
     printf("distance du cube : %d\n",get_distance() );
   } else {
     printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
