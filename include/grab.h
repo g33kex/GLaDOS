@@ -11,7 +11,7 @@
 #define GRAB_SPEED 100
 #define LEVER_SPEED 400
 #define CLOSED_HAND 0
-#define OPENED_hand -180
+#define OPENED_HAND -180
 #define LEVER_UP 0
 #define LEVER_MID 144
 #define LEVER_DOWN 300
