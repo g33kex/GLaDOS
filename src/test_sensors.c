@@ -13,6 +13,9 @@
 #include "test_motion.h"
 #include "test_sensors.h"
 
+void tourner_un_peu();
+
+
 int testColor(){
   printf("get_color function : %s\n",get_color());
   return 0;
@@ -39,7 +42,7 @@ int testOrientation(){
 int move_robot_to_random_cube(){
   // Vector researchPoint = (Vector) {60,40};
   // void move_to(researchPoint);
-  aller_tout_droit( 5000 );
+  //aller_tout_droit( 5000 );
   printf("researchPoint atteint !!!\n");
   bool cubeFound = false;
   int i;
