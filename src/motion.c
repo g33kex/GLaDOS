@@ -149,6 +149,7 @@ void rotate_to(Vector target) {
 }
 
 void rotate(double angle) {
+    update_rotation();
     set_motors_duty(0,0);
     start_motors();
 
