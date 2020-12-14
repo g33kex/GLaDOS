@@ -167,7 +167,7 @@ bool motion_init(void) {
 void tourner_un_peu(){
   set_motors_duty(0,0);
   start_motors();
-  Sleep ( 1000 );
+  Sleep ( 250 );
   update_rotation();
   set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
   Sleep( 1000 );
