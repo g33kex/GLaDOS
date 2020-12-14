@@ -103,7 +103,7 @@ int main(int argc, char **argv) {
       printf("distance : %d\n",get_distance() );
     }
     else if(!strcmp("distRound", command)){
-      printf("orientation : %d\n",get_orientation() );
+      test_sonar();
     }
     else if(!strcmp("compass", command)){
       printf("orientation : %d\n",get_orientation() );

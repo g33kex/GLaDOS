@@ -105,7 +105,7 @@ int drop_ball_in_pyramid(){
 void test_sonar(){
   int i;
   for(i = 0 ; i < 35; ++i){
-    tourner_un_peu();
+    rotate(10);
     printf("%d\n",get_distance());
   }
 }
