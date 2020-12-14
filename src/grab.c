@@ -10,27 +10,27 @@ static void run_motor(uint8_t, int, int);
 
 
 void open_hand(){
-	run_motor(hand, -180, 400);
+	run_motor(hand, OPENED_HAND, GRAB_SPEED);
 	sleep(1);
 }
 
 void close_hand(){
-	run_motor(hand, 0, 400);
+	run_motor(hand, CLOSED_HAND, GRAB_SPEED);
 	sleep(1);
 }
 
 void lift(){
-	run_motor(lever, 0, 400);
+	run_motor(lever, LEVER_UP, LEVER_SPEED);
 	sleep(3);
 }
 
 void lower_half() {
-	run_motor(lever, 144, 400);
+	run_motor(lever, LEVER_MID, LEVER_SPEED);
 	sleep(2);
 }
 
 void lower(){
-	run_motor(lever, 300, 400);
+	run_motor(lever, LEVER_DOWN, GRAB_SPEED);
 	sleep(3);
 }
 
