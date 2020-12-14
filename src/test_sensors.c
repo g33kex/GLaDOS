@@ -99,3 +99,13 @@ int drop_ball_in_pyramid(){
   return 1;
 
 }
+
+
+
+void test_sonar(){
+  int i;
+  for(i = 0 ; i < 35; ++i){
+    tourner_un_peu();
+    printf("%d\n",get_distance());
+  }
+}

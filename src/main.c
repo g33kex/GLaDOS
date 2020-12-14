@@ -97,13 +97,16 @@ int main(int argc, char **argv) {
       move_random();
     }
     else if(!strcmp("color", command)){
-      printf("couleur : %s\n",get_color() );;
+      printf("couleur : %s\n",get_color() );
     }
     else if(!strcmp("dist", command)){
-      printf("distance : %d\n",get_distance() );;
+      printf("distance : %d\n",get_distance() );
+    }
+    else if(!strcmp("distRound", command)){
+      printf("orientation : %d\n",get_orientation() );
     }
     else if(!strcmp("compass", command)){
-      printf("orientation : %d\n",get_orientation() );;
+      printf("orientation : %d\n",get_orientation() );
     }
 
     return 0;
