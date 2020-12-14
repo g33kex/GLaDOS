@@ -25,4 +25,5 @@ int vector_magnitude(Vector);
 /** Gives angle between two vectors in range [0, 360] **/
 int vector_angle2(Vector, Vector);
 
+void test_vector(void);
 #endif // VECTOR_H
