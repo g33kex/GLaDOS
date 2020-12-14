@@ -31,7 +31,7 @@ void lower_half() {
 
 void lower(){
 
-	run_motor(lever, 310, 400);
+	run_motor(lever, LEVER_DOWN, GRAB_SPEED);
 	sleep(3);
 }
 
