@@ -6,4 +6,6 @@
 /* Functions */
 bool test_motion(void);
 
+bool test_rotate(void);
+
 #endif // TEST_MOTION_H
