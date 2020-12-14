@@ -164,6 +164,26 @@ void rotate_to(Vector target) {
     stop_motors();
 }
 
+void rotate(double angle) {
+    set_motors_duty(0,0);
+    start_motors();
+
+    do {
+        Sleep ( 200 );
+        int old_rotation = robot_pos.rotation;
+        update_rotation();
+        angle=(angle-(old_rotation-robot_pos.rotation));
+
+        if(angle>0) {
+            set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+        } else if(angle<0) {
+            set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
+        }
+    } while(abs(angle)>5);
+
+    stop_motors();
+}
+
 
 bool motion_init(void) {
     robot_pos = (Position) {{0,0},0};

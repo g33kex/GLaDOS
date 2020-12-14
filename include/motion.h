@@ -64,5 +64,9 @@ void move_to(Vector target);
 /** Rotate the robot to face a given point **/
 void rotate_to(Vector target);
 
+/** Rotate the robot by given angle 
+  * Angle should be in [-180, 180] **/
+void rotate(double);
+
 
 #endif // MOTION_H
