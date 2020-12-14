@@ -63,7 +63,11 @@ void rotate_to(Vector target);
 
 /** Rotate the robot by given angle
   * Angle should be in [-180, 180] **/
-void rotate(double);
-void aller_tout_droit(int time); //idem
+void rotate(int);
 
+
+
+
+
+void aller_tout_droit(int time); //idem
 #endif // MOTION_H
