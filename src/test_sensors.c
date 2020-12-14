@@ -109,6 +109,8 @@ void test_sonar(){
   int i;
   for(i = 0 ; i < 35; ++i){
     rotate(10);
+    sleep(500);
     printf("%d\n",get_distance());
+
   }
 }
