@@ -44,6 +44,6 @@ bool test_motion() {
 
 bool test_rotation() {
 
-    rotate(-90);
+    rotate(-60);
     return true;
 }
