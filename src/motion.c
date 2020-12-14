@@ -45,31 +45,31 @@ static void update_rotation() {
 /** Update the position of the robot using compass odometry **/
 static void update_position() {
     update_rotation();
-    printf("Old position : (%d, %d)\n", robot_pos.p.x, robot_pos.p.y);
+    printf("Old position : (%f, %f)\n", robot_pos.p.x, robot_pos.p.y);
 
     // Update encoder position and compute distance
     int l;
     int r;
     get_tacho_position(left_wheel, &l); 
     get_tacho_position(right_wheel, &r);
-    int SR = (r-right_wheel_previous_pos)*WHEEL_CIRCUMFERENCE/360;
-    int LR = (l-left_wheel_previous_pos)*WHEEL_CIRCUMFERENCE/360;
+    double SR = ((r-right_wheel_previous_pos)*WHEEL_CIRCUMFERENCE)/360.0;
+    double LR = ((l-left_wheel_previous_pos)*WHEEL_CIRCUMFERENCE)/360.0;
     right_wheel_previous_pos = r;
     left_wheel_previous_pos = l;
-    int meanDistance = (SR+LR)/2;
+    double meanDistance = (SR+LR)/2;
 
 
     //int odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
     //robot_pos.rotation=(robot_pos.rotation+odometry_theta)%360;
 
-    printf("Crossed %d at rotation %d\n",meanDistance, robot_pos.rotation);
+    printf("Crossed %f at rotation %d\n",meanDistance, robot_pos.rotation);
     // Update robot position
     //Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
     //It seems the position needs to be updated in reverse..
     Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
     robot_pos.p = vector_add(robot_pos.p,motion);
 
-    printf("New position : (%d, %d), rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
+    printf("New position : (%f, %f), rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);
 }
 
 
@@ -114,17 +114,17 @@ void move_to(Vector target) {
     start_motors();
 
     while(vector_magnitude(vector_sub(target, robot_pos.p))>=10) {
-        printf("Distance : %d\n",vector_magnitude(vector_sub(target, robot_pos.p)));
+        printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
         
         // Update robot position using odometry and compass
         update_position();
 
         // Compute angle to target
-        Vector direction = vector_from_polar(100, robot_pos.rotation);
-        int angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
-        printf("Direction : (%d, %d)\n", direction.x, direction.y);
-        printf("Angle : %d\n", angle);
+        Vector direction = vector_from_polar(100.0, robot_pos.rotation);
+        double angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
+        printf("Direction : (%f, %f)\n", direction.x, direction.y);
+        printf("Angle : %f\n", angle);
 
         if(angle < 0) { // Turn Right
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
@@ -144,15 +144,15 @@ void rotate_to(Vector target) {
     set_motors_duty(0,0);
     start_motors();
 
-    int angle;
+    double angle;
     do {
         Sleep ( 200 );
         update_rotation();
-        Vector direction = vector_from_polar(100, robot_pos.rotation);
+        Vector direction = vector_from_polar(100.0, robot_pos.rotation);
         angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
         printf("Robot angle : %d\n",robot_pos.rotation);
-        printf("Direction : (%d, %d)\n", direction.x, direction.y);
-        printf("Angle : %d\n", angle);
+        printf("Direction : (%f, %f)\n", direction.x, direction.y);
+        printf("Angle : %f\n", angle);
 
         if(angle>0) {
             set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);

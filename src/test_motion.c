@@ -13,19 +13,30 @@ bool test_motion() {
     }
    // robot_pos.p.x=153;
    // robot_pos.p.y=45;
-    //Vector target = (Vector) {150,50};
 //    rotate_to(target);
     //Vector target = (Vector) {200,0};
     //rotate_move_to(target);
-    Vector target = (Vector) {850, 1650};
-    rotate_move_to(target);
-    Sleep ( 1000 );
+    //Vector target = (Vector) {850, 1650};
+    //Sleep ( 1000 );
     //target = (Vector) {0, 200};
     //rotate_move_to(target);
-   // target = (Vector) {0,0};
-   //rotate_move_to(target);
     //Vector target = (Vector) {100, 150}; 
     //rotate_move_to(target);
+
+    /*Vector target = (Vector) {85,165};
+    rotate_move_to(target);
+    target = (Vector) {0,0};
+    rotate_move_to(target);*/
+
+    Vector target = (Vector) {0, 200};
+    rotate_move_to(target);
+    target = (Vector) {200,200};
+    rotate_move_to(target);
+    target = (Vector) {200,0};
+    rotate_move_to(target);
+    target = (Vector) {0,0};
+    rotate_move_to(target);
+
 
     printf("test_motion passed\n");
     return true;
