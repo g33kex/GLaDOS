@@ -60,7 +60,9 @@ static void update_position() {
 //      int odometry_theta = (r-l)*WHEEL_CIRCUMFERENCE/(360*WHEEL_DISTANCE);
 
     // Update robot position
-    Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
+    //Vector motion = {meanDistance*cos(radians(robot_pos.rotation)), meanDistance*sin(radians(robot_pos.rotation))};
+    //It seems the position needs to be updated in reverse..
+    Vector motion = {meanDistance*sin(radians(robot_pos.rotation)), meanDistance*cos(radians(robot_pos.rotation))};
     robot_pos.p = vector_add(robot_pos.p,motion);
 
     printf("New position : (%d, y:%d), rotation:%d\n", robot_pos.p.x, robot_pos.p.y, robot_pos.rotation);

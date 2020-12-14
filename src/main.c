@@ -57,6 +57,10 @@ void drop_ball(){
   drop_ball_in_pyramid();//in test_sensors, need to be moved ?
 }
 
+void vector() {
+    test_vector();
+}
+
 int main(int argc, char **argv) {
 
     if(argc!=2) {
@@ -64,6 +68,10 @@ int main(int argc, char **argv) {
         return 1;
     }
     char *command = argv[1];
+    if(!strcmp("vector", command)) {
+        vector();
+        return 0;
+    }
 
     /* Tests that require initialization */
     if(!init())
