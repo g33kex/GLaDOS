@@ -52,7 +52,6 @@ const char * get_color(){
       val = 0;
   }
   return color[ val ];
-
 }
 
 
@@ -69,14 +68,16 @@ int get_intensity(){
 }
 
 int get_distance(){
-  float value;
-  if ( !get_sensor_value0(sn_sonar, &value )) {
+  set_sensor_mode( sn_sonar, "US-DIST-CM" );
+
+  int value;
+  if ( !get_sensor_value(0,sn_sonar, &value )) {
     printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
+  printf("distance : %d\n", value );
   fflush( stdout );
-  value = (int) value;
-  return (int) (value * 10);
+  return (value);
 }
 
 
@@ -111,7 +112,7 @@ int get_orientation(){
   if(rot < 0) {
     rot = rot + 360;
   }
-  return rot==0?0:360-rot;;
+  return rot==0?0:360-rot;
 }
 
 //  float value;

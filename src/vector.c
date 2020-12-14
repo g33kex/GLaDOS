@@ -31,12 +31,17 @@ int vector_angle2(Vector v1, Vector v2) {
     return degrees(atan2(vector_det(v1, v2), vector_dot(v1, v2)));
 }
 
-void test_vectors(void) {
-    Vector target = {0, 500};
+void test_vector(void) {
+/*    Vector target = {0, 500};
     Vector rpos = {-81, 34};
-    int rrot = 53;
-    Vector direction = vector_from_polar(82, rrot);
+    int rrot = 53;*/
+    Vector target = {0, 0};
+    Vector rpos = {153, 45};
+    int rrot = 254;
+    Vector direction = vector_from_polar(100, rrot);
     printf("Direction : (%d,%d)\n", direction.x, direction.y);
-    int angle = vector_angle2(direction, vector_sub(target, rpos));
+    Vector second = vector_sub(target, rpos);
+    printf("Second : (%d,%d)\n", second.x, second.y);
+    int angle = vector_angle2(direction, second);
     printf("Angle : %d\n", angle);
 }

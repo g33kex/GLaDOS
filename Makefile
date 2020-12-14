@@ -28,6 +28,13 @@ else
 INSTALL := cp $(TARGET) $(INSTDIR)
 endif
 
+ifeq (run,$(firstword $(MAKECMDGOALS)))
+  # use the rest as arguments for "run"
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  # ...and turn them into do-nothing targets
+  $(eval $(RUN_ARGS):;@:)
+endif
+
 ## Rules
 
 default: compile
@@ -39,7 +46,7 @@ mkdir:
 	@mkdir -p $(TRGDIR)
 
 run: compile
-	@-$(EXEC) $(TARGET) || true
+	@-$(EXEC) $(TARGET) $(RUN_ARGS) || true
 
 install: compile
 	$(INSTALL) 
