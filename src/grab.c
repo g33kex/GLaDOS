@@ -30,6 +30,10 @@ void lower_half() {
 }
 
 void lower(){
+<<<<<<< HEAD
+=======
+
+>>>>>>> 62a58f09100ee7d4eb92ad605b2dd7d7eac7e9b7
 	run_motor(lever, LEVER_DOWN, GRAB_SPEED);
 	sleep(3);
 }

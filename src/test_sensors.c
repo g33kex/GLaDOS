@@ -13,6 +13,9 @@
 #include "test_motion.h"
 #include "test_sensors.h"
 
+void tourner_un_peu();
+
+
 int testColor(){
   printf("get_color function : %s\n",get_color());
   return 0;
@@ -39,7 +42,7 @@ int testOrientation(){
 int move_robot_to_random_cube(){
   // Vector researchPoint = (Vector) {60,40};
   // void move_to(researchPoint);
-  aller_tout_droit( 5000 );
+  //aller_tout_droit( 5000 );
   printf("researchPoint atteint !!!\n");
   bool cubeFound = false;
   int i;
@@ -51,7 +54,7 @@ int move_robot_to_random_cube(){
     tourner_un_peu();
     printf("couleur detectée : %s\n",get_color() );
     printf("distance detectée : %d\n",get_distance() );
-    if (!strcmp("BLUE", get_color()) || get_distance() < 100){
+    if (!strcmp("BLUE", get_color()) || get_distance() < 300){
       cubeFound = true;
     }
   }
@@ -84,7 +87,7 @@ int drop_ball_in_pyramid(){
   printf("distance du cube : %d\n",get_distance() );
   if(ecart_de_distance > 0){
     printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    aller_tout_droit(ecart_de_distance * 10 + 200);
+    aller_tout_droit(ecart_de_distance * 10 + 200); //idemit(ecart_de_distance * 10 + 200);
     printf("distance du cube : %d\n",get_distance() );
   } else {
     printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
@@ -105,7 +108,9 @@ int drop_ball_in_pyramid(){
 void test_sonar(){
   int i;
   for(i = 0 ; i < 35; ++i){
-    tourner_un_peu();
+    rotate(10);
+    sleep(500);
     printf("%d\n",get_distance());
+
   }
 }
