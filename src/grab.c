@@ -11,22 +11,22 @@ static void run_motor(uint8_t, int, int);
 
 void open_hand(){
 	run_motor(hand, OPENED_HAND, GRAB_SPEED);
-	sleep(1);
+	sleep(2);
 }
 
 void close_hand(){
-	run_motor(hand, CLOSED_HAND, 1000);
+	run_motor(hand, CLOSED_HAND, GRAB_SPEED);
 	sleep(5);
 }
 
 void lift(){
 	run_motor(lever, LEVER_UP, LEVER_SPEED);
-	sleep(2);
+	sleep(4);
 }
 
 void lower_half() {
 	run_motor(lever, LEVER_MID, LEVER_SPEED);
-	sleep(2);
+	sleep(3);
 }
 
 void lower(){
