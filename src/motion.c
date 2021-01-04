@@ -33,7 +33,7 @@ static void set_motors_duty(int duty_left, int duty_right) {
 
 /** Update the rotation of the robot using compass and gyroscope **/
 static void update_rotation() {
-    double k = 0.95;
+    double k = GYRO_TRUST_RATIO;
     int gyro_rot = get_gyro_delta();
     int compass_rot = get_orientation();
     robot_pos.rotation += gyro_rot; 
