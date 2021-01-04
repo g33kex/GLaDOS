@@ -11,7 +11,7 @@
 #define SONAR_PORT 49
 
 //Port 2
-#define COLOR_FRONT_PORT 50
+#define GYRO_PORT 50
 
 //Port 3
 #define COLOR_PINCE_PORT 51
@@ -30,7 +30,7 @@ enum Color
 /* Variables */
 uint8_t sn_compass;
 uint8_t sn_sonar;
-uint8_t sn_color_front;
+uint8_t sn_gyro;
 uint8_t sn_color_pince;
 
 
