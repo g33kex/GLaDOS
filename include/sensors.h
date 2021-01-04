@@ -64,5 +64,8 @@ bool set_orientation(int orientation);
 /* retourne la rotation totale du robot par rapport à l'angle initiale (lors de l'allumage)*/
 int get_gyro();
 
+/** Returns rotation of the gyroscope since last call of the function **/
+int get_gyro_delta();
+
 
 #endif // SENSORS_H

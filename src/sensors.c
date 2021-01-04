@@ -15,6 +15,7 @@ const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "W
 #define COLOR_COUNT  (( int )( sizeof( color ) / sizeof( color[ 0 ])))
 
 int orientation_zero = 0;
+int last_gyro_rot = 0;
 
 bool sensor_init(void) {
     if(ev3_sensor_init()==-1){
@@ -142,4 +143,11 @@ int get_gyro(){
   printf("angle : %d\n", value );
   fflush( stdout );
   return (value);
+}
+
+int get_gyro_delta() {
+    int rot = get_gyro();
+    int deltarot = last_gyro_rot - rot;
+    last_gyro_rot = rot;
+    return deltarot;
 }
