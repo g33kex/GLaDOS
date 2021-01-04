@@ -15,13 +15,13 @@ void open_hand(){
 }
 
 void close_hand(){
-	run_motor(hand, CLOSED_HAND, GRAB_SPEED);
-	sleep(1);
+	run_motor(hand, CLOSED_HAND, 1000);
+	sleep(5);
 }
 
 void lift(){
 	run_motor(lever, LEVER_UP, LEVER_SPEED);
-	sleep(3);
+	sleep(2);
 }
 
 void lower_half() {
