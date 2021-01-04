@@ -36,12 +36,20 @@ void move() {
     test_motion();
 }
 
+void rot() {
+    test_rotation();
+}
+
 void grab() {
 
 }
 
 void move_random(){
     move_robot_to_random_cube(); //in test_sensors, need to be moved ?
+}
+
+void vector() {
+    test_vector();
 }
 
 int main(int argc, char **argv) {
@@ -51,6 +59,10 @@ int main(int argc, char **argv) {
         return 1;
     }
     char *command = argv[1];
+    if(!strcmp("vector", command)) {
+        vector();
+        return 0;
+    }
 
     /* Tests that require initialization */
     if(!init())
@@ -64,6 +76,9 @@ int main(int argc, char **argv) {
     }
     else if(!strcmp("move", command)) {
         move();
+    }
+    else if(!strcmp("rot", command)) {
+        rot();
     }
     else if(!strcmp("grab", command)) {
         grab();
