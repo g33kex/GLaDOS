@@ -6,6 +6,9 @@
 #include "ev3_port.h"
 #include "ev3_sensor.h"
 #include "sensors.h"
+#include "motion.h"
+#include "test_motion.h"
+#include "vector.h"
 
 const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "WHITE", "BROWN" };
 //const Color const *color[] = { UNKNOW, BLACK, BLUE, GREEN, YELLOW, RED, WHITE, BROWN  };
@@ -49,7 +52,6 @@ const char * get_color(){
       val = 0;
   }
   return color[ val ];
-
 }
 
 
@@ -66,14 +68,16 @@ int get_intensity(){
 }
 
 int get_distance(){
-  float value;
-  if ( !get_sensor_value0(sn_sonar, &value )) {
+  set_sensor_mode( sn_sonar, "US-DIST-CM" );
+
+  int value;
+  if ( !get_sensor_value(0,sn_sonar, &value )) {
     printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
+  printf("distance : %d\n", value );
   fflush( stdout );
-  value = (int) value;
-  return (int) (value * 10);
+  return (value);
 }
 
 
@@ -98,17 +102,17 @@ void calibrate_compass() {
 
 int get_orientation(){
 
-  int value;
-  if ( !get_sensor_value(0, sn_compass, &value )) {
+  int rot;
+  if ( !get_sensor_value(0, sn_compass, &rot )) {
     printf("[X]ERROR while reading orientation value\n");
-    value = 0;
+    rot = 0;
   }
   fflush( stdout );
-  value = value - orientation_zero;
-  if(value < 0) {
-    value = value + 360;
+  rot = rot - orientation_zero;
+  if(rot < 0) {
+    rot = rot + 360;
   }
-  return rot==0?0:360-rot;;
+  return rot==0?0:360-rot;
 }
 
 //  float value;
