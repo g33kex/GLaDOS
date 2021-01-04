@@ -30,16 +30,9 @@ static void set_motors_duty(int duty_left, int duty_right) {
     set_tacho_duty_cycle_sp(right_wheel, duty_right);
 }
 
-
-// Return rotation of the robot in standard angle convention...
-static int get_correct_orientation() {
-    int rot = get_orientation();
-    return rot==0?0:360-rot;
-}
-
 /** Update the rotation of the robot using compass **/
 static void update_rotation() {
-    robot_pos.rotation = get_correct_orientation();
+    robot_pos.rotation = get_orientation();
 
 }
 /** Update the position of the robot using compass odometry **/
