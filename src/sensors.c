@@ -140,9 +140,8 @@ int get_gyro(){
     printf("[X]ERROR while reading gyro value\n");
     value = 0;
   }
-  printf("angle : %d\n", value );
   fflush( stdout );
-  return (value);
+  return  -value;
 }
 
 int get_gyro_delta() {
