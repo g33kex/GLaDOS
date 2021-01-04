@@ -16,16 +16,16 @@
 void tourner_un_peu();
 
 
-int testColor(){
-  printf("get_color function : %s\n",get_color());
-  return 0;
-}
-
-int testIntensity(){
-  printf("get_intensity function : %d\n",get_intensity());
-
-  return 0;
-}
+// int testColor(){
+//   printf("get_color function : %s\n",get_color());
+//   return 0;
+// }
+//
+// int testIntensity(){
+//   printf("get_intensity function : %d\n",get_intensity());
+//
+//   return 0;
+// }
 
 int testDistance(){
   printf("get_distance function : %d \n", get_distance());
@@ -52,9 +52,9 @@ int move_robot_to_random_cube(){
     // target = vector_add(vector_from_polar(50, i *10),researchPoint);
     // rotate_to(target);
     tourner_un_peu();
-    printf("couleur detectée : %s\n",get_color() );
+    //printf("couleur detectée : %s\n",get_color() );
     printf("distance detectée : %d\n",get_distance() );
-    if (!strcmp("BLUE", get_color()) || get_distance() < 1000){
+    if (get_distance() < 1000){
       cubeFound = true;
     }
   }
@@ -114,4 +114,10 @@ void test_sonar(){
     printf("%d\n",get_distance());
 
   }
+}
+
+
+int test_gyro(){
+   printf("angle de get_gyro function : %d\n",get_gyro());
+   return 0;
 }
