@@ -130,3 +130,16 @@ bool set_orientation(int orientation){
   return true;
 
 }
+
+int get_gyro(){
+  set_sensor_mode( sn_gyro, "GYRO-ANG" );
+
+  int value;
+  if ( !get_sensor_value(0,sn_gyro, &value )) {
+    printf("[X]ERROR while reading gyro value\n");
+    value = 0;
+  }
+  printf("angle : %d\n", value );
+  fflush( stdout );
+  return (value);
+}

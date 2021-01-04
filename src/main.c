@@ -115,6 +115,11 @@ int main(int argc, char **argv) {
     else if(!strcmp("compass", command)){
       printf("orientation : %d\n",get_orientation() );
     }
+    else if(!strcmp("gyro", command)){
+      printf("angle du gyro : %d\n",get_gyro() );
+    }
+
+
 
     return 0;
 }

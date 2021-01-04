@@ -61,5 +61,8 @@ void calibrate_compass();
   * Returns false in case of an error **/
 bool set_orientation(int orientation);
 
+/* retourne la rotation totale du robot par rapport à l'angle initiale (lors de l'allumage)*/
+int get_gyro();
+
 
 #endif // SENSORS_H
