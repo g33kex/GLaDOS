@@ -21,11 +21,11 @@
 #define RIGHT_WHEEL_PORT 68
 
 /** Starting duty of the motors **/
-#define INITIAL_DUTY 20
+#define INITIAL_DUTY 15
 /** Wheel circumference (mm) **/
-#define WHEEL_CIRCUMFERENCE 173
+#define WHEEL_CIRCUMFERENCE 173.0
 /** Distance between the wheels (mm) **/
-#define WHEEL_DISTANCE 40
+#define WHEEL_DISTANCE 40.0
 
 /* Structures */
 
@@ -61,5 +61,13 @@ void move_to(Vector target);
 /** Rotate the robot to face a given point **/
 void rotate_to(Vector target);
 
+/** Rotate the robot by given angle
+  * Angle should be in [-180, 180] **/
+void rotate(int);
 
+
+
+
+
+void aller_tout_droit(int time); //idem
 #endif // MOTION_H

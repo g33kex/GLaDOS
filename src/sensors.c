@@ -44,14 +44,14 @@ bool sensor_init(void) {
 
 
 
-// const char * get_color(){
-//   set_sensor_mode( sn_color_front, "COL-COLOR" );
-//   int val;
-//   if ( !get_sensor_value( 0, sn_color_front, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
-//       val = 0;
-//   }
-//   return color[ val ];
-// }
+const char * get_color(){
+  set_sensor_mode( sn_color_front, "COL-COLOR" );
+  int val;
+  if ( !get_sensor_value( 0, sn_color_front, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
+      val = 0;
+  }
+  return color[ val ];
+}
 
 
 

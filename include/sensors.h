@@ -12,7 +12,7 @@
 
 //Port 2
 #define GYRO_PORT 50
-
+#define COLOR_FRONT_PORT 50 //ne devrait plus être utilisé
 //Port 3
 #define COLOR_PINCE_PORT 51
 
@@ -31,6 +31,7 @@ enum Color
 uint8_t sn_compass;
 uint8_t sn_sonar;
 uint8_t sn_gyro;
+uint8_t sn_color_front; //ne devrait plus être utilisé
 uint8_t sn_color_pince;
 
 
