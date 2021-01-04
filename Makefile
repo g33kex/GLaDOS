@@ -33,7 +33,7 @@ endif
 default: compile
 
 $(TARGET): $(OBJECTS)
-	$(CC) -o $@ $^ $(LIBS)
+	$(CC) -lm -o $@ $^ $(LIBS)
 
 mkdir: 
 	@mkdir -p $(TRGDIR)
@@ -47,6 +47,9 @@ install: compile
 ## Automatic rules
 
 $(TRGDIR)/%.o: $(SRCDIR)/%.c $(INCDIR)/%.h
+	$(CC) $(FLAGS) -I/usr/local/include -c $< -o $@ -I$(INCDIR) 
+
+$(TRGDIR)/main.o: $(SRCDIR)/main.c
 	$(CC) $(FLAGS) -I/usr/local/include -c $< -o $@ -I$(INCDIR) 
 
 ## PONEY rules
