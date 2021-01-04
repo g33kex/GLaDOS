@@ -10,7 +10,16 @@
 #include "test_sensors.h"
 
 void usage(void) {
-    printf("Usage : GLaDOS <command>\nList of commands:\n\tstop\t\tStop the robot\n\tcalibrate\tCalibrate the compass\n\tmove\t\tMove the robot to the origin cube\n\tgrab\t\tGrab a ball in front of the robot\n\ttest6\t\tSearch and got ot the random cube\n\ttest5\t\tput the ball in the pyramid\n");
+    printf(
+        "Usage : GLaDOS <command>\n"
+        "List of commands:\n"
+        "\tstop\t\tStop the robot\n"
+        "\tcalibrate\tCalibrate the compass\n"
+        "\tmove\t\tMove the robot to the origin cube\n"
+        "\tgrab\t\tGrab a ball in front of the robot\n"
+        "\ttest6\t\tSearch and got ot the random cube\n"
+        "\ttest5\t\tput the ball in the pyramid\n"
+        );
 }
 
 bool init() {
