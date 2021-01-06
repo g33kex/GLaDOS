@@ -46,11 +46,13 @@ void rot() {
 }
 
 void grab() {
+	lift();
 	lower_half();
 	open_hand();
 	lower();
 	close_hand();
 	lift();
+	lower();
 }
 
 void move_random(){

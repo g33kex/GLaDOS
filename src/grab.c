@@ -16,7 +16,7 @@ void open_hand(){
 
 void close_hand(){
 	run_motor(hand, CLOSED_HAND, GRAB_SPEED);
-	sleep(5);
+	sleep(3);
 }
 
 void lift(){
