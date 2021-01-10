@@ -40,11 +40,38 @@ int testOrientation(){
 
 
 int move_robot_to_random_cube(){
+  int distance_attendue = 20000; //a trouver par dichotomie
+  bool cubeFound = false;
+  int posRech[6][2] = {{110 , 80},
+                       {100 , 80},
+                       {90 , 80},
+                       {30 , 60},
+                       {20 , 60},
+                       {10 , 60}};
+ int i = 1;
+  while(!cubeFound){
+    //TODO prendre en compte que le cube random peut etre en haut de la zone de gauche
+    //aller à (posRech[i][0],posRech[i][1]), direction sud
+    printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
+    if (get_distance() < distance_attendue){
+      printf("CUBE FOUND !\n");
+      cubeFound = true;
+    }
+  }
+
+  //une fois qu'il a trouvé le cube, il va sur le téco pour bien trouver l'autre position
+
+
+
+
+
+
+
   // Vector researchPoint = (Vector) {60,40};
   // void move_to(researchPoint);
   //aller_tout_droit( 5000 );
   printf("researchPoint atteint !!!\n");
-  bool cubeFound = false;
+
   int i;
   //Vector target;
   for (i = 0; i < 35 && !cubeFound ; ++i  ) { //on lui fait faire 35 petites rotations sauf s'il trouve le cube avant
