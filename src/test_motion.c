@@ -11,6 +11,8 @@ bool test_motion() {
         printf("test_motion failed at motion_init() or sensors_init()\n");
         return false;
     }
+    //set_orientation(get_orientation());
+    init_rotation();
    // robot_pos.p.x=153;
    // robot_pos.p.y=45;
 //    rotate_to(target);
@@ -28,13 +30,19 @@ bool test_motion() {
     target = (Vector) {0,0};
     rotate_move_to(target);*/
 
-    Vector target = (Vector) {0, 200};
+    /*Vector target = (Vector) {0, 200};
     rotate_move_to(target);
     target = (Vector) {200,200};
     rotate_move_to(target);
     target = (Vector) {200,0};
     rotate_move_to(target);
     target = (Vector) {0,0};
+    rotate_move_to(target);*/
+
+    /** Go north and come back **/
+    Vector target = (Vector) {200, 0};
+    rotate_move_to(target);
+    target = (Vector) {0, 0};
     rotate_move_to(target);
 
 
