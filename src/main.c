@@ -107,7 +107,7 @@ int main(int argc, char **argv) {
     else if(!strcmp("grab", command)) {
         grab();
     }
-
+    
     else if(!strcmp("test5", command)){
       drop_ball();
     }
@@ -129,6 +129,10 @@ int main(int argc, char **argv) {
     else if(!strcmp("gyro", command)){
       printf("angle du gyro : %d\n",get_gyro() );
     }
+    else if(!strcmp("move_grab", command)){
+      grab_ball_in_pyramid();
+    }
+
 
 
 
