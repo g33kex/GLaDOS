@@ -6,6 +6,8 @@
 #include "sensors.h"
 #include "grab.h"
 
+#include "brain.h"
+
 #include "test_motion.h"
 #include "test_sensors.h"
 
@@ -13,6 +15,7 @@ void usage(void) {
     printf(
         "Usage : GLaDOS <command>\n"
         "List of commands:\n"
+        "\tmain\t\tStart the challenge\n"
         "\tstop\t\tStop the robot\n"
         "\tcalibrate\tCalibrate the compass\n"
         "\tmove\t\tMove the robot to the origin cube\n"
@@ -36,6 +39,10 @@ bool init() {
 	return false;
     }
     return true;
+}
+
+void start_challenge() {
+    run();
 }
 
 void stop() {
@@ -92,6 +99,9 @@ int main(int argc, char **argv) {
     if(!init())
         return -1;
 
+    if(!strcmp("main", command)) {
+        stat_challenge();
+    }
     if(!strcmp("stop", command)) {
         stop();
     }
