@@ -16,16 +16,16 @@
 void tourner_un_peu();
 
 
-int testColor(){
-  printf("get_color function : %s\n",get_color());
-  return 0;
-}
-
-int testIntensity(){
-  printf("get_intensity function : %d\n",get_intensity());
-
-  return 0;
-}
+// int testColor(){
+//   printf("get_color function : %s\n",get_color());
+//   return 0;
+// }
+//
+// int testIntensity(){
+//   printf("get_intensity function : %d\n",get_intensity());
+//
+//   return 0;
+// }
 
 int testDistance(){
   printf("get_distance function : %d \n", get_distance());
@@ -40,43 +40,39 @@ int testOrientation(){
 
 
 int move_robot_to_random_cube(){
-  // Vector researchPoint = (Vector) {60,40};
-  // void move_to(researchPoint);
-  //aller_tout_droit( 5000 );
-  printf("researchPoint atteint !!!\n");
+  int distance_attendue = 20000; //a trouver par dichotomie
   bool cubeFound = false;
-  int i;
-  //Vector target;
-  for (i = 0; i < 35 && !cubeFound ; ++i  ) { //on lui fait faire 35 petites rotations sauf s'il trouve le cube avant
-    printf("rotation number %d\n",i);
-    // target = vector_add(vector_from_polar(50, i *10),researchPoint);
-    // rotate_to(target);
-    tourner_un_peu();
-    printf("couleur detectée : %s\n",get_color() );
-    printf("distance detectée : %d\n",get_distance() );
-    if (!strcmp("BLUE", get_color()) || get_distance() < 1000){
+  int posRech[6][2] = {{110 , 80},
+                       {100 , 80},
+                       {90 , 80},
+                       {30 , 60},
+                       {20 , 60},
+                       {10 , 60}};
+ int i = 0;
+  while(!cubeFound){
+    //TODO prendre en compte que le cube random peut etre en haut de la zone de gauche
+    //aller à (posRech[i][0],posRech[i][1]), direction sud
+    printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
+    if (get_distance() < distance_attendue){
+      printf("CUBE FOUND !\n");
       cubeFound = true;
     }
-  }
-  if (cubeFound) {
-    //int angle = i * 10;
-    printf("CUBE FOUND ! Going to cube\n");
-    //int magnitude = 150;
-    aller_tout_droit(5000);
-    // while(get_distance() > 300){ //100mm, peut être moi, peut être plus
-    //   // target = vector_from_polar(magnitude,angle);
-    //   // move_to(target);
-    //   // magnitude = magnitude + 50;
-    //   aller_tout_droit(1500);
-    //   printf("distance du cube : %d\n",get_distance() );
-    // }
-    printf("INCH WE ARE CLOSE TO THE RANDOM CUBE NOW\n");
-    return 1;
-  } else {
-    printf("CUBE NOT FOUND\n");
-    return 0;
+    else if(i = 6){
+      printf("CUBE NOT FOUND !\n");
+      return 0;
+    }
   }
 
+  //une fois qu'il a trouvé le cube, il va sur le téco pour bien trouver l'autre position ?
+
+
+  if (cubeFound) {
+    //s'approcher du cube
+    //tourner pour detecter le coin
+    //setRandomCubePosition(.....)
+
+    return 1;
+  }
 }
 
 int drop_ball_in_pyramid(){
@@ -114,4 +110,10 @@ void test_sonar(){
     printf("%d\n",get_distance());
 
   }
+}
+
+
+int test_gyro(){
+   printf("angle de get_gyro function : %d\n",get_gyro());
+   return 0;
 }

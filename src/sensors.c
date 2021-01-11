@@ -15,9 +15,9 @@ const char const *color[] = { "?", "BLACK", "BLUE", "GREEN", "YELLOW", "RED", "W
 #define COLOR_COUNT  (( int )( sizeof( color ) / sizeof( color[ 0 ])))
 
 int orientation_zero = 0;
+int last_gyro_rot = 0;
 
 bool sensor_init(void) {
-
     if(ev3_sensor_init()==-1){
       printf("PB AVEC INIT\n");
       return false;
@@ -32,8 +32,8 @@ bool sensor_init(void) {
       printf("PB AVEC SONAR\n");
       return false;
     }
-    if(!ev3_search_sensor_plugged_in(COLOR_FRONT_PORT, 0, &sn_color_front, 0)){
-      printf("PB AVEC FRONT\n");
+    if(!ev3_search_sensor_plugged_in(GYRO_PORT, 0, &sn_gyro, 0)){
+      printf("PB AVEC ACCELEROMETRE\n");
       return false;
     }
     if(!ev3_search_sensor_plugged_in(COLOR_PINCE_PORT, 0, &sn_color_pince, 0)){
@@ -56,16 +56,16 @@ const char * get_color(){
 
 
 
-int get_intensity(){
-  set_sensor_mode( sn_color_front, "COL-REFLECT" );
-  int value;
-  if ( !get_sensor_value( 0, sn_color_front, &value )) {
-      printf("[X]ERROR while reading intensity value\n");
-      value = 0;
-  }
-  fflush( stdout );
-  return value;
-}
+// int get_intensity(){
+//   set_sensor_mode( sn_color_front, "COL-REFLECT" );
+//   int value;
+//   if ( !get_sensor_value( 0, sn_color_front, &value )) {
+//       printf("[X]ERROR while reading intensity value\n");
+//       value = 0;
+//   }
+//   fflush( stdout );
+//   return value;
+// }
 
 int get_distance(){
   set_sensor_mode( sn_sonar, "US-DIST-CM" );
@@ -130,4 +130,23 @@ bool set_orientation(int orientation){
   orientation_zero = orientation;
   return true;
 
+}
+
+int get_gyro(){
+  set_sensor_mode( sn_gyro, "GYRO-ANG" );
+
+  int value;
+  if ( !get_sensor_value(0,sn_gyro, &value )) {
+    printf("[X]ERROR while reading gyro value\n");
+    value = 0;
+  }
+  fflush( stdout );
+  return  -value;
+}
+
+int get_gyro_delta() {
+    int rot = get_gyro();
+    int deltarot = last_gyro_rot - rot;
+    last_gyro_rot = rot;
+    return deltarot;
 }

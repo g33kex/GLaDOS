@@ -31,15 +31,15 @@ static void set_motors_duty(int duty_left, int duty_right) {
 }
 
 
-// Return rotation of the robot in standard angle convention...
-static int get_correct_orientation() {
-    int rot = get_orientation();
-    return rot==0?0:360-rot;
-}
-
-/** Update the rotation of the robot using compass **/
+/** Update the rotation of the robot using compass and gyroscope **/
 static void update_rotation() {
-    robot_pos.rotation = get_correct_orientation();
+    double k = 0.95;
+    int gyro_rot = get_gyro_delta();
+    int compass_rot = get_orientation();
+    robot_pos.rotation += gyro_rot; 
+    robot_pos.rotation = (robot_pos.rotation*k) + (compass_rot*(1.0-k));
+    robot_pos.rotation = robot_pos.rotation%360;
+    printf("Robot rotation = %d\n", robot_pos.rotation);
 
 }
 /** Update the position of the robot using compass odometry **/
@@ -172,6 +172,9 @@ void rotate(int angle) {
     stop_motors();
 }
 
+void init_rotation(void) {
+    robot_pos.rotation=get_orientation(); 
+}
 
 bool motion_init(void) {
     robot_pos = (Position) {{0,0},0};

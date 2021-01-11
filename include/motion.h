@@ -45,6 +45,9 @@ Position robot_pos;
 
 /* Functions */
 
+/** Initialize rotation of the robot **/
+void init_rotation(void);
+
 /** Initializes the motion systme
   * Returns false in case of an error **/
 bool motion_init(void);

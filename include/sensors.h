@@ -11,8 +11,8 @@
 #define SONAR_PORT 49
 
 //Port 2
-#define COLOR_FRONT_PORT 50
-
+#define GYRO_PORT 50
+#define COLOR_FRONT_PORT 50 //ne devrait plus être utilisé
 //Port 3
 #define COLOR_PINCE_PORT 51
 
@@ -30,7 +30,8 @@ enum Color
 /* Variables */
 uint8_t sn_compass;
 uint8_t sn_sonar;
-uint8_t sn_color_front;
+uint8_t sn_gyro;
+uint8_t sn_color_front; //ne devrait plus être utilisé
 uint8_t sn_color_pince;
 
 
@@ -59,6 +60,12 @@ void calibrate_compass();
 /** Initializes the compass such has current orientation is the new North
   * Returns false in case of an error **/
 bool set_orientation(int orientation);
+
+/* retourne la rotation totale du robot par rapport à l'angle initiale (lors de l'allumage)*/
+int get_gyro();
+
+/** Returns rotation of the gyroscope since last call of the function **/
+int get_gyro_delta();
 
 
 #endif // SENSORS_H
