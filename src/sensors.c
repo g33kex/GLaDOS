@@ -40,6 +40,7 @@ bool sensor_init(void) {
       printf("PB AVEC PINCE\n");
       return false;
     }
+    last_gyro_rot=get_gyro();
     return true;
 }
 
@@ -86,8 +87,8 @@ void calibrate_compass() {
     set_sensor_command(sn_compass, "END-CAL");
     set_sensor_command(sn_compass, "BEGIN-CAL");
 
-    set_tacho_duty_cycle_sp(left_wheel, -INITIAL_DUTY*2);
-    set_tacho_duty_cycle_sp(right_wheel, INITIAL_DUTY*2);
+    set_tacho_duty_cycle_sp(left_wheel, 20);
+    set_tacho_duty_cycle_sp(right_wheel, -20);
 
     set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
@@ -146,7 +147,7 @@ int get_gyro(){
 
 int get_gyro_delta() {
     int rot = get_gyro();
-    int deltarot = last_gyro_rot - rot;
+    int deltarot = rot - last_gyro_rot;
     last_gyro_rot = rot;
     return deltarot;
 }

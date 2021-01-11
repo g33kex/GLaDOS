@@ -27,6 +27,7 @@
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
+#define GYRO_TRUST_RATIO 0.95
 /* Structures */
 
 typedef struct {
@@ -66,9 +67,10 @@ void rotate_to(Vector target);
 
 /** Rotate the robot by given angle
   * Angle should be in [-180, 180] **/
-void rotate(int);
+void rotate(int angle);
 
-
+/** Go forward by a given distance **/
+void foward(double distance);
 
 
 

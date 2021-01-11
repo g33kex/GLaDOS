@@ -33,13 +33,13 @@ static void set_motors_duty(int duty_left, int duty_right) {
 
 /** Update the rotation of the robot using compass and gyroscope **/
 static void update_rotation() {
-    double k = 0.95;
+    double k = GYRO_TRUST_RATIO;
     int gyro_rot = get_gyro_delta();
     int compass_rot = get_orientation();
     robot_pos.rotation += gyro_rot; 
+    printf("Robot rotation = %d Compass rotation = %d\n", robot_pos.rotation, compass_rot);
     robot_pos.rotation = (robot_pos.rotation*k) + (compass_rot*(1.0-k));
     robot_pos.rotation = robot_pos.rotation%360;
-    printf("Robot rotation = %d\n", robot_pos.rotation);
 
 }
 /** Update the position of the robot using compass odometry **/
@@ -84,6 +84,10 @@ void stop_robot() {
 void rotate_move_to(Vector target) {
     rotate_to(target);
     move_to(target);
+}
+
+void foward(double distance) {
+    move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
 }
 
 void move_to(Vector target) {
@@ -193,6 +197,7 @@ bool motion_init(void) {
     init_motor(right_wheel);
     return true;
 }
+
 
 
 
