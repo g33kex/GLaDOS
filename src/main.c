@@ -64,6 +64,10 @@ void grab() {
 	lower();
 }
 
+void grab_val_init() {
+	grab_position_init();
+}
+
 void move_random(){
     move_robot_to_random_cube(); //in test_sensors, need to be moved ?
 }
@@ -106,6 +110,9 @@ int main(int argc, char **argv) {
     }
     else if(!strcmp("grab", command)) {
         grab();
+    }
+    else if(!strcmp("grab_val_init", command)) {
+	grab_val_init();
     }
 
     else if(!strcmp("test5", command)){

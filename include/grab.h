@@ -23,6 +23,7 @@ void open_hand();
 void close_hand();
 
 bool grab_init();
+bool grab_position_init();
 
 uint8_t hand;
 uint8_t lever;

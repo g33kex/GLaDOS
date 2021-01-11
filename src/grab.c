@@ -63,7 +63,12 @@ bool grab_init() {
 	init_motor(hand);
 	init_motor(lever);
 
+	return true;
+}
+
+bool grab_position_init() {
 	set_tacho_position(hand, 0);
 	set_tacho_position(lever, 0);
+
 	return true;
 }
