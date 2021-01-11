@@ -142,6 +142,14 @@ int main(int argc, char **argv) {
     else if(!strcmp("lower", command)){
       lower();
     }
+    else if(!strcmp("lift", command)){
+      lift();
+    }
+    else if(!strcmp("foward", command)){
+      int distance = 100;
+      init_rotation();
+      foward((double) distance);
+    }
 
 
 

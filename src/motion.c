@@ -36,7 +36,7 @@ static void update_rotation() {
     double k = GYRO_TRUST_RATIO;
     int gyro_rot = get_gyro_delta();
     int compass_rot = get_orientation();
-    robot_pos.rotation += gyro_rot; 
+    robot_pos.rotation += gyro_rot;
     printf("Robot rotation = %d Compass rotation = %d\n", robot_pos.rotation, compass_rot);
     robot_pos.rotation = (robot_pos.rotation*k) + (compass_rot*(1.0-k));
     robot_pos.rotation = robot_pos.rotation%360;
@@ -177,7 +177,7 @@ void rotate(int angle) {
 }
 
 void init_rotation(void) {
-    robot_pos.rotation=get_orientation(); 
+    robot_pos.rotation=get_orientation();
 }
 
 bool motion_init(void) {

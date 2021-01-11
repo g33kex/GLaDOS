@@ -10,11 +10,11 @@
 
 #define GRAB_SPEED 100
 #define LEVER_SPEED 250
-#define CLOSED_HAND 0
+#define CLOSED_HAND 10 //0 avant
 #define OPENED_HAND -90
 #define LEVER_UP -420
 #define LEVER_MID -210
-#define LEVER_DOWN 0
+#define LEVER_DOWN 40
 
 void lower();
 void lower_half();
