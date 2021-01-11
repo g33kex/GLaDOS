@@ -75,7 +75,7 @@ int get_distance(){
     printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
-  printf("distance : %d\n", value );
+  //printf("distance : %d\n", value );
   fflush( stdout );
   return (value);
 }
