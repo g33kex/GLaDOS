@@ -67,9 +67,7 @@ void rotate_to(Vector target);
 
 /** Rotate the robot by given angle
   * Angle should be in [-180, 180] **/
-void rotate(int);
-
-
+void rotate(int angle);
 
 
 
