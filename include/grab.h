@@ -9,7 +9,7 @@
 #define HAND_PORT 67
 
 #define GRAB_SPEED 100
-#define LEVER_SPEED 400
+#define LEVER_SPEED 250
 #define CLOSED_HAND 0
 #define OPENED_HAND -90
 #define LEVER_UP -420
