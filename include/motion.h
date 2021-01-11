@@ -27,6 +27,7 @@
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
+#define GYRO_TRUST_RATIO 0.95
 /* Structures */
 
 typedef struct {
