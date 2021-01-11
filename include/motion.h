@@ -69,6 +69,9 @@ void rotate_to(Vector target);
   * Angle should be in [-180, 180] **/
 void rotate(int angle);
 
+/** Go forward by a given distance **/
+void foward(double distance);
+
 
 
 void aller_tout_droit(int time); //idem

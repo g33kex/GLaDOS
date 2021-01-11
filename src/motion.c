@@ -86,6 +86,10 @@ void rotate_move_to(Vector target) {
     move_to(target);
 }
 
+void foward(double distance) {
+    move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+}
+
 void move_to(Vector target) {
     // Initialize previous wheel encoder pos
     set_tacho_position(left_wheel, 0);
@@ -193,6 +197,7 @@ bool motion_init(void) {
     init_motor(right_wheel);
     return true;
 }
+
 
 
 
