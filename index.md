@@ -120,7 +120,7 @@ robot_pos.p = vector_add(robot_pos.p,motion);
 
 #### Rotation computation
 
-To compute the rotation, we use fuse the data from the gyroscope and the compass. Here GYRO_TRUST_RATIO = 0.95, which means we only trust the position given from the compass at 5%. This allows to compensate the gyro drift.
+To compute the rotation, we use fuse the data from the gyroscope and the compass. Here `GYRO_TRUST_RATIO = 0.95`, which means we only trust the position given from the compass at 5%. This allows to compensate the gyro drift.
 
 ```C
 k = GYRO_TRUST_RATIO;
