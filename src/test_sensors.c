@@ -57,9 +57,11 @@ int move_robot_to_random_cube(){
       printf("CUBE FOUND !\n");
       cubeFound = true;
     }
-    else if(i = 6){
+    else {
+      if(i = 6){
       printf("CUBE NOT FOUND !\n");
       return 0;
+      }
     }
   }
 
