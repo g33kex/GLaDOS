@@ -55,13 +55,11 @@ void rot() {
 }
 
 void grab() {
-	lift();
 	lower_half();
 	open_hand();
 	lower();
 	close_hand();
 	lift();
-	lower();
 }
 
 void grab_val_init() {
@@ -145,6 +143,9 @@ int main(int argc, char **argv) {
     else if(!strcmp("lift", command)){
       lift();
     }
+    else if(!strcmp("lower_half", command)){
+	    lower_half();
+    }
     else if(!strcmp("open_hand", command)){
 	    open_hand();
     }
@@ -152,7 +153,7 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if(!strcmp("foward", command)){
-      int distance = 1000;
+      int distance = 100;
       init_rotation();
       foward((double) distance);
     }
