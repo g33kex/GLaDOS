@@ -53,7 +53,7 @@ int move_robot_to_random_cube(){
     //TODO prendre en compte que le cube random peut etre en haut de la zone de gauche
     //aller à (posRech[i][0],posRech[i][1]), direction sud
     Vector newSpot = {posRech[i][0],posRech[i][1]};
-    printf("on move vers le new spot\n", );
+    printf("on move vers le new spot\n");
     move_to(newSpot);
     printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
     if (get_distance() < distance_attendue){
