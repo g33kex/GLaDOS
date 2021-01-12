@@ -59,6 +59,12 @@ int move_robot_to_random_cube(){
     printf("on move vers le new spot\n");
     move_to(newSpot);
 
+    Vector rotat = {80,0};
+    printf("test");
+    rotate_to(rotat);
+
+
+
     printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
     if (get_distance() < distance_attendue){
       printf("CUBE FOUND !\n");

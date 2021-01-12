@@ -145,6 +145,12 @@ int main(int argc, char **argv) {
     else if(!strcmp("lift", command)){
       lift();
     }
+    else if(!strcmp("open_hand", command)){
+	    open_hand();
+    }
+    else if (!strcmp("close_hand", command)){
+	    close_hand();
+    }
     else if(!strcmp("foward", command)){
       int distance = 1000;
       init_rotation();
