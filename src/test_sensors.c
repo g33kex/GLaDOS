@@ -114,6 +114,7 @@ int drop_ball_in_pyramid(){
 }
 
 int grab_ball_in_pyramid(){
+  init_rotation();
   lift();
   //int distance_to_pyramid = get_distance();
   int ecart_pince_US_sensor = 15; //à adapter
