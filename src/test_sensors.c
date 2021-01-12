@@ -40,7 +40,8 @@ int testOrientation(){
 
 
 int move_robot_to_random_cube(){
-  int distance_attendue = 20000; //a trouver par dichotomie
+  lift();
+  int distance_attendue = 17000; //a trouver par dichotomie
   bool cubeFound = false;
   int posRech[6][2] = {{110 , 80},
                        {100 , 80},
