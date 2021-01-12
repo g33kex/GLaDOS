@@ -14,7 +14,7 @@
 #define OPENED_HAND -90
 #define LEVER_UP -420
 #define LEVER_MID -210
-#define LEVER_DOWN 40
+#define LEVER_DOWN 30
 
 void lower();
 void lower_half();

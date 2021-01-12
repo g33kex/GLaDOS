@@ -21,7 +21,7 @@
 #define RIGHT_WHEEL_PORT 68
 
 /** Starting duty of the motors **/
-#define INITIAL_DUTY 15
+#define INITIAL_DUTY 30 //15 avant
 /** Wheel circumference (mm) **/
 #define WHEEL_CIRCUMFERENCE 173.0
 /** Distance between the wheels (mm) **/
