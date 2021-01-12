@@ -56,7 +56,14 @@ const char * get_color(){
 }
 
 
-
+const char * get_color_pince(){
+  set_sensor_mode(sn_color_pince, "COL-COLOR" );
+  int val;
+  if ( !get_sensor_value( 0, sn_color_pince, &val ) || ( val < 0 ) || ( val >= COLOR_COUNT )) {
+      val = 0;
+  }
+  return color[ val ];
+}
 // int get_intensity(){
 //   set_sensor_mode( sn_color_front, "COL-REFLECT" );
 //   int value;

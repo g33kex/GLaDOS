@@ -124,6 +124,9 @@ int main(int argc, char **argv) {
     else if(!strcmp("color", command)){
       printf("couleur : %s\n",get_color() );
     }
+    else if(!strcmp("color_pince", command)){
+      printf("couleur : %s\n",get_color_pince() );
+    }
     else if(!strcmp("dist", command)){
       printf("distance : %d\n",get_distance() );
     }
