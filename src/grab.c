@@ -21,7 +21,7 @@ void close_hand(){
 
 void lift(){
 	run_motor(lever, LEVER_UP, LEVER_SPEED);
-	sleep(4);
+	sleep(3);
 }
 
 void lower_half() {
@@ -33,6 +33,14 @@ void lower(){
 
 	run_motor(lever, LEVER_DOWN, GRAB_SPEED);
 	sleep(3);
+}
+
+void grab(){
+	lower_half();
+	open_hand();
+	lower();
+	close_hand();
+	lift();
 }
 
 static void run_motor(uint8_t motor, int rot, int speed) {

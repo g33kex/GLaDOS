@@ -21,6 +21,7 @@ void lower_half();
 void lift();
 void open_hand();
 void close_hand();
+void grab();
 
 bool grab_init();
 bool grab_position_init();

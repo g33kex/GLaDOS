@@ -54,14 +54,6 @@ void rot() {
     test_rotation();
 }
 
-void grab() {
-	lower_half();
-	open_hand();
-	lower();
-	close_hand();
-	lift();
-}
-
 void grab_val_init() {
 	grab_position_init();
 }
