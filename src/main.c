@@ -132,6 +132,9 @@ int main(int argc, char **argv) {
     else if(!strcmp("move_grab", command)){
       grab_ball_in_pyramid();
     }
+    else if(!strcmp("move_drop", command)){
+      drop_ball_in_pyramid();
+    }
     else if(!strcmp("lower", command)){
       lower();
     }

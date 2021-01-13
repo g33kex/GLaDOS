@@ -48,7 +48,8 @@ void grab_with_retry(){
 	grab();
 	while (!is_ball_in_hand()){
 		open_hand();
-		foward(100);
+		//foward(100);
+		aller_tout_droit(100);
 		close_hand();
 	}
 	lift();

@@ -226,7 +226,7 @@ void aller_tout_droit(int time ){
   left_wheel_previous_pos=0;
 
   // Start the motors
-  set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
+  set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 20);
   start_motors();
 
   Sleep ( time );
