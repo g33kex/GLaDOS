@@ -103,7 +103,7 @@ void move_to(Vector target) {
 
     int lastDist;
     bool cachauffe = true;
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=50 && cachauffe) {
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=50 ) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
 
@@ -226,7 +226,14 @@ void aller_tout_droit(int time ){
   left_wheel_previous_pos=0;
 
   // Start the motors
-  set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 20);
+  if(time > 0){
+    set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 15);
+
+  } else {
+    set_motors_duty(-INITIAL_DUTY - 15, -INITIAL_DUTY - 20);
+    time = -time;
+  }
+
   start_motors();
 
   Sleep ( time );

@@ -150,6 +150,12 @@ int main(int argc, char **argv) {
     else if (!strcmp("close_hand", command)){
 	    close_hand();
     }
+    else if (!strcmp("yolo", command)){
+	    aller_tout_droit(500);
+    }
+    else if (!strcmp("recul", command)){
+	    aller_tout_droit(-500);
+    }
     else if(!strcmp("foward", command)){
       int distance = 400;
       set_orientation(get_orientation());
