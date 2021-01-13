@@ -101,23 +101,29 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=10) {
+    int lastDist;
+    bool cachauffe = true;
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=50 && cachauffe) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
+
+
+        lastDist = vector_magnitude(vector_sub(target, robot_pos.p));
 
         // Update robot position using odometry and compass
         update_position();
 
+        cachauffe = (lastDist > vector_magnitude(vector_sub(target, robot_pos.p)));
         // Compute angle to target
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
         double angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
         printf("Direction : (%f, %f)\n", direction.x, direction.y);
         printf("Angle : %f\n", angle);
 
-        if(angle < 0) { // Turn Right
+        if(angle < -10) { // Turn Right
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
         }
-        else if(angle > 0) { // Turn Left
+        else if(angle > 10) { // Turn Left
             set_motors_duty(INITIAL_DUTY-5, INITIAL_DUTY);
         }
         else { // Go Straight

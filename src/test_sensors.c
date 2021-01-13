@@ -96,7 +96,7 @@ int drop_ball_in_pyramid(){
   lift();
   //int distance_to_pyramid = get_distance();
   int ecart_pince_US_sensor = 80; //à adapter
-  int distance_a_atteindre = ecart_pince_US_sensor  - 40 - 40; //
+  int distance_a_atteindre = 50;//ecart_pince_US_sensor  - 40 - 40; //
   int current_distance = get_distance();
   int ecart_de_distance = current_distance - distance_a_atteindre;
   printf("distance du cube : %d\n",get_distance() );
@@ -120,9 +120,9 @@ int drop_ball_in_pyramid(){
 }
 
 int grab_ball_in_pyramid(){
-   int test = 200;
-   init_rotation();
-   foward((double) test);
+   // int test = 200;
+   // init_rotation();
+   // foward((double) test);
 
   lift();
   //int distance_to_pyramid = get_distance();
