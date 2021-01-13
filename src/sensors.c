@@ -119,10 +119,14 @@ int get_orientation(){
     rot = 0;
   }
   fflush( stdout );
+  //printf("rot a la base %d\n",rot );
   rot = rot - orientation_zero;
+  //printf("rot corrigé %d\n",rot );
   if(rot < 0) {
     rot = rot + 360;
   }
+  //printf("rot recorrigé %d\n",rot );
+  //printf("zero : %d, rot : %d\n",orientation_zero,rot);
   return rot==0?0:360-rot;
 }
 
@@ -138,7 +142,7 @@ int get_orientation(){
 // }
 
 bool set_orientation(int orientation){
-  orientation_zero = orientation;
+  orientation_zero = (orientation==0?0:360-orientation);
   return true;
 
 }

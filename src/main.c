@@ -148,9 +148,15 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if(!strcmp("foward", command)){
-      int distance = 200;
+      int distance = 400;
+      set_orientation(get_orientation());
       init_rotation();
       foward((double) distance);
+    }
+    else if (!strcmp("test", command)){
+      printf("orientation : %d\n",get_orientation() );
+      set_orientation(get_orientation());
+      printf("orientation : %d\n",get_orientation() );
     }
 
 

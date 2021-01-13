@@ -41,7 +41,7 @@ uint8_t sn_color_pince;
   * Returns false in case of an error **/
 bool sensor_init(void);
 
-/*give color [NE SERT PLUS ?]*/
+/*give color [NE SERT PLUS]*/
 const char * get_color();
 
 
