@@ -94,33 +94,7 @@ int move_robot_to_random_cube(){
 
 int drop_ball_in_pyramid(){
   lift();
-  //int distance_to_pyramid = get_distance();
-  int ecart_pince_US_sensor = 80; //à adapter
-  int distance_a_atteindre = 20;//ecart_pince_US_sensor  - 40 - 40; //
-  int current_distance = get_distance();
-  int ecart_de_distance = current_distance - distance_a_atteindre;
-  printf("distance du cube : %d\n",get_distance() );
-  if(ecart_de_distance > 0){
-    printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    aller_tout_droit((int)(ecart_de_distance * 12.5)); //idemit(ecart_de_distance * 11 + 200);
-    //foward((double) ecart_de_distance);
-    printf("distance du cube : %d\n",get_distance() );
-  } else {
-    printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
-    //reculer_robot( 0 - ecart_de_distance)
-  }
-
-
-  open_hand();
   close_hand();
-
-  lower();
-  return 1;
-
-}
-
-int grab_ball_in_pyramid(){
-  lift();
   //int distance_to_pyramid = get_distance();
   //int ecart_pince_US_sensor = 15; //à adapter
   int distance_a_atteindre = 50; //
@@ -129,11 +103,51 @@ int grab_ball_in_pyramid(){
   while(get_distance() > distance_a_atteindre ){
     current_distance = get_distance();
     printf("distance du cube : %d\n",current_distance );
-    aller_tout_droit(current_distance - distance_a_atteindre);
+    if(current_distance - distance_a_atteindre < 50){
+      aller_tout_droit(100);
+    } else if(current_distance - distance_a_atteindre > 500){
+      aller_tout_droit(2000);
+    } else {
+      aller_tout_droit(500);
+    }
+
+    Sleep(500);
   }
 
 
-  //grab_with_retry();
+
+  open_hand();
+  close_hand();
+  aller_tout_droit(-800);
+  lower();
+  return 1;
+
+}
+
+int grab_ball_in_pyramid(){
+  lift();
+  close_hand();
+  //int distance_to_pyramid = get_distance();
+  //int ecart_pince_US_sensor = 15; //à adapter
+  int distance_a_atteindre = 50; //
+  int current_distance = get_distance();
+  //int ecart_de_distance = current_distance - distance_a_atteindre;
+  while(get_distance() > distance_a_atteindre ){
+    current_distance = get_distance();
+    printf("distance du cube : %d\n",current_distance );
+    if(current_distance - distance_a_atteindre < 50){
+      aller_tout_droit(100);
+    } else if(current_distance - distance_a_atteindre > 500){
+      aller_tout_droit(2000);
+    } else {
+      aller_tout_droit(500);
+    }
+
+    Sleep(500);
+  }
+
+
+  grab_with_retry();
 
   // lower_half();
 	// open_hand();

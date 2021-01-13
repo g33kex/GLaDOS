@@ -50,6 +50,7 @@ void grab_with_retry(){
 		open_hand();
 		lower_half();
 		coup_vener();
+		sleep(1);
 		lower();
 		close_hand();
 	}

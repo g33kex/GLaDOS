@@ -101,29 +101,25 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    int lastDist;
-    bool cachauffe = true;
     while(vector_magnitude(vector_sub(target, robot_pos.p))>=50 ) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( 100 );
 
 
-        lastDist = vector_magnitude(vector_sub(target, robot_pos.p));
-
         // Update robot position using odometry and compass
         update_position();
 
-        cachauffe = (lastDist > vector_magnitude(vector_sub(target, robot_pos.p)));
+
         // Compute angle to target
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
         double angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
         printf("Direction : (%f, %f)\n", direction.x, direction.y);
         printf("Angle : %f\n", angle);
 
-        if(angle < -10) { // Turn Right
+        if(angle < -0) { // Turn Right
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
         }
-        else if(angle > 10) { // Turn Left
+        else if(angle > 0) { // Turn Left
             set_motors_duty(INITIAL_DUTY-5, INITIAL_DUTY);
         }
         else { // Go Straight
@@ -227,10 +223,10 @@ void aller_tout_droit(int time ){
 
   // Start the motors
   if(time > 0){
-    set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 15);
+    set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 17);
 
   } else {
-    set_motors_duty(-INITIAL_DUTY - 15, -INITIAL_DUTY - 20);
+    set_motors_duty(-INITIAL_DUTY - 17, -INITIAL_DUTY - 20);
     time = -time;
   }
 
@@ -254,16 +250,17 @@ void coup_vener(){
 
   // Start the motors
 
-    set_motors_duty(INITIAL_DUTY + 80, INITIAL_DUTY + 80);
+    set_motors_duty(-INITIAL_DUTY  - 70, -INITIAL_DUTY - 70);
 
 
   start_motors();
 
-  Sleep ( time );
+  Sleep ( 500 );
 
   // Update robot position using odometry and compass
   //update_position();
   //Sleep( time );
 
   stop_motors();
+
 }
