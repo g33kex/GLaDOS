@@ -96,7 +96,7 @@ int drop_ball_in_pyramid(){
   lift();
   //int distance_to_pyramid = get_distance();
   int ecart_pince_US_sensor = 80; //à adapter
-  int distance_a_atteindre = 50;//ecart_pince_US_sensor  - 40 - 40; //
+  int distance_a_atteindre = 20;//ecart_pince_US_sensor  - 40 - 40; //
   int current_distance = get_distance();
   int ecart_de_distance = current_distance - distance_a_atteindre;
   printf("distance du cube : %d\n",get_distance() );
@@ -142,13 +142,13 @@ int grab_ball_in_pyramid(){
     //reculer_robot( 0 - ecart_de_distance)
   }
 
-
-  lower_half();
-	open_hand();
-	lower();
-	close_hand();
-	lift();
-	lower();
+  grab_with_retry();
+  // lower_half();
+	// open_hand();
+	// lower();
+	// close_hand();
+	// lift();
+	//lower();
   return 1;
 
 }

@@ -57,15 +57,29 @@ const char * get_color(){
 
 
 bool is_ball_in_hand(){
-  set_sensor_mode(sn_color_pince, "COL-REFLECT" );
+set_sensor_mode(sn_color_pince, "RGB-RAW" );
 
    int value;
    if ( !get_sensor_value( 0, sn_color_pince, &value )) {
        printf("[X]ERROR while reading intensity value\n");
        value = 0;
    }
+   // printf("couleur de 0 : %d\n",value );
+   // if ( !get_sensor_value( 1, sn_color_pince, &value )) {
+   //     printf("[X]ERROR while reading intensity value\n");
+   //     value = 0;
+   // }
+   // printf("couleur de 1 : %d\n",value );
+   // if ( !get_sensor_value( 2, sn_color_pince, &value )) {
+   //     printf("[X]ERROR while reading intensity value\n");
+   //     value = 0;
+   // }
+   // printf("couleur de 2 : %d\n",value );
+
    fflush( stdout );
-   return (bool)(value > 0);
+   bool ballInHand = (bool) (value > 10);
+   printf("Il y a une balle : %d, valeur = %d \n", ballInHand,value);
+   return ballInHand;
 }
 // int get_intensity(){
 //   set_sensor_mode( sn_color_front, "COL-REFLECT" );
