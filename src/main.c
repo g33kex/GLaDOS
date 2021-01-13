@@ -115,7 +115,7 @@ int main(int argc, char **argv) {
       printf("couleur : %s\n",get_color() );
     }
     else if(!strcmp("color_pince", command)){
-      printf("couleur : %d\n",get_color_pince() );
+      printf("couleur : %d\n",is_ball_in_hand() );
     }
     else if(!strcmp("dist", command)){
       printf("distance : %d\n",get_distance() );
@@ -148,7 +148,7 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if(!strcmp("foward", command)){
-      int distance = 100;
+      int distance = 200;
       init_rotation();
       foward((double) distance);
     }
