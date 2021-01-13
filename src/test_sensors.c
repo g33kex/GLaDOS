@@ -102,8 +102,8 @@ int drop_ball_in_pyramid(){
   printf("distance du cube : %d\n",get_distance() );
   if(ecart_de_distance > 0){
     printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    //aller_tout_droit((int)(ecart_de_distance * 12.5)); //idemit(ecart_de_distance * 11 + 200);
-    foward((double) ecart_de_distance);
+    aller_tout_droit((int)(ecart_de_distance * 12.5)); //idemit(ecart_de_distance * 11 + 200);
+    //foward((double) ecart_de_distance);
     printf("distance du cube : %d\n",get_distance() );
   } else {
     printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
@@ -120,27 +120,15 @@ int drop_ball_in_pyramid(){
 }
 
 int grab_ball_in_pyramid(){
-   // int test = 200;
-   // init_rotation();
-   // foward((double) test);
-
   lift();
   //int distance_to_pyramid = get_distance();
-  int ecart_pince_US_sensor = 15; //à adapter
-  int distance_a_atteindre = ecart_pince_US_sensor; //
+  //int ecart_pince_US_sensor = 15; //à adapter
+  int distance_a_atteindre = 15; //
   int current_distance = get_distance();
   int ecart_de_distance = current_distance - distance_a_atteindre;
   printf("distance du cube : %d\n",get_distance() );
-  if(ecart_de_distance > 0){
-    printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-
-    init_rotation();
-    foward((double) ecart_de_distance);
-    printf("distance du cube : %d\n",get_distance() );
-  } else {
-    printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
-    //reculer_robot( 0 - ecart_de_distance)
-  }
+  printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
+  aller_tout_droit(ecart_de_distance * 11);
 
   grab_with_retry();
   // lower_half();
