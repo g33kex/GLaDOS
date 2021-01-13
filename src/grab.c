@@ -1,4 +1,6 @@
 #include "grab.h"
+#include "motion.h"
+#include "sensors.h"
 
 #include "ev3.h"
 #include "ev3_tacho.h"
