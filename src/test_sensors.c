@@ -123,14 +123,18 @@ int grab_ball_in_pyramid(){
   lift();
   //int distance_to_pyramid = get_distance();
   //int ecart_pince_US_sensor = 15; //à adapter
-  int distance_a_atteindre = 15; //
+  int distance_a_atteindre = 50; //
   int current_distance = get_distance();
-  int ecart_de_distance = current_distance - distance_a_atteindre;
-  printf("distance du cube : %d\n",get_distance() );
-  printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-  aller_tout_droit(ecart_de_distance * 11);
+  //int ecart_de_distance = current_distance - distance_a_atteindre;
+  while(get_distance() > distance_a_atteindre ){
+    current_distance = get_distance();
+    printf("distance du cube : %d\n",current_distance );
+    aller_tout_droit(current_distance - distance_a_atteindre);
+  }
 
-  grab_with_retry();
+
+  //grab_with_retry();
+
   // lower_half();
 	// open_hand();
 	// lower();

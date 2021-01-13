@@ -75,4 +75,5 @@ void foward(double distance);
 
 
 void aller_tout_droit(int time); //idem
+void coup_vener();
 #endif // MOTION_H

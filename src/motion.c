@@ -239,8 +239,31 @@ void aller_tout_droit(int time ){
   Sleep ( time );
 
   // Update robot position using odometry and compass
-  update_position();
-  Sleep( time );
+  //update_position();
+  //Sleep( time );
+
+  stop_motors();
+}
+
+void coup_vener(){
+  // Initialize previous wheel encoder pos
+  set_tacho_position(left_wheel, 0);
+  set_tacho_position(right_wheel, 0);
+  right_wheel_previous_pos=0;
+  left_wheel_previous_pos=0;
+
+  // Start the motors
+
+    set_motors_duty(INITIAL_DUTY + 80, INITIAL_DUTY + 80);
+
+
+  start_motors();
+
+  Sleep ( time );
+
+  // Update robot position using odometry and compass
+  //update_position();
+  //Sleep( time );
 
   stop_motors();
 }
