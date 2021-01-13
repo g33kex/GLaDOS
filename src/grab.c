@@ -40,8 +40,18 @@ void grab(){
 	open_hand();
 	lower();
 	close_hand();
+}
+
+void grab_with_retry(){
+	grab();
+	while (!is_ball_in_hand()){
+		open_hand();
+		foward(30);
+		close_hand;
+	}
 	lift();
 }
+
 
 static void run_motor(uint8_t motor, int rot, int speed) {
 	set_tacho_speed_sp(motor, speed);

@@ -24,7 +24,7 @@
 /**brings the hand to the lowest position**/
 void lower();
 
-/**brings the hand at intermediate position (in the cube but above the balls**/
+/**brings the hand at intermediate position (in the cube but above the balls)**/
 void lower_half();
 
 /**brings the hand at the highest position**/
@@ -39,7 +39,7 @@ void close_hand();
 /**procedure that combines the previous functions to grab a ball when placed above the cube**/
 void grab();
 
-/**tries grabing a ball with the previous procedure until it has one in hand**/
+/**tries grabing a ball until it has one in hand**/
 void grab_with_retry();
 
 /*init functions*/
