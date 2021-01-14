@@ -101,9 +101,9 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=10) {
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=PRECISION) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
-        Sleep ( 100 );
+        Sleep ( SLEEP_POSITION );
 
         // Update robot position using odometry and compass
         update_position();
@@ -115,10 +115,10 @@ void move_to(Vector target) {
         printf("Angle : %f\n", angle);
 
         if(angle < 0) { // Turn Right
-            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
+            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-DELTA_DUTY);
         }
         else if(angle > 0) { // Turn Left
-            set_motors_duty(INITIAL_DUTY-5, INITIAL_DUTY);
+            set_motors_duty(INITIAL_DUTY-DELTA_DUTY, INITIAL_DUTY);
         }
         else { // Go Straight
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
@@ -134,7 +134,7 @@ void rotate_to(Vector target) {
 
     double angle;
     do {
-        Sleep ( 200 );
+        Sleep ( SLEEP_ROTATION );
         update_rotation();
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
         angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
@@ -143,11 +143,11 @@ void rotate_to(Vector target) {
         printf("Angle : %f\n", angle);
 
         if(angle>0) {
-            set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+            set_motors_duty(-ROTATE_DUTY, ROTATE_DUTY);
         } else if(angle<0) {
-            set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
+            set_motors_duty(ROTATE_DUTY, -ROTATE_DUTY);
         }
-    } while(abs(angle)>5);
+    } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
 }
@@ -159,7 +159,7 @@ void rotate(int angle) {
     start_motors();
 
     do {
-        Sleep ( 200 );
+        Sleep ( SLEEP_ROTATION );
         int old_rotation = robot_pos.rotation;
         update_rotation();
         printf("Angle : %d, old_rotation: %d, rotation: %d\n", angle, old_rotation, robot_pos.rotation);
@@ -167,11 +167,11 @@ void rotate(int angle) {
         printf("Angle : %d, old_rotation: %d, rotation: %d\n", angle, old_rotation, robot_pos.rotation);
 
         if(angle>0) {
-            set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+            set_motors_duty(-ROTATE_DUTY, ROTATE_DUTY);
         } else if(angle<0) {
-            set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
+            set_motors_duty(ROTATE_DUTY, -ROTATE_DUTY);
         }
-    } while(abs(angle)>5);
+    } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
 }

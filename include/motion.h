@@ -20,14 +20,32 @@
 /** Port for the right wheel motor (D) **/
 #define RIGHT_WHEEL_PORT 68
 
-/** Starting duty of the motors **/
-#define INITIAL_DUTY 15
 /** Wheel circumference (mm) **/
 #define WHEEL_CIRCUMFERENCE 173.0
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
 #define GYRO_TRUST_RATIO 0.95
+
+/* Parameters */
+/** Duty of the motors (percentage of maximum speed)
+    Goes between 0 and 100% **/
+#define INITIAL_DUTY 15
+/** Same but for rotation **/
+#define ROTATE_DUTY 12
+/** Amount substracted from INITIAL_DUTY when correcting trajectory **/
+#define DELTA_DUTY 5
+/** Precisision of the angle when rotating (in degrees) **/
+#define ANGLE_PRECISION 5
+/** Precision of the distance when moving to a point (in mm) **/
+#define PRECISION 5
+
+/** Amount of time we sleep before updating rotation again **/
+#define SLEEP_ROTATION 200
+
+/** Amount of time we sleep before updating position again **/
+#define SLEEP_POSITION 100
+
 /* Structures */
 
 typedef struct {
