@@ -38,6 +38,14 @@ static void update_rotation() {
     int compass_rot = get_orientation();
     robot_pos.rotation += gyro_rot;
     printf("Robot rotation = %d Compass rotation = %d\n", robot_pos.rotation, compass_rot);
+    if((compass_rot - robot_pos.rotation) > 180 || (compass_rot - robot_pos.rotation) < -180 ){
+      printf("[-] RECALIBRATING COMPASS AND GYRO\n");
+      if(compass_rot > robot_pos.rotation) {
+        robot_pos.rotation += 360;
+      } else {
+        compass_rot += 360;
+      }
+    }
     robot_pos.rotation = (robot_pos.rotation*k) + (compass_rot*(1.0-k));
     robot_pos.rotation = robot_pos.rotation%360;
 
@@ -87,7 +95,11 @@ void rotate_move_to(Vector target) {
 }
 
 void foward(double distance) {
+  if(distance > 0){
     move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+  } else {
+    move_to(vector_sub(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+  }
 }
 
 void move_to(Vector target) {
@@ -215,12 +227,13 @@ void tourner_un_peu(){
 }
 
 void aller_tout_droit(int time ){
+
   // Initialize previous wheel encoder pos
   set_tacho_position(left_wheel, 0);
   set_tacho_position(right_wheel, 0);
   right_wheel_previous_pos=0;
   left_wheel_previous_pos=0;
-
+  update_position();
   // Start the motors
   if(time > 0){
     set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 17);
@@ -239,6 +252,7 @@ void aller_tout_droit(int time ){
   //Sleep( time );
 
   stop_motors();
+  update_position();
 }
 
 void coup_vener(){

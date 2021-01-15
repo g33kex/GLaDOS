@@ -151,20 +151,43 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if (!strcmp("yolo", command)){
-	    aller_tout_droit(500);
+	    aller_tout_droit(5000);
+
     }
     else if (!strcmp("recul", command)){
-	    aller_tout_droit(-500);
+	    aller_tout_droit(-5000);
     }
     else if(!strcmp("foward", command)){
-      int distance = 400;
-      set_orientation(get_orientation());
-      init_rotation();
-      foward((double) distance);
+      // int distance = 100;
+      //
+      // foward((double) distance);
+      // Sleep(3000);
+      // aller_tout_droit(-5000);
+      // foward((double) distance);
+      Vector dir = (Vector) {100, 0};
+      rotate_move_to(dir);
+      Sleep(3000);
+      rotate(90);
+      grab_with_retry()
+      rotate(-90);
+
+      // aller_tout_droit(-3000);
+      dir = (Vector) {300, 0};
+      rotate_move_to(dir);
+
+    drop_ball_in_pyramid();
+
     }
     else if (!strcmp("grab_retry", command)){
 	    grab_with_retry();
     }
+    else if (!strcmp("rotate", command)){
+      rotate(90);
+      Sleep(1000);
+      rotate(180);
+      Sleep(1000);
+      rotate(-90);
+   }
 
 
 

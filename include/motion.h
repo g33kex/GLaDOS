@@ -5,6 +5,7 @@
 #include <stdint.h>
 #include <math.h>
 
+
 #include "ev3.h"
 #include "ev3_tacho.h"
 
@@ -30,9 +31,9 @@
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
-#define INITIAL_DUTY 15
+#define INITIAL_DUTY 30//15
 /** Same but for rotation **/
-#define ROTATE_DUTY 12
+#define ROTATE_DUTY 18//12
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
 #define DELTA_DUTY 5
 /** Precisision of the angle when rotating (in degrees) **/
@@ -44,7 +45,7 @@
 #define SLEEP_ROTATION 200
 
 /** Amount of time we sleep before updating position again **/
-#define SLEEP_POSITION 100
+#define SLEEP_POSITION 50//100
 
 /* Structures */
 

@@ -41,6 +41,7 @@ bool sensor_init(void) {
       return false;
     }
     last_gyro_rot=get_gyro();
+    set_orientation(get_orientation());
     return true;
 }
 
@@ -133,7 +134,7 @@ int get_orientation(){
     rot = 0;
   }
   fflush( stdout );
-  //printf("rot a la base %d\n",rot );
+//  printf("rot a la base %d\n",rot );
   rot = rot - orientation_zero;
   //printf("rot corrigé %d\n",rot );
   if(rot < 0) {
