@@ -104,11 +104,11 @@ int drop_ball_in_pyramid(){
     current_distance = get_distance();
     printf("distance du cube : %d\n",current_distance );
     if(current_distance - distance_a_atteindre < 50){
-      aller_tout_droit(100);
+      aller_tout_droit(300);
     } else if(current_distance - distance_a_atteindre > 500){
       aller_tout_droit(2000);
     } else {
-      aller_tout_droit(500);
+      aller_tout_droit(750);
     }
 
     Sleep(500);
@@ -118,7 +118,7 @@ int drop_ball_in_pyramid(){
 
   open_hand();
   close_hand();
-  aller_tout_droit(-800);
+  aller_tout_droit(-1500);
   lower();
   return 1;
 
@@ -136,11 +136,11 @@ int grab_ball_in_pyramid(){
     current_distance = get_distance();
     printf("distance du cube : %d\n",current_distance );
     if(current_distance - distance_a_atteindre < 50){
-      aller_tout_droit(100);
+      aller_tout_droit(500);
     } else if(current_distance - distance_a_atteindre > 500){
       aller_tout_droit(2000);
     } else {
-      aller_tout_droit(500);
+      aller_tout_droit(750);
     }
 
     Sleep(500);

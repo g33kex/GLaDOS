@@ -250,7 +250,7 @@ void coup_vener(){
 
   // Start the motors
 
-    set_motors_duty(-INITIAL_DUTY  - 70, -INITIAL_DUTY - 70);
+    set_motors_duty(-INITIAL_DUTY - 50 , -INITIAL_DUTY - 50);
 
 
   start_motors();
