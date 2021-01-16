@@ -9,7 +9,7 @@ img[src*="#thumbnail"] {
    object-fit: cover;
 }
 
-img[src*="#thumbnail"] {
-    -webkit-transform:scale(1.5);
-    transform:scale(1.5);
+img[src*="#thumbnail"]:hover {
+    -webkit-transform:scale(2);
+    transform:scale(2);
 }
