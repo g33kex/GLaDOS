@@ -7,7 +7,6 @@ img[src*="#thumbnail"] {
    width:200px;
    height:200px;
    object-fit: cover;
-   position: relative; 
 }
 
 img[src*="#thumbnail"]:hover {
