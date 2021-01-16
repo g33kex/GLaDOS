@@ -8,14 +8,14 @@ It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here 
 
 ## Description of the robot
 
-![Picture of the robot](images/robot1.png)
+![Picture of the robot](images/robot1.jpg)
 
 The robot has active independant wheels and is controlled with a differential drive. A third passive wheel is used to stabilize it.  
 Tacheometry and sensor fusion is used to determine its position at all time.
 
 A large claw that's about the width of the cube is used to grab the balls and is mounted on a crane-like structure to raiser and lower it. 
 
-![Picture of the claw](images/claw.png)
+![Picture of the claw](images/claw1.jpg)
 
 ### Sensors
 
@@ -28,7 +28,7 @@ A large claw that's about the width of the cube is used to grab the balls and is
 * Color sensor in the claw
     - Used to tell if a ball has been succesfully picked up or not
 
-![Picture of the sensors](images/sensors.png)
+![Picture of the sensors](images/color.jpg)
 
 ### Actuators
 
@@ -36,7 +36,7 @@ A large claw that's about the width of the cube is used to grab the balls and is
 * One motor to open and close the claw 
 * One motor to lower and raise the claw
 
-![Picture of the motors](images/motors.png)
+![Picture of the motors](images/wheel2.jpg)
 
 ## Algorithms
 
