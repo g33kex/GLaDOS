@@ -8,6 +8,7 @@ img[src*="#thumbnail"] {
    height:200px;
    object-fit: cover;
    position: relative; 
+   z-index: 0;
 }
 
 img[src*="#thumbnail"]:hover {
