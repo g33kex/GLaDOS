@@ -3,5 +3,7 @@
 
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
-   width:150px;
+   width:200px;
+   height:200px;
+   object-fit: cover;
 }

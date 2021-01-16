@@ -177,11 +177,6 @@ The executable will be located in `bin/GLaDOS`. You can copy it to the robot man
 
 Many tests and manual operations can be performed, please see `./GLaDOS help` for help. For instance, to run the full simulation, one must use `./GLaDOS main`. In case of an error, to immediatly stop the motors you can use `./GLaDOS stop`. 
 
-## Gallery
-
-![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail) 
-![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](distance.jpg#thumbnail) 
-
 ## Task repartition
 
 In the source code, functions are defined in the headers (`.h`) files in the `include` folder. The author of each functions is indicated with the `@author` flag. 
@@ -203,3 +198,7 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
     * Made the function that uses sensor fusion of the compass and gyro to update the robot's rotation
     * Made a motion procedures to move the robot to a precise position and rotation
 
+## Gallery
+
+![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail)   
+![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail) 
