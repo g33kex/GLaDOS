@@ -155,32 +155,52 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if (!strcmp("yolo", command)){
-      Vector dir = (Vector) {500, 0};
+      Vector dir = (Vector) {300, 0};
       rotate_move_to(dir);
-      Sleep(2000);
-      dir = (Vector) {500, 300};
+      Sleep(5000);
+      dir = (Vector) {300, 300};
+      rotate_move_to(dir);
+      Sleep(5000);
+      dir = (Vector) {0, 300};
+      rotate_move_to(dir);
+      Sleep(5000);
+      dir = (Vector) {0, 0};
       rotate_move_to(dir);
     }
     else if (!strcmp("recul", command)){
       if (argv[2]){
-        aller_tout_droit((int) *argv[2]);
+        int distance = atoi(argv[2]);
+        foward(-distance);
       } else {
-        aller_tout_droit(-5000);
+        foward(-200);
       }
     }
     else if (!strcmp("main", command)){
-      Vector dir = (Vector) {0, 10};
+      Vector dir = (Vector) {500, 0};
       rotate_move_to(dir);
-      Sleep(1000);
-      rotate(90);
+      dir = (Vector) {500, -200};
+      rotate_to(dir);
+      Sleep(5000);
       grab_ball_in_pyramid();
-
-      rotate(-90);
-      Sleep(1000);
-      // aller_tout_droit(-3000);
-      dir = (Vector) {400, 0};
+      Sleep(5000);
+      dir = (Vector) {300, 0};
       rotate_move_to(dir);
-
+      Sleep(5000);
+      dir = (Vector) {300, 200};
+      rotate_to(dir);
+      drop_ball_in_pyramid();
+      dir = (Vector) {500, 0};
+      rotate_move_to(dir);
+      dir = (Vector) {500, -200};
+      rotate_to(dir);
+      Sleep(5000);
+      grab_ball_in_pyramid();
+      Sleep(5000);
+      dir = (Vector) {300, 0};
+      rotate_move_to(dir);
+      Sleep(5000);
+      dir = (Vector) {300, 200};
+      rotate_to(dir);
       drop_ball_in_pyramid();
     }
     else if(!strcmp("foward", command)){

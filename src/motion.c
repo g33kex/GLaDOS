@@ -97,8 +97,9 @@ void rotate_move_to(Vector target) {
 
 void foward(double distance) {
   if(distance > 0){
-    rotate_move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+    move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
   } else {
+    distance = -distance;
     rotate_move_to(vector_sub(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
   }
 }
@@ -126,6 +127,7 @@ void move_to(Vector target) {
         update_position();
         if(vector_magnitude(vector_sub(target, robot_pos.p)) > ancienne_distance){
           printf("[-] STOPPING ROBOT BECAUSE DISTANCE INCREASING\n");
+          printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
           distance_diminue = false;
         }
 
@@ -198,7 +200,6 @@ void rotate(int angle) {
     } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
-    update_rotation();
 }
 
 void init_rotation(void) {
@@ -274,7 +275,7 @@ void coup_vener(){
 
   // Start the motors
 
-    set_motors_duty(-INITIAL_DUTY - 20 , -INITIAL_DUTY - 20);
+    set_motors_duty(-INITIAL_DUTY - 40 , -INITIAL_DUTY - 40);
 
 
   start_motors();
