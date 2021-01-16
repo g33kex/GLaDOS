@@ -3,7 +3,7 @@
 
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
-   transition:transform 0.25s ease,z-index 0.25s ease;
+   transition:transform 0.25s ease,z-index 0.1s 0.25s;
    width:200px;
    height:200px;
    object-fit: cover;
