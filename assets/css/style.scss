@@ -7,13 +7,9 @@ img[src*="#thumbnail"] {
    width:200px;
    height:200px;
    object-fit: cover;
-   position: relative;
-   z-index: 1;
 }
 
 img[src*="#thumbnail"]:hover {
     -webkit-transform:scale(2);
     transform:scale(2);
-    position: relative;
-    z-index: -1;
 }
