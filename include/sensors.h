@@ -41,8 +41,13 @@ uint8_t sn_color_pince;
   * Returns false in case of an error **/
 bool sensor_init(void);
 
-/*give color*/
+/*give color [NE SERT PLUS]*/
 const char * get_color();
+
+
+/*check there is a ball in the hand*/
+bool is_ball_in_hand();
+
 
 /** Gives the intensity of the light
   * Return intensity between 0 and 100%  **/

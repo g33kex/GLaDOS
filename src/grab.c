@@ -1,4 +1,6 @@
 #include "grab.h"
+#include "motion.h"
+#include "sensors.h"
 
 #include "ev3.h"
 #include "ev3_tacho.h"
@@ -21,7 +23,7 @@ void close_hand(){
 
 void lift(){
 	run_motor(lever, LEVER_UP, LEVER_SPEED);
-	sleep(4);
+	sleep(3);
 }
 
 void lower_half() {
@@ -34,6 +36,27 @@ void lower(){
 	run_motor(lever, LEVER_DOWN, GRAB_SPEED);
 	sleep(3);
 }
+
+void grab(){
+	lower_half();
+	open_hand();
+	lower();
+	close_hand();
+}
+
+void grab_with_retry(){
+	grab();
+	while (!is_ball_in_hand()){
+		open_hand();
+		lower_half();
+		coup_vener();
+		sleep(1);
+		lower();
+		close_hand();
+	}
+	lift();
+}
+
 
 static void run_motor(uint8_t motor, int rot, int speed) {
 	set_tacho_speed_sp(motor, speed);
@@ -63,7 +86,12 @@ bool grab_init() {
 	init_motor(hand);
 	init_motor(lever);
 
+	return true;
+}
+
+bool grab_position_init() {
 	set_tacho_position(hand, 0);
 	set_tacho_position(lever, 0);
+
 	return true;
 }

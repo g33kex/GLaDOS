@@ -41,6 +41,7 @@ bool sensor_init(void) {
       return false;
     }
     last_gyro_rot=get_gyro();
+    set_orientation(get_orientation());
     return true;
 }
 
@@ -56,7 +57,19 @@ const char * get_color(){
 }
 
 
+bool is_ball_in_hand(){
+set_sensor_mode(sn_color_pince, "RGB-RAW" );
 
+   int value;
+   if ( !get_sensor_value( 0, sn_color_pince, &value )) {
+       printf("[X]ERROR while reading intensity value\n");
+       value = 0;
+   }
+   fflush( stdout );
+   bool ballInHand = (bool) (value > 10);
+   printf("Il y a une balle : %d, valeur = %d \n", ballInHand,value);
+   return ballInHand;
+}
 // int get_intensity(){
 //   set_sensor_mode( sn_color_front, "COL-REFLECT" );
 //   int value;
@@ -76,7 +89,7 @@ int get_distance(){
     printf("[X]ERROR while reading distance value\n");
     value = 0;
   }
-  printf("distance : %d\n", value );
+  //printf("distance : %d\n", value );
   fflush( stdout );
   return (value);
 }
@@ -109,10 +122,14 @@ int get_orientation(){
     rot = 0;
   }
   fflush( stdout );
+//  printf("rot a la base %d\n",rot );
   rot = rot - orientation_zero;
+  //printf("rot corrigé %d\n",rot );
   if(rot < 0) {
     rot = rot + 360;
   }
+  //printf("rot recorrigé %d\n",rot );
+  //printf("zero : %d, rot : %d\n",orientation_zero,rot);
   return rot==0?0:360-rot;
 }
 
@@ -128,7 +145,7 @@ int get_orientation(){
 // }
 
 bool set_orientation(int orientation){
-  orientation_zero = orientation;
+  orientation_zero = (orientation==0?0:360-orientation);
   return true;
 
 }

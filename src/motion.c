@@ -36,8 +36,16 @@ static void update_rotation() {
     double k = GYRO_TRUST_RATIO;
     int gyro_rot = get_gyro_delta();
     int compass_rot = get_orientation();
-    robot_pos.rotation += gyro_rot; 
+    robot_pos.rotation += gyro_rot;
     printf("Robot rotation = %d Compass rotation = %d\n", robot_pos.rotation, compass_rot);
+    if((compass_rot - robot_pos.rotation) > 180 || (compass_rot - robot_pos.rotation) < -180 ){
+      printf("[-] RECALIBRATING COMPASS AND GYRO\n");
+      if(compass_rot > robot_pos.rotation) {
+        robot_pos.rotation += 360;
+      } else {
+        compass_rot += 360;
+      }
+    }
     robot_pos.rotation = (robot_pos.rotation*k) + (compass_rot*(1.0-k));
     robot_pos.rotation = robot_pos.rotation%360;
 
@@ -83,7 +91,17 @@ void stop_robot() {
 
 void rotate_move_to(Vector target) {
     rotate_to(target);
+    Sleep(200);
     move_to(target);
+}
+
+void foward(double distance) {
+  if(distance > 0){
+    move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+  } else {
+    distance = -distance;
+    rotate_move_to(vector_sub(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+  }
 }
 
 void move_to(Vector target) {
@@ -97,12 +115,21 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=10) {
+    int ancienne_distance;
+    bool distance_diminue = true;
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=PRECISION  && distance_diminue) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
-        Sleep ( 100 );
+        Sleep ( SLEEP_POSITION );
 
+
+        ancienne_distance = vector_magnitude(vector_sub(target, robot_pos.p));
         // Update robot position using odometry and compass
         update_position();
+        if(vector_magnitude(vector_sub(target, robot_pos.p)) > ancienne_distance){
+          printf("[-] STOPPING ROBOT BECAUSE DISTANCE INCREASING\n");
+          printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
+          distance_diminue = false;
+        }
 
         // Compute angle to target
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
@@ -110,13 +137,16 @@ void move_to(Vector target) {
         printf("Direction : (%f, %f)\n", direction.x, direction.y);
         printf("Angle : %f\n", angle);
 
-        if(angle < 0) { // Turn Right
-            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-5);
+        if(angle < -ANGLE_PRECISION) { // Turn Right
+            set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-DELTA_DUTY);
+            printf("TOURNE DROIT\n");
         }
-        else if(angle > 0) { // Turn Left
-            set_motors_duty(INITIAL_DUTY-5, INITIAL_DUTY);
+        else if(angle > ANGLE_PRECISION) { // Turn Left
+            set_motors_duty(INITIAL_DUTY-DELTA_DUTY, INITIAL_DUTY);
+            printf("TOURNE GAUCHE\n");
         }
         else { // Go Straight
+          printf("TOUT DROIT\n");
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
         }
     }
@@ -130,7 +160,7 @@ void rotate_to(Vector target) {
 
     double angle;
     do {
-        Sleep ( 200 );
+        Sleep ( SLEEP_ROTATION );
         update_rotation();
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
         angle = vector_angle2(direction, vector_sub(target, robot_pos.p));
@@ -139,11 +169,11 @@ void rotate_to(Vector target) {
         printf("Angle : %f\n", angle);
 
         if(angle>0) {
-            set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+            set_motors_duty(-ROTATE_DUTY, ROTATE_DUTY);
         } else if(angle<0) {
-            set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
+            set_motors_duty(ROTATE_DUTY, -ROTATE_DUTY);
         }
-    } while(abs(angle)>5);
+    } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
 }
@@ -155,7 +185,7 @@ void rotate(int angle) {
     start_motors();
 
     do {
-        Sleep ( 200 );
+        Sleep ( SLEEP_ROTATION );
         int old_rotation = robot_pos.rotation;
         update_rotation();
         printf("Angle : %d, old_rotation: %d, rotation: %d\n", angle, old_rotation, robot_pos.rotation);
@@ -163,17 +193,17 @@ void rotate(int angle) {
         printf("Angle : %d, old_rotation: %d, rotation: %d\n", angle, old_rotation, robot_pos.rotation);
 
         if(angle>0) {
-            set_motors_duty(-INITIAL_DUTY, INITIAL_DUTY);
+            set_motors_duty(-ROTATE_DUTY, ROTATE_DUTY);
         } else if(angle<0) {
-            set_motors_duty(INITIAL_DUTY, -INITIAL_DUTY);
+            set_motors_duty(ROTATE_DUTY, -ROTATE_DUTY);
         }
-    } while(abs(angle)>5);
+    } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
 }
 
 void init_rotation(void) {
-    robot_pos.rotation=get_orientation(); 
+    robot_pos.rotation=get_orientation();
 }
 
 bool motion_init(void) {
@@ -197,6 +227,7 @@ bool motion_init(void) {
 
 
 
+
 void tourner_un_peu(){
   set_motors_duty(0,0);
   start_motors();
@@ -208,6 +239,34 @@ void tourner_un_peu(){
 }
 
 void aller_tout_droit(int time ){
+
+  // Initialize previous wheel encoder pos
+  set_tacho_position(left_wheel, 0);
+  set_tacho_position(right_wheel, 0);
+  right_wheel_previous_pos=0;
+  left_wheel_previous_pos=0;
+  // Start the motors
+  if(time > 0){
+    set_motors_duty(INITIAL_DUTY, INITIAL_DUTY); //20 et 17
+
+  } else {
+    set_motors_duty(-INITIAL_DUTY, -INITIAL_DUTY);
+    time = -time;
+  }
+
+  start_motors();
+
+  Sleep ( time );
+
+  // Update robot position using odometry and compass
+  //update_position();
+  //Sleep( time );
+
+  stop_motors();
+  update_position();
+}
+
+void coup_vener(){
   // Initialize previous wheel encoder pos
   set_tacho_position(left_wheel, 0);
   set_tacho_position(right_wheel, 0);
@@ -215,14 +274,18 @@ void aller_tout_droit(int time ){
   left_wheel_previous_pos=0;
 
   // Start the motors
-  set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
+
+    set_motors_duty(-INITIAL_DUTY - 40 , -INITIAL_DUTY - 40);
+
+
   start_motors();
 
-  Sleep ( time );
+  Sleep ( 500 );
 
   // Update robot position using odometry and compass
-  update_position();
-  Sleep( time );
+  //update_position();
+  //Sleep( time );
 
   stop_motors();
+
 }

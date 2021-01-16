@@ -40,7 +40,8 @@ int testOrientation(){
 
 
 int move_robot_to_random_cube(){
-  int distance_attendue = 20000; //a trouver par dichotomie
+  lift();
+  int distance_attendue = 17000; //a trouver par dichotomie
   bool cubeFound = false;
   int posRech[6][2] = {{110 , 80},
                        {100 , 80},
@@ -52,13 +53,26 @@ int move_robot_to_random_cube(){
   while(!cubeFound){
     //TODO prendre en compte que le cube random peut etre en haut de la zone de gauche
     //aller à (posRech[i][0],posRech[i][1]), direction sud
+    printf("x : %d, y : %d\n", posRech[i][0],posRech[i][1]);
+    sleep(1000);
+    Vector newSpot = {posRech[i][0],posRech[i][1]};
+    printf("on move vers le new spot\n");
+    move_to(newSpot);
+
+    Vector rotat = {80,0};
+    printf("test");
+    rotate_to(rotat);
+
+
+
     printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
     if (get_distance() < distance_attendue){
       printf("CUBE FOUND !\n");
       cubeFound = true;
     }
     else {
-      if(i = 6){
+      i++;
+      if(i == 6){
       printf("CUBE NOT FOUND !\n");
       return 0;
       }
@@ -75,34 +89,56 @@ int move_robot_to_random_cube(){
 
     return 1;
   }
+  return 5;
 }
 
 int drop_ball_in_pyramid(){
-  //int distance_to_pyramid = get_distance();
-  int ecart_pince_US_sensor = 80; //à adapter
-  int distance_a_atteindre = ecart_pince_US_sensor  - 40 - 40; //
+  lift();
+  close_hand();
+  int distance_a_atteindre = 50; //
   int current_distance = get_distance();
-  int ecart_de_distance = current_distance - distance_a_atteindre;
-  printf("distance du cube : %d\n",get_distance() );
-  if(ecart_de_distance > 0){
-    printf("il faut avancer le robot de %d mm\n",ecart_de_distance );
-    aller_tout_droit(ecart_de_distance * 10 + 200); //idemit(ecart_de_distance * 10 + 200);
-    printf("distance du cube : %d\n",get_distance() );
-  } else {
-    printf("il faut reculer le robot de %d mm\n",ecart_de_distance );
-    //reculer_robot( 0 - ecart_de_distance)
+  while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
+    if(current_distance == 2550) {break;} //pcq des fois y'a un bug
+    printf("distance du cube : %d\n",current_distance );
+    if(current_distance > distance_a_atteindre){
+      if(current_distance - distance_a_atteindre < 20){break;}
+      foward((double) (50));
+    }else {
+      aller_tout_droit(-500);
+    }
+    current_distance = get_distance();
+    Sleep(500);
   }
 
+  printf("distance du cube : %d\n",current_distance );
 
   open_hand();
   close_hand();
-
-
+  //aller_tout_droit(-2000);
+  //lower();
   return 1;
 
 }
 
+int grab_ball_in_pyramid(){
+  lift();
+  close_hand();
+  int distance_a_atteindre = 50; //
+  int current_distance = get_distance();
+  while(current_distance > distance_a_atteindre && (current_distance - distance_a_atteindre > 20)  ){
+    if(current_distance == 2550) {break;} //pcq des fois y'a un bug
+    printf("distance du cube : %d\n",current_distance );
+    foward((double) (current_distance - distance_a_atteindre));
+    current_distance = get_distance();
+    Sleep(500);
+  }
 
+
+  grab_with_retry();
+
+  return 1;
+
+}
 
 void test_sonar(){
   int i;
