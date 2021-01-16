@@ -13,7 +13,7 @@ It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here 
 The robot has active independant wheels and is controlled with a differential drive. A third passive wheel is used to stabilize it.  
 Tacheometry and sensor fusion is used to determine its position at all time.
 
-A large claw that's about the width of the cube is used to grab the balls and is mounted on a crane-like structure to raiser and lower it. 
+A large claw that's about the width of the cube is used to grab the balls and is mounted on a crane-like structure to raise and lower it. 
 
 ![Picture of the claw](images/claw1.jpg)
 
@@ -154,7 +154,7 @@ while(current_distance > distance_a_atteindre && (current_distance - distance_a_
 }
 ```
 
-Once in position, it can try to grab something in the cube, but the attempt may be unsuccessful. In that case, it will pull the cube in an energic movement in order to move its content and, hopefully, the next attempt will be successful. Since it is a little stubborn, it will try endlessly until it catches something.
+Once in position, it can try to grab something in the cube, but the attempt may be unsuccessful. In that case, it will pull the cube in an energic movement in order to move its content and, hopefully, the next attempt will be successful. Since it is a little stubborn, it will try endlessly until it catches something. (lower_half brings the hand to a mid-height position; if the hand is at it's lowest position, it raises the hand rather than lowering it)
 
 ```C
 grab();
@@ -171,15 +171,69 @@ lift();
 
 ### Place ball 
 
-> TODO (Mathieu)
+Placing the ball is rather similar to grabing it. In this case however, we expect a more precise precision before dropping the ball. Since we drop it in the pyramid, the hand must be right above the center of it. Once we are place, we can drop the ball.
 
-#### In the cube
+```C
+close_hand();
+int distance_a_atteindre = 50; //
+int current_distance = get_distance();
+while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
+  if(current_distance == 2550) {break;} //pcq des fois y'a un bug
+  printf("distance du cube : %d\n",current_distance );
+  if(current_distance > distance_a_atteindre){
+    foward((double) (current_distance - distance_a_atteindre));
+  }else {
+    aller_tout_droit(-500);
+  }
+  current_distance = get_distance();
+  Sleep(500);
+}
 
-#### In the pyramid
+printf("distance du cube : %d\n",current_distance );
+
+open_hand();
+```
 
 ### Find random cube
 
-> TODO (Mathieu)
+In order to find the random cube, the robot rotates to face a given set of positions. If it finds an obstacle closer than a threshold distance, it will interpret it as being the random cube.
+
+```C
+int distance_attendue = 17000;
+bool cubeFound = false;
+int posRech[6][2] = {{110 , 80},
+                     {100 , 80},
+                     {90 , 80},
+                     {30 , 60},
+                     {20 , 60},
+                     {10 , 60}};
+int i = 0;
+while(!cubeFound){
+  printf("x : %d, y : %d\n", posRech[i][0],posRech[i][1]);
+  sleep(1000);
+  Vector newSpot = {posRech[i][0],posRech[i][1]};
+  printf("on move vers le new spot\n");
+  move_to(newSpot);
+
+  Vector rotat = {80,0};
+  printf("test");
+  rotate_to(rotat);
+
+  printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
+  if (get_distance() < distance_attendue){
+    printf("CUBE FOUND !\n");
+    cubeFound = true;
+  } else {
+    i++;
+    if(i == 6){
+      printf("CUBE NOT FOUND !\n");
+      return 0;
+    }
+  }
+  if (cubeFound) {
+  return 1;
+}
+```
 
 ## Source code
 
@@ -211,14 +265,17 @@ Many tests and manual operations can be performed, please see `./GLaDOS help` fo
 In the source code, functions are defined in the headers (`.h`) files in the `include` folder. The author of each functions is indicated with the `@author` flag. 
 
 - Florian : robot physical assembly and testing
-    * Took care of the physical assembly of the robot
+    * Installed the OS and initial software on the robot
+    * Took care of the physical assembly and design of the robot
+    * Implemented basic APIs to manipulate the hand more intuitively
     * Worked on the grab and place functions
-    * Carried out the testing of the robot
+    * Carried out the testing and debugging of the robot
 - Mathieu : high level functions and sensors
     * Set up the sensors and the interfaces to them
     * Made the procedure to find the random cube
     * Worked on the procedure to pickup the ball from the code
     * Worked on the procedure to place the ball in the code/pyramid
+    * Effected the final debugging of the robot
 - Virgile : motion system and integration
     * Did the Makefile, code structure, and integration
     * Took care of the motion system
