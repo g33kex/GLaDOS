@@ -3,7 +3,7 @@
 
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
-   transition:transform 0.25s ease,z-index 0.1s 0.25s;
+   transition:transform 0.25s ease;
    width:200px;
    height:200px;
    object-fit: cover;
@@ -12,7 +12,8 @@ img[src*="#thumbnail"] {
 }
 
 img[src*="#thumbnail"]:hover {
-    z-index: 100;
+    z-index: 1;
     -webkit-transform:scale(2);
     transform:scale(2);
 }
+
