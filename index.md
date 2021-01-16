@@ -201,12 +201,7 @@ In order to find the random cube, the robot rotates to face a given set of posit
 ```C
 int distance_attendue = 17000;
 bool cubeFound = false;
-int posRech[6][2] = {{110 , 80},
-                     {100 , 80},
-                     {90 , 80},
-                     {30 , 60},
-                     {20 , 60},
-                     {10 , 60} };
+int posRech[6][2] = {{110 , 80}, {100 , 80}, {90 , 80}, {30 , 60}, {20 , 60}, {10 , 60}};
 int i = 0;
 while(!cubeFound){
   printf("x : %d, y : %d\n", posRech[i][0],posRech[i][1]);
@@ -215,7 +210,7 @@ while(!cubeFound){
   printf("on move vers le new spot\n");
   move_to(newSpot);
 
-  Vector rotat = {80,0};
+  Vector rotat = {80 , 0};
   printf("test");
   rotate_to(rotat);
 
@@ -231,8 +226,8 @@ while(!cubeFound){
     }
   }
   if (cubeFound) {
-  return 1;
-}
+    return 1;
+  }
 ```
 
 ## Source code
