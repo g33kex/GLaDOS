@@ -138,7 +138,36 @@ robot_pos.rotation = robot_pos.rotation%360;
 
 ### Pickup ball
 
-> TODO (Florian)
+To pick up the ball, the robot must first ensure that the hand is above the cube. In other words, it needs to be close enough to an edge of the cube, facing the cube.
+
+```C
+lift();
+close_hand();
+int distance_a_atteindre = 50; //
+int current_distance = get_distance();
+while(current_distance > distance_a_atteindre && (current_distance - distance_a_atteindre > 20)  ){
+  if(current_distance == 2550) {break;} //pcq des fois y'a un bug
+  printf("distance du cube : %d\n",current_distance );
+  foward((double) (current_distance - distance_a_atteindre));
+  current_distance = get_distance();
+  Sleep(500);
+}
+```
+
+Once in position, it can try to grab something in the cube, but the attempt may be unsuccessful. In that case, it will pull the cube in an energic movement in order to move its content and, hopefully, the next attempt will be successful. Since it is a little stubborn, it will try endlessly until it catches something.
+
+```C
+grab();
+while (!is_ball_in_hand()){
+	open_hand();
+	lower_half();
+	coup_vener();
+	sleep(1);
+	lower();
+	close_hand();
+}
+lift();
+```
 
 ### Place ball 
 
