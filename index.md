@@ -206,7 +206,7 @@ int posRech[6][2] = {{110 , 80},
                      {90 , 80},
                      {30 , 60},
                      {20 , 60},
-                     {10 , 60}};
+                     {10 , 60} };
 int i = 0;
 while(!cubeFound){
   printf("x : %d, y : %d\n", posRech[i][0],posRech[i][1]);
