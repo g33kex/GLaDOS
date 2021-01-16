@@ -11,7 +11,7 @@ img[src*="#thumbnail"] {
 }
 
 img[src*="#thumbnail"]:hover {
+    z-index: 999;
     -webkit-transform:scale(2);
     transform:scale(2);
-    z-index: 10;
 }
