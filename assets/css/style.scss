@@ -1,0 +1,7 @@
+---
+---
+
+@import "{{ site.theme }}";
+img[src*="#thumbnail"] {
+   width:150px;
+}

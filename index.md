@@ -179,7 +179,8 @@ Many tests and manual operations can be performed, please see `./GLaDOS help` fo
 
 ## Gallery
 
-> TODO
+![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail) 
+![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](distance.jpg#thumbnail) 
 
 ## Task repartition
 
