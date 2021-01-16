@@ -8,13 +8,10 @@ img[src*="#thumbnail"] {
    height:200px;
    object-fit: cover;
    position: relative; 
-   z-index: 1;
 }
 
 img[src*="#thumbnail"]:hover {
-    z-index: 0;
     -webkit-transform:scale(2);
     transform:scale(2);
-    z-index: 2;
 }
 
