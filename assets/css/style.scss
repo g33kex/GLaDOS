@@ -3,7 +3,13 @@
 
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
+   transition:transform 0.25s ease;
    width:200px;
    height:200px;
    object-fit: cover;
+}
+
+img[src*="#thumbnail"] {
+    -webkit-transform:scale(1.5);
+    transform:scale(1.5);
 }
