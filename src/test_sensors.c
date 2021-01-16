@@ -93,6 +93,7 @@ int move_robot_to_random_cube(){
 }
 
 int drop_ball_in_pyramid(){
+  printf("OK CEST BON CEST ATTEINT\n");
   lift();
   close_hand();
   int distance_a_atteindre = 50; //
@@ -101,7 +102,7 @@ int drop_ball_in_pyramid(){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
     printf("distance du cube : %d\n",current_distance );
     if(current_distance > distance_a_atteindre){
-      aller_tout_droit(500);
+      foward((double) (current_distance - distance_a_atteindre));
     }else {
       aller_tout_droit(-500);
     }
@@ -113,7 +114,7 @@ int drop_ball_in_pyramid(){
 
   open_hand();
   close_hand();
-  aller_tout_droit(-1500);
+  aller_tout_droit(-2000);
   lower();
   return 1;
 
@@ -122,23 +123,13 @@ int drop_ball_in_pyramid(){
 int grab_ball_in_pyramid(){
   lift();
   close_hand();
-  //int distance_to_pyramid = get_distance();
-  //int ecart_pince_US_sensor = 15; //à adapter
   int distance_a_atteindre = 50; //
   int current_distance = get_distance();
-  //int ecart_de_distance = current_distance - distance_a_atteindre;
-  while(get_distance() > distance_a_atteindre ){
+  while(current_distance > distance_a_atteindre && (current_distance - distance_a_atteindre > 20)  ){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
-    current_distance = get_distance();
     printf("distance du cube : %d\n",current_distance );
-    if(current_distance - distance_a_atteindre < 50){
-      aller_tout_droit(500);
-    } else if(current_distance - distance_a_atteindre > 500){
-      aller_tout_droit(2000);
-    } else {
-      aller_tout_droit(750);
-    }
-
+    foward((double) (current_distance - distance_a_atteindre));
+    current_distance = get_distance();
     Sleep(500);
   }
 

@@ -91,14 +91,15 @@ void stop_robot() {
 
 void rotate_move_to(Vector target) {
     rotate_to(target);
+    Sleep(200);
     move_to(target);
 }
 
 void foward(double distance) {
   if(distance > 0){
-    move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+    rotate_move_to(vector_add(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
   } else {
-    move_to(vector_sub(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
+    rotate_move_to(vector_sub(robot_pos.p, vector_from_polar(distance, robot_pos.rotation)));
   }
 }
 
@@ -113,14 +114,20 @@ void move_to(Vector target) {
     set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
     start_motors();
 
-    while(vector_magnitude(vector_sub(target, robot_pos.p))>=PRECISION) {
+    int ancienne_distance;
+    bool distance_diminue = true;
+    while(vector_magnitude(vector_sub(target, robot_pos.p))>=PRECISION  && distance_diminue) {
         printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
         Sleep ( SLEEP_POSITION );
 
 
+        ancienne_distance = vector_magnitude(vector_sub(target, robot_pos.p));
         // Update robot position using odometry and compass
         update_position();
-
+        if(vector_magnitude(vector_sub(target, robot_pos.p)) > ancienne_distance){
+          printf("[-] STOPPING ROBOT BECAUSE DISTANCE INCREASING\n");
+          distance_diminue = false;
+        }
 
         // Compute angle to target
         Vector direction = vector_from_polar(100.0, robot_pos.rotation);
@@ -128,13 +135,16 @@ void move_to(Vector target) {
         printf("Direction : (%f, %f)\n", direction.x, direction.y);
         printf("Angle : %f\n", angle);
 
-        if(angle < 0) { // Turn Right
+        if(angle < -ANGLE_PRECISION) { // Turn Right
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY-DELTA_DUTY);
+            printf("TOURNE DROIT\n");
         }
-        else if(angle > 0) { // Turn Left
+        else if(angle > ANGLE_PRECISION) { // Turn Left
             set_motors_duty(INITIAL_DUTY-DELTA_DUTY, INITIAL_DUTY);
+            printf("TOURNE GAUCHE\n");
         }
         else { // Go Straight
+          printf("TOUT DROIT\n");
             set_motors_duty(INITIAL_DUTY, INITIAL_DUTY);
         }
     }
@@ -188,6 +198,7 @@ void rotate(int angle) {
     } while(abs(angle)>ANGLE_PRECISION);
 
     stop_motors();
+    update_rotation();
 }
 
 void init_rotation(void) {
@@ -233,13 +244,12 @@ void aller_tout_droit(int time ){
   set_tacho_position(right_wheel, 0);
   right_wheel_previous_pos=0;
   left_wheel_previous_pos=0;
-  update_position();
   // Start the motors
   if(time > 0){
-    set_motors_duty(INITIAL_DUTY + 20, INITIAL_DUTY + 17);
+    set_motors_duty(INITIAL_DUTY, INITIAL_DUTY); //20 et 17
 
   } else {
-    set_motors_duty(-INITIAL_DUTY - 17, -INITIAL_DUTY - 20);
+    set_motors_duty(-INITIAL_DUTY, -INITIAL_DUTY);
     time = -time;
   }
 
@@ -264,7 +274,7 @@ void coup_vener(){
 
   // Start the motors
 
-    set_motors_duty(-INITIAL_DUTY - 50 , -INITIAL_DUTY - 50);
+    set_motors_duty(-INITIAL_DUTY - 20 , -INITIAL_DUTY - 20);
 
 
   start_motors();

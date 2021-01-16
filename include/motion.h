@@ -26,7 +26,7 @@
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
-#define GYRO_TRUST_RATIO 0.95
+#define GYRO_TRUST_RATIO 0.5
 
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
@@ -35,11 +35,11 @@
 /** Same but for rotation **/
 #define ROTATE_DUTY 18//12
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
-#define DELTA_DUTY 5
+#define DELTA_DUTY 10  //5
 /** Precisision of the angle when rotating (in degrees) **/
-#define ANGLE_PRECISION 5
+#define ANGLE_PRECISION 2 //5
 /** Precision of the distance when moving to a point (in mm) **/
-#define PRECISION 5
+#define PRECISION 20
 
 /** Amount of time we sleep before updating rotation again **/
 #define SLEEP_ROTATION 200

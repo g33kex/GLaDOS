@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 
@@ -72,7 +73,7 @@ void vector() {
 
 int main(int argc, char **argv) {
 
-    if(argc!=2) {
+    if(argc!=2 && argc!=3) {
         usage();
         return 1;
     }
@@ -124,10 +125,13 @@ int main(int argc, char **argv) {
       test_sonar();
     }
     else if(!strcmp("compass", command)){
-      printf("orientation : %d\n",get_orientation() );
+      while(1){
+        printf("orientation : %d  gyro : %d\n",get_orientation(), get_gyro() );
+        Sleep(500);
+      }
     }
     else if(!strcmp("gyro", command)){
-      printf("angle du gyro : %d\n",get_gyro() );
+      printf("angle du gyro : %d\n",get_gyro_delta() );
     }
     else if(!strcmp("move_grab", command)){
       grab_ball_in_pyramid();
@@ -151,46 +155,53 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if (!strcmp("yolo", command)){
-	    aller_tout_droit(5000);
-
+      Vector dir = (Vector) {500, 0};
+      rotate_move_to(dir);
+      Sleep(2000);
+      dir = (Vector) {500, 300};
+      rotate_move_to(dir);
     }
     else if (!strcmp("recul", command)){
-	    aller_tout_droit(-5000);
+      if (argv[2]){
+        aller_tout_droit((int) *argv[2]);
+      } else {
+        aller_tout_droit(-5000);
+      }
+    }
+    else if (!strcmp("main", command)){
+      Vector dir = (Vector) {0, 10};
+      rotate_move_to(dir);
+      Sleep(1000);
+      rotate(90);
+      grab_ball_in_pyramid();
+
+      rotate(-90);
+      Sleep(1000);
+      // aller_tout_droit(-3000);
+      dir = (Vector) {400, 0};
+      rotate_move_to(dir);
+
+      drop_ball_in_pyramid();
     }
     else if(!strcmp("foward", command)){
-      // int distance = 100;
-      //
-      // foward((double) distance);
-      // Sleep(3000);
-      // aller_tout_droit(-5000);
-      // foward((double) distance);
-      Vector dir = (Vector) {100, 0};
-      rotate_move_to(dir);
-      Sleep(3000);
-      rotate(90);
-      grab_with_retry()
-      rotate(-90);
-
-      // aller_tout_droit(-3000);
-      dir = (Vector) {300, 0};
-      rotate_move_to(dir);
-
-    drop_ball_in_pyramid();
-
+      if (argv[2]){
+        int distance = atoi(argv[2]);
+        foward(distance);
+      } else {
+        foward(200);
+      }
     }
     else if (!strcmp("grab_retry", command)){
 	    grab_with_retry();
     }
     else if (!strcmp("rotate", command)){
-      rotate(90);
-      Sleep(1000);
-      rotate(180);
-      Sleep(1000);
-      rotate(-90);
+      if (argv[2]){
+        int angle = atoi(argv[2]);
+        rotate(angle);
+      } else {
+        rotate(90);
+      }
    }
-
-
-
 
     return 0;
 }
