@@ -1,3 +1,4 @@
+<script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
 
 This project consist of programming a _LEGO MINDSTORMS EV3_ robot to complete the **warehouse** challenge : grabbing balls in a box and moving them to a given destination.
 
