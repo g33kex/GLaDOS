@@ -4,9 +4,8 @@
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
    transition:transform 0.25s ease;
-   //width: 100%;
-   position: absolute;
-   //object-fit: cover;
+   width: 100%;
+   object-fit: cover;
 }
 
 img[src*="#thumbnail"]:hover {
@@ -20,9 +19,6 @@ img[src*="#thumbnail"]:hover {
   width: 33.33%;
   object-fit: cover;
   padding: 5px;
-  padding-bottom: 100%;
-  overflow:hidden; 
-  position:relative
 }
 
 /* Clear floats after image containers */
@@ -35,5 +31,4 @@ img[src*="#thumbnail"]:hover {
 video {
    object-fit: cover;
    width: 100%;
-   height: auto;
 }
