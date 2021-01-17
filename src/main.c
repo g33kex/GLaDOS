@@ -166,17 +166,11 @@ int main(int argc, char **argv) {
 	    close_hand();
     }
     else if (!strcmp("yolo", command)){
-      Vector dir = (Vector) {300, 0};
+      Vector dir = (Vector) {400,800};
       rotate_move_to(dir);
-      Sleep(5000);
-      dir = (Vector) {300, 300};
-      rotate_move_to(dir);
-      Sleep(5000);
-      dir = (Vector) {0, 300};
-      rotate_move_to(dir);
-      Sleep(5000);
-      dir = (Vector) {0, 0};
-      rotate_move_to(dir);
+      dir = (Vector) {400, 1200};
+      rotate_to(dir);
+
     }
     else if (!strcmp("recul", command)){
       if (argv[2]){

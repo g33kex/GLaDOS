@@ -239,7 +239,7 @@ int drop_ball_in_pyramid(){
       aller_tout_droit(-500);
     }
     current_distance = get_distance();
-    Sleep(500);
+    Sleep(200);
   }
 
   printf("distance du cube : %d\n",current_distance );
@@ -255,14 +255,14 @@ int drop_ball_in_pyramid(){
 int grab_ball_in_cube(){
   lift();
   close_hand();
-  int distance_a_atteindre = 50; //
+  int distance_a_atteindre = 30;
   int current_distance = get_distance();
   while(current_distance > distance_a_atteindre && (current_distance - distance_a_atteindre > 20)  ){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
     printf("distance du cube : %d\n",current_distance );
     foward((double) (current_distance - distance_a_atteindre));
     current_distance = get_distance();
-    Sleep(500);
+    Sleep(200);
   }
 
 

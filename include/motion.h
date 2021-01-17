@@ -31,9 +31,9 @@
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
-#define INITIAL_DUTY 35//30
+#define INITIAL_DUTY 60//35
 /** Same but for rotation **/
-#define ROTATE_DUTY 18
+#define ROTATE_DUTY 27//18
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
 #define DELTA_DUTY 8  //5
 /** Precisision of the angle when rotating (in degrees) **/
@@ -65,16 +65,16 @@ Position robot_pos;
 
 /* Functions */
 
-/** Initialize rotation of the robot 
+/** Initialize rotation of the robot
   * @author Virgile Retault **/
 void init_rotation(void);
 
 /** Initializes the motion systme
-  * Returns false in case of an error 
+  * Returns false in case of an error
   * @author Virgile Retault **/
 bool motion_init(void);
 
-/** Stop the robot 
+/** Stop the robot
   * @author Virgile Retault **/
 void stop_robot(void);
 
@@ -91,16 +91,17 @@ void move_to(Vector target);
 void rotate_to(Vector target);
 
 /** Rotate the robot by given angle
-  * Angle should be in [-180, 180] 
+  * Angle should be in [-180, 180]
   * @author Virgile Retault **/
 void rotate(int angle);
 
-/** Go forward by a given distance 
+/** Go forward by a given distance
   * @author Virgile Retault **/
 void foward(double distance);
 
 
-
-void aller_tout_droit(int time); //idem
-void coup_vener();
+/* @author Mathieu CHAMPION */
+void aller_tout_droit(int time);
+void coup_vener(void);
+void correct_rotation(void);
 #endif // MOTION_H

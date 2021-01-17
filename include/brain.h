@@ -16,4 +16,8 @@
 /* Functions */
 void run(void);
 
+void pick_and_place_normal(void);
+
+void pick_and_place_random(void);
+
 #endif // BRAIN_H

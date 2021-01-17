@@ -207,7 +207,7 @@ void init_rotation(void) {
 }
 
 bool motion_init(void) {
-    robot_pos = (Position) {{0,0},0};
+    robot_pos = (Position) {{50,600},0};
 
     printf("Running tacho init\n");
     if(ev3_tacho_init()==-1)
@@ -288,4 +288,9 @@ void coup_vener(){
 
   stop_motors();
 
+}
+
+void correct_rotation(){
+  rotate(robot_pos.rotation - get_orientation());
+  printf("ORIENTATION GYRO : %d  COMAPSS %d \n",robot_pos.rotation,get_orientation() );
 }
