@@ -5,8 +5,8 @@
 img[src*="#thumbnail"] {
    transition:transform 0.25s ease;
    object-fit: cover;
-   width: 300px;
-   height: 300px;
+   width: 250px;
+   height: 250px;
 }
 
 img[src*="#thumbnail"]:hover {
@@ -19,7 +19,7 @@ img[src*="#thumbnail"]:hover {
   float: left;
   width: 33.33%;
   object-fit: cover;
-  padding: 2px;
+  padding: 5px;
 }
 
 /* Clear floats after image containers */
