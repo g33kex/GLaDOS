@@ -200,23 +200,31 @@ open_hand();
 In order to find the random cube, the robot rotates to face a given set of positions. If it finds an obstacle closer than a threshold distance, it will interpret it as being the random cube.
 
 ```C
-int distance_attendue = 17000;
-bool cubeFound = false;
-int posRech[6][2] = { {110 , 80}, {100 , 80}, {90 , 80}, {30 , 60}, {20 , 60}, {10 , 60} };
-int i = 0;
+
 while(!cubeFound){
   printf("x : %d, y : %d\n", posRech[i][0],posRech[i][1]);
-  sleep(1000);
-  Vector newSpot = {posRech[i][0],posRech[i][1]};
+
+  newSpot = (Vector) {posRech[i][0],posRech[i][1]};
   printf("on move vers le new spot\n");
-  move_to(newSpot);
+  rotate_move_to(newSpot);
+  newSpot = (Vector) {100,posRech[i][1]};
+  rotate_to(newSpot);
 
-  Vector rotat = {80 , 0};
-  printf("test");
-  rotate_to(rotat);
+int expected_distance = 700;
+bool cubeFound = false;
+int posRech[6][2] = { {1100 , 800}, {1000 , 800}, {900 , 800}, {300 , 600}, {200 , 600}, {100 , 600} };
+int i = 0;
+while(!cubeFound){
+  //we go to the next search spot
+  Vector newSpot = {posRech[i][0],posRech[i][1]};
+  rotate_move_to(newSpot);
 
-  printf("distance detectée : %d\n, distance attendue : %d",get_distance(), distance_attendue );
-  if (get_distance() < distance_attendue){
+  //we face south
+  newSpot = (Vector) {0,posRech[i][1]};
+  rotate_to(newSpot);
+
+  //we check ig there is the cube
+  if (get_distance() < expected_distance){
     printf("CUBE FOUND !\n");
     cubeFound = true;
   } else {
@@ -269,8 +277,8 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 - Mathieu : high level functions and sensors
     * Set up the sensors and the interfaces to them
     * Made the procedure to find the random cube
-    * Worked on the procedure to pickup the ball from the code
-    * Worked on the procedure to place the ball in the code/pyramid
+    * Worked on the procedure to pickup the ball from the cube
+    * Worked on the procedure to place the ball in the cube/pyramid
     * Effected the final debugging of the robot
 - Virgile : motion system and integration
     * Did the Makefile, code structure, and integration
