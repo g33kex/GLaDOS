@@ -293,6 +293,7 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 
 ![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail) ![Robot With Ball](images/robot2.jpg#thumbnail)
 ![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail) ![Arena](images/robot3.jpg#thumbnail)
+![Robot Flag](images/robot4.jpg#thumbnail) 
 
 <div class="row">
   <div class="column">
@@ -303,5 +304,8 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
   </div>
   <div class="column">
     <video src="videos/video3.mp4" controls preload></video>
+  </div>
+  <div class="column">
+    <video src="videos/video4.mp4" controls preload></video>
   </div>
 </div>
