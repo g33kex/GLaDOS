@@ -290,5 +290,5 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 
 ## Gallery
 
-![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail)   
-![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail)
+![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail) ![Robot With Ball](images/robot2.jpg#thumbnail)
+![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail) ![Arena](images/robot3.jpg#thumbnail)

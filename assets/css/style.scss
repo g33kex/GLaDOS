@@ -4,8 +4,8 @@
 @import "{{ site.theme }}";
 img[src*="#thumbnail"] {
    transition:transform 0.25s ease;
-   width:200px;
-   height:200px;
+   width:300px;
+   height:300px;
    object-fit: cover;
 }
 
