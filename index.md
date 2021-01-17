@@ -1,7 +1,7 @@
 
-This project consist of programming a _LEGO MINDSTORMS EV3_ robot to complete the **warehouse** challenge : grabbing balls in a box and moving them to a given destination. 
+This project consist of programming a _LEGO MINDSTORMS EV3_ robot to complete the **warehouse** challenge : grabbing balls in a box and moving them to a given destination.
 
-It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here are our team members : 
+It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here are our team members :
 * Florian Le Mouël
 * Mathieu Champion
 * Virgile Retault
@@ -13,7 +13,7 @@ It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here 
 The robot has active independant wheels and is controlled with a differential drive. A third passive wheel is used to stabilize it.  
 Tacheometry and sensor fusion is used to determine its position at all time.
 
-A large claw that's about the width of the cube is used to grab the balls and is mounted on a crane-like structure to raise and lower it. 
+A large claw that's about the width of the cube is used to grab the balls and is mounted on a crane-like structure to raise and lower it.
 
 ![Picture of the claw](images/claw1.jpg)
 
@@ -33,14 +33,14 @@ A large claw that's about the width of the cube is used to grab the balls and is
 ### Actuators
 
 * Two motors for the wheels
-* One motor to open and close the claw 
+* One motor to open and close the claw
 * One motor to lower and raise the claw
 
 ![Picture of the motors](images/wheel2.jpg)
 
 ## Algorithms
 
-### Move precisely 
+### Move precisely
 
 #### Basic Control
 
@@ -125,7 +125,7 @@ To compute the rotation, we use fuse the data from the gyroscope and the compass
 ```C
 k = GYRO_TRUST_RATIO;
 //Get the amount of rotation given by the gyro since last call
-gyro_rot = get_gyro_delta(); 
+gyro_rot = get_gyro_delta();
 //Get rotation given by the compass
 compass_rot = get_orientation();
 //Add gyro rotation to robot rotation
@@ -138,59 +138,60 @@ robot_pos.rotation = robot_pos.rotation%360;
 
 ### Pickup ball
 
-To pick up the ball, the robot must first ensure that the hand is above the cube. In other words, it needs to be close enough to an edge of the cube, facing the cube.
+To pick up the ball, the robot must first ensure that the hand is above the cube. In other words, it needs to be close enough to an edge of the cube.
+
+Here is the C pseudo-code
 
 ```C
-lift();
+//make sure that the hand is in upper position..
+lift_hand();  
+//.. and closed (otherwise, it will be more difficult to "enter" the cube)
 close_hand();
-int distance_a_atteindre = 50; //
+
+
+int target_distance = 50;  //distance between the sonar and the middle of the hand
 int current_distance = get_distance();
-while(current_distance > distance_a_atteindre && (current_distance - distance_a_atteindre > 20)  ){
-  if(current_distance == 2550) {break;} //pcq des fois y'a un bug
-  printf("distance du cube : %d\n",current_distance );
-  foward((double) (current_distance - distance_a_atteindre));
+
+//while we're not close enough to the cube, we go forward
+while(abs(current_distance -  target_distance) > 20  ){
+  go_forward(current_distance -  target_distance);
   current_distance = get_distance();
   Sleep(500);
 }
 ```
 
-Once in position, it can try to grab something in the cube, but the attempt may be unsuccessful. In that case, it will pull the cube in an energic movement in order to move its content and, hopefully, the next attempt will be successful. Since it is a little stubborn, it will try endlessly until it catches something. (lower_half brings the hand to a mid-height position; if the hand is at it's lowest position, it raises the hand rather than lowering it)
+Once in position, it can try to grab something in the cube, but the attempt may be unsuccessful. In that case, it will pull the cube in an energic movement in order to move its content and, hopefully, the next attempt will be successful. Since it is a little stubborn, it will try endlessly until it catches something. (lower_half brings the hand to a mid-height position; if the hand is at it's lowest position, it raises the hand rather than lowering it).
 
 ```C
-grab();
+lower_half();
+open_hand();
+lower_hand();
+close_hand();
 while (!is_ball_in_hand()){
 	open_hand();
 	lower_half();
-	coup_vener();
-	sleep(1);
-	lower();
+	shake_cube();
+	sleep(1); //we wait for the ball to move
+	lower_hand();
 	close_hand();
 }
-lift();
+lift_hand();
 ```
 
-### Place ball 
+### Place ball
 
 Placing the ball is rather similar to grabing it. In this case however, we expect a more precise precision before dropping the ball. Since we drop it in the pyramid, the hand must be right above the center of it. Once we are place, we can drop the ball.
 
 ```C
-close_hand();
-int distance_a_atteindre = 50; //
+
+int target_distance = 50;  //distance between the sonar and the middle of the hand
 int current_distance = get_distance();
-while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
-  if(current_distance == 2550) {break;} //pcq des fois y'a un bug
-  printf("distance du cube : %d\n",current_distance );
-  if(current_distance > distance_a_atteindre){
-    foward((double) (current_distance - distance_a_atteindre));
-  }else {
-    aller_tout_droit(-500);
-  }
+
+while(abs(current_distance -  target_distance) > 10 ){
+  go_forward(current_distance - target_distance));
   current_distance = get_distance();
   Sleep(500);
 }
-
-printf("distance du cube : %d\n",current_distance );
-
 open_hand();
 ```
 
@@ -242,22 +243,22 @@ git submodule update --init --recursive
 
 ### Compilation Instructions
 
-The software can be compiled directly from the robot, or cross-compiled from another computer. When cross-compiling, make sure you have [Docker](https://www.docker.com/) installed and running. 
+The software can be compiled directly from the robot, or cross-compiled from another computer. When cross-compiling, make sure you have [Docker](https://www.docker.com/) installed and running.
 
-Whether you're compiling from the robot or cross-compiling, the procedure is the same : 
+Whether you're compiling from the robot or cross-compiling, the procedure is the same :
 ```
 make
 ```
 
-The executable will be located in `bin/GLaDOS`. You can copy it to the robot manually, or automatically using `make install` if you have properly configured an ssh connection to the robot named `robot`. 
+The executable will be located in `bin/GLaDOS`. You can copy it to the robot manually, or automatically using `make install` if you have properly configured an ssh connection to the robot named `robot`.
 
 ### Usage Instructions
 
-Many tests and manual operations can be performed, please see `./GLaDOS help` for help. For instance, to run the full simulation, one must use `./GLaDOS main`. In case of an error, to immediatly stop the motors you can use `./GLaDOS stop`. 
+Many tests and manual operations can be performed, please see `./GLaDOS help` for help. For instance, to run the full simulation, one must use `./GLaDOS main`. In case of an error, to immediatly stop the motors you can use `./GLaDOS stop`.
 
 ## Task repartition
 
-In the source code, functions are defined in the headers (`.h`) files in the `include` folder. The author of each functions is indicated with the `@author` flag. 
+In the source code, functions are defined in the headers (`.h`) files in the `include` folder. The author of each functions is indicated with the `@author` flag.
 
 - Florian : robot physical assembly and testing
     * Installed the OS and initial software on the robot
@@ -282,4 +283,4 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 ## Gallery
 
 ![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail)   
-![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail) 
+![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail)
