@@ -5,6 +5,7 @@
 img[src*="#thumbnail"] {
    transition:transform 0.25s ease;
    width: 100%;
+   height: auto;
    object-fit: cover;
 }
 
@@ -31,4 +32,5 @@ img[src*="#thumbnail"]:hover {
 video {
    object-fit: cover;
    width: 100%;
+   height: auto;
 }
