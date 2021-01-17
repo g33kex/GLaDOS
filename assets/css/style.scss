@@ -18,6 +18,7 @@ img[src*="#thumbnail"]:hover {
 .column {
   float: left;
   width: 33.33%;
+  object-fit: cover;
   padding: 5px;
 }
 
