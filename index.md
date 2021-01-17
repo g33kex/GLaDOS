@@ -296,12 +296,12 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 
 <div class="row">
   <div class="column">
-    <video src="videos/video1.mp4" width="640" height="368" controls preload></video>
+    <video src="videos/video1.mp4" controls preload></video>
   </div>
   <div class="column">
-    <video src="videos/video2.mp4" width="640" height="368" controls preload></video>
+    <video src="videos/video2.mp4" controls preload></video>
   </div>
   <div class="column">
-    <video src="videos/video3.mp4" width="640" height="368" controls preload></video>
+    <video src="videos/video3.mp4" controls preload></video>
   </div>
 </div>
