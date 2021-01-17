@@ -296,28 +296,6 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
 
 <div class="row">
   <div class="column">
-    <img src="images/claw2.jpg#thumbnail" alt="Claw">
-  </div>
-  <div class="column">
-    <img src="images/wheel1.jpg#thumbnail" alt="Wheels">
-  </div>
-  <div class="column">
-    <img src="images/robot2.jpg#thumbnail" alt="Robot with Ball">
-  </div>
-</div>
-<div class="row">
-  <div class="column">
-    <img src="images/gyro.jpg#thumbnail" alt="Gyroscope">
-  </div>
-  <div class="column">
-    <img src="images/distance.jpg#thumbnail" alt="Ultrasonic Sensor">
-  </div>
-  <div class="column">
-    <img src="images/robot3.jpg#thumbnail" alt="Arena">
-  </div>
-</div>
-<div class="row">
-  <div class="column">
     <video src="videos/video1.mp4" controls preload></video>
   </div>
   <div class="column">
