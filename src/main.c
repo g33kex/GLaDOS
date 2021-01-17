@@ -95,7 +95,7 @@ int main(int argc, char **argv) {
         return -1;
 
     if(!strcmp("main", command)) {
-        stat_challenge();
+        start_challenge();
     }
     if(!strcmp("stop", command)) {
         stop();
@@ -121,6 +121,7 @@ int main(int argc, char **argv) {
     }
     else if(!strcmp("test6", command)){
       move_random();
+      grab_ball_in_cube();
     }
     else if(!strcmp("color", command)){
       printf("couleur : %s\n",get_color() );
@@ -144,7 +145,7 @@ int main(int argc, char **argv) {
       printf("angle du gyro : %d\n",get_gyro_delta() );
     }
     else if(!strcmp("move_grab", command)){
-      grab_ball_in_pyramid();
+      grab_ball_in_cube();
     }
     else if(!strcmp("move_drop", command)){
       drop_ball_in_pyramid();
@@ -185,34 +186,7 @@ int main(int argc, char **argv) {
         foward(-200);
       }
     }
-    else if (!strcmp("main", command)){
-      Vector dir = (Vector) {500, 0};
-      rotate_move_to(dir);
-      dir = (Vector) {500, -200};
-      rotate_to(dir);
-      Sleep(5000);
-      grab_ball_in_pyramid();
-      Sleep(5000);
-      dir = (Vector) {300, 0};
-      rotate_move_to(dir);
-      Sleep(5000);
-      dir = (Vector) {300, 200};
-      rotate_to(dir);
-      drop_ball_in_pyramid();
-      dir = (Vector) {500, 0};
-      rotate_move_to(dir);
-      dir = (Vector) {500, -200};
-      rotate_to(dir);
-      Sleep(5000);
-      grab_ball_in_pyramid();
-      Sleep(5000);
-      dir = (Vector) {300, 0};
-      rotate_move_to(dir);
-      Sleep(5000);
-      dir = (Vector) {300, 200};
-      rotate_to(dir);
-      drop_ball_in_pyramid();
-    }
+
     else if(!strcmp("foward", command)){
       if (argv[2]){
         int distance = atoi(argv[2]);

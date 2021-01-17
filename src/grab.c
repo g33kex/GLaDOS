@@ -39,6 +39,7 @@ void lower(){
 
 void grab(){
 	lower_half();
+	sleep(1);
 	open_hand();
 	lower();
 	close_hand();
