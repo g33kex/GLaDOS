@@ -1,3 +1,5 @@
+<script src="http://api.html5media.info/1.1.8/html5media.min.js"></script>
+
 This project consist of programming a _LEGO MINDSTORMS EV3_ robot to complete the **warehouse** challenge : grabbing balls in a box and moving them to a given destination.
 
 It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here are our team members :
@@ -288,6 +290,9 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
     * Made a motion procedures to move the robot to a precise position and rotation
 
 ## Gallery
+
+![Claw](images/claw2.jpg#thumbnail) ![Wheels](images/wheel1.jpg#thumbnail) ![Robot With Ball](images/robot2.jpg#thumbnail)
+![Gyroscope](images/gyro.jpg#thumbnail) ![Ultrasonic Sensor](images/distance.jpg#thumbnail) ![Arena](images/robot3.jpg#thumbnail)
 
 <div class="row">
   <div class="column">
