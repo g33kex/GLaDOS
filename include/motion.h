@@ -31,9 +31,9 @@
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
-#define INITIAL_DUTY 60//35
+#define INITIAL_DUTY 80//35
 /** Same but for rotation **/
-#define ROTATE_DUTY 27//18
+#define ROTATE_DUTY 35//18
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
 #define DELTA_DUTY 8  //5
 /** Precisision of the angle when rotating (in degrees) **/
@@ -42,10 +42,10 @@
 #define PRECISION 5
 
 /** Amount of time we sleep before updating rotation again **/
-#define SLEEP_ROTATION 25 //200
+#define SLEEP_ROTATION 15 //25
 
 /** Amount of time we sleep before updating position again **/
-#define SLEEP_POSITION 20//100
+#define SLEEP_POSITION 20//20
 
 /* Structures */
 

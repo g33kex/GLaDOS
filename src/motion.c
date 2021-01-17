@@ -280,7 +280,7 @@ void coup_vener(){
 
   start_motors();
 
-  Sleep ( 500 );
+  Sleep ( 300 );
 
   // Update robot position using odometry and compass
   //update_position();

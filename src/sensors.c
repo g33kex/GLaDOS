@@ -100,8 +100,8 @@ void calibrate_compass() {
     set_sensor_command(sn_compass, "END-CAL");
     set_sensor_command(sn_compass, "BEGIN-CAL");
 
-    set_tacho_duty_cycle_sp(left_wheel, 20);
-    set_tacho_duty_cycle_sp(right_wheel, -20);
+    set_tacho_duty_cycle_sp(left_wheel, 40);
+    set_tacho_duty_cycle_sp(right_wheel, -40); //20
 
     set_tacho_command_inx(left_wheel, TACHO_RUN_DIRECT);
     set_tacho_command_inx(right_wheel, TACHO_RUN_DIRECT);
@@ -231,7 +231,7 @@ int drop_ball_in_pyramid(){
   int current_distance = get_distance();
   while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
-    printf("distance du cube : %d\n",current_distance );
+
     if(current_distance > distance_a_atteindre){
       if(current_distance - distance_a_atteindre < 20){break;}
       foward((double) (50));
@@ -239,7 +239,8 @@ int drop_ball_in_pyramid(){
       aller_tout_droit(-500);
     }
     current_distance = get_distance();
-    Sleep(200);
+    printf("distance du cube : %d\n",current_distance );
+    Sleep(1000);
   }
 
   printf("distance du cube : %d\n",current_distance );

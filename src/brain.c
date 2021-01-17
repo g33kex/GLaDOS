@@ -42,6 +42,7 @@ void pick_and_place_normal(){
   grab_ball_in_cube();
   dir = (Vector) {875, 600};
   rotate_move_to(dir);
+  Sleep(5000);
   dir = (Vector) {875, 850};
   rotate_to(dir);
   Sleep(5000);
@@ -56,9 +57,9 @@ void pick_and_place_random(){
   dir = (Vector) {1720, 350};
   rotate_to(dir);
   grab_ball_in_cube();
-  dir = (Vector) {800, 600};
+  dir = (Vector) {870, 600};
   rotate_move_to(dir);
-  dir = (Vector) {800, 1150};
+  dir = (Vector) {870, 1150};
   rotate_to(dir);
   drop_ball_in_pyramid();
 }
