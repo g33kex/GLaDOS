@@ -65,30 +65,38 @@ Position robot_pos;
 
 /* Functions */
 
-/** Initialize rotation of the robot **/
+/** Initialize rotation of the robot 
+  * @author Virgile Retault **/
 void init_rotation(void);
 
 /** Initializes the motion systme
-  * Returns false in case of an error **/
+  * Returns false in case of an error 
+  * @author Virgile Retault **/
 bool motion_init(void);
 
-/** Stop the robot **/
+/** Stop the robot 
+  * @author Virgile Retault **/
 void stop_robot(void);
 
-/** Rotate to target then move to target in a straight-ish line **/
+/** Rotate to target then move to target in a straight-ish line
+  * @author Virgile Retault **/
 void rotate_move_to(Vector target);
 
-/** Move to target in a straight-ish line **/
+/** Move to target in a straight-ish line
+  * @author Virgile Retault **/
 void move_to(Vector target);
 
-/** Rotate the robot to face a given point **/
+/** Rotate the robot to face a given point
+  * @author Virgile Retault **/
 void rotate_to(Vector target);
 
 /** Rotate the robot by given angle
-  * Angle should be in [-180, 180] **/
+  * Angle should be in [-180, 180] 
+  * @author Virgile Retault **/
 void rotate(int angle);
 
-/** Go forward by a given distance **/
+/** Go forward by a given distance 
+  * @author Virgile Retault **/
 void foward(double distance);
 
 

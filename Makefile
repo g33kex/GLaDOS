@@ -1,3 +1,4 @@
+#@author Virgile Retault
 ## Manual Parameters
 
 CC := arm-linux-gnueabi-gcc

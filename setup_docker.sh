@@ -1,4 +1,5 @@
 #!/bin/bash
+#@author Virgile Retault
 container_name=compiler
 if [ "$( docker container inspect -f '{{.State.Running}}' $container_name 2>/dev/null )" != "true" ]; then	
 	echo "STARTING DOCKER CONTAINER."
