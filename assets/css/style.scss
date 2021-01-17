@@ -5,7 +5,8 @@
 img[src*="#thumbnail"] {
    transition:transform 0.25s ease;
    width: 100%;
-   height: auto;
+   padding-bottom: 100%;
+   position: relative;
    object-fit: cover;
 }
 
