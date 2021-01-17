@@ -21,33 +21,42 @@
 
 /*functions*/
 
-/**brings the hand to the lowest position**/
+/**brings the hand to the lowest position
+*@author Florian Le Mouël**/
 void lower();
 
-/**brings the hand at intermediate position (in the cube but above the balls)**/
+/**brings the hand at intermediate position (in the cube but above the balls)
+*@author Florian Le Mouël**/
 void lower_half();
 
-/**brings the hand at the highest position**/
+/**brings the hand at the highest position
+*@author Florian Le Mouël**/
 void lift();
 
-/**opens the hand**/
+/**opens the hand
+*@author Florian Le Mouël**/
 void open_hand();
 
-/**closes the hand**/
+/**closes the hand
+*@author Florian Le Mouël**/
 void close_hand();
 
-/**procedure that combines the previous functions to grab a ball when placed above the cube**/
+/**procedure that combines the previous functions to grab a ball when placed above the cube
+*@author Florian Le Mouël**/
 void grab();
 
-/**tries grabing a ball until it has one in hand**/
+/**tries grabing a ball until it has one in hand
+*@author Florian Le Mouël**/
 void grab_with_retry();
 
 /*init functions*/
 
-/**associates the motors to their ports**/
+/**associates the motors to their ports
+*@author Florian Le Mouël**/
 bool grab_init();
 
-/**sets positions of the hand as lowest and closed (to execute only once at startup)**/
+/**sets positions of the hand as lowest and closed (to execute only once at startup)
+*@author Florian Le Mouël**/
 bool grab_position_init();
 
 /*constants*/
