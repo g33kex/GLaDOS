@@ -240,7 +240,31 @@ bool motion_init(void) {
 }
 
 
+void find_pyramid() {
+    rotate(-40);
+    update_rotation();
+    set_motors_duty(ROTATE_DUTY/2, -ROTATE_DUTY/2);
+    start_motors();
+    int initial_distance = get_distance();
+    bool found_border = false;
 
+    while(true) {
+        Sleep ( SLEEP_ROTATION );
+        update_rotation();
+
+        int new_distance = get_distance();
+        if(new_distance<initial_distance-10) {
+            found_border = true;
+        }
+        if(found_border && new_distance>initial_distance) {
+            stop_motors();
+            return; // Found
+        }
+        initial_distance=new_distance;
+    }
+
+    stop_motors();
+}
 
 
 void tourner_un_peu(){

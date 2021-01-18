@@ -99,6 +99,7 @@ void rotate(int angle);
   * @author Virgile Retault **/
 void foward(double distance);
 
+void find_pyramid(void);
 
 /* @author Mathieu CHAMPION */
 void aller_tout_droit(int time);
