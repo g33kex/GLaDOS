@@ -26,12 +26,12 @@
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
-#define GYRO_TRUST_RATIO 0.95;
+#define GYRO_TRUST_RATIO 1;
 
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
-#define INITIAL_DUTY 60//35
+#define INITIAL_DUTY 60//60
 /** Same but for rotation **/
 #define ROTATE_DUTY 30//18
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/

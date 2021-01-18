@@ -2,6 +2,7 @@
 
 void run(void) {
     printf("Starting world domination sequence\n");
+    init_rotation();
     lift();
     pick_and_place_normal();
     pick_and_place_normal();

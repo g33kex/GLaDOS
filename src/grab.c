@@ -79,10 +79,15 @@ static void init_motor(uint8_t motor) {
 bool grab_init() {
 	if(ev3_tacho_init()==-1)
 		return false;
-	if(!ev3_search_tacho_plugged_in(HAND_PORT,0,&hand,0))
+	if(!ev3_search_tacho_plugged_in(HAND_PORT,0,&hand,0)){
+		printf("PB AVEC MAIN\n");
 		return false;
-	if(!ev3_search_tacho_plugged_in(LEVER_PORT,0,&lever,0))
+	}
+
+	if(!ev3_search_tacho_plugged_in(LEVER_PORT,0,&lever,0)){
+		printf("PB AVEC levier\n");
 		return false;
+	}
 
 	init_motor(hand);
 	init_motor(lever);
