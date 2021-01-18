@@ -253,12 +253,11 @@ void find_pyramid() {
         update_rotation();
 
         int new_distance = get_distance();
-        if(new_distance<initial_distance-5) {
-            // found_border = true;
-            stop_motors();
-            return; // Found
+        if(new_distance < initial_distance) {
+            found_border = true;
+
         }
-        if(found_border && new_distance>initial_distance) {
+        if(found_border && (new_distance<initial_distance)) {
             stop_motors();
             return; // Found
         }
