@@ -83,7 +83,6 @@ bool grab_init() {
 		printf("PB AVEC MAIN\n");
 		return false;
 	}
-
 	if(!ev3_search_tacho_plugged_in(LEVER_PORT,0,&lever,0)){
 		printf("PB AVEC levier\n");
 		return false;
