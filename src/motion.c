@@ -112,7 +112,7 @@ void move_to(Vector target) {
     left_wheel_previous_pos=0;
 
     // Start the motors
-    int current_duty = 1;
+    int current_duty = INITIAL_DUTY;
     set_motors_duty(current_duty, current_duty);
     start_motors();
 
@@ -160,7 +160,7 @@ void move_to(Vector target) {
 
 
 void rotate_to(Vector target) {
-    int current_duty = 1;
+    int current_duty = ROTATE_DUTY;
     set_motors_duty(0,0);
     start_motors();
 
@@ -192,7 +192,7 @@ void rotate(int angle) {
     printf("Angle=%d\n", angle);
     update_rotation();
     set_motors_duty(0,0);
-    int current_duty = 1;
+    int current_duty = ROTATE_DUTY;
     start_motors();
 
     do {
