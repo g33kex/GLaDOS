@@ -229,7 +229,12 @@ int drop_ball_in_pyramid(){
   close_hand();
   int distance_a_atteindre = 50; //
   int current_distance = get_distance();
-  foward((double) (100));
+  // foward((double) (100));
+  printf("PYRAMIDE ????\n");
+  Sleep(1000);
+  find_pyramid();
+  printf("PYRAMIDE FOUND\n");
+  Sleep(3000);
   while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
 

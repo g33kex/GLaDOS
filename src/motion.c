@@ -243,7 +243,7 @@ bool motion_init(void) {
 void find_pyramid() {
     rotate(-40);
     update_rotation();
-    set_motors_duty(ROTATE_DUTY/2, -ROTATE_DUTY/2);
+    set_motors_duty(ROTATE_DUTY, -ROTATE_DUTY);
     start_motors();
     int initial_distance = get_distance();
     bool found_border = false;
@@ -253,8 +253,10 @@ void find_pyramid() {
         update_rotation();
 
         int new_distance = get_distance();
-        if(new_distance<initial_distance-10) {
-            found_border = true;
+        if(new_distance<initial_distance-5) {
+            // found_border = true;
+            stop_motors();
+            return; // Found
         }
         if(found_border && new_distance>initial_distance) {
             stop_motors();
