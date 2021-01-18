@@ -288,6 +288,7 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
     * Made the function that uses Tacheometry to update the robot's position
     * Made the function that uses sensor fusion of the compass and gyro to update the robot's rotation
     * Made a motion procedures to move the robot to a precise position and rotation
+    * Set up the website
 
 ## Gallery
 
