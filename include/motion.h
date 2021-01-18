@@ -26,14 +26,14 @@
 /** Distance between the wheels (mm) **/
 #define WHEEL_DISTANCE 40.0
 
-#define GYRO_TRUST_RATIO 1;
+#define GYRO_TRUST_RATIO 0.95;
 
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
 #define INITIAL_DUTY 60//35
 /** Same but for rotation **/
-#define ROTATE_DUTY 35//18
+#define ROTATE_DUTY 30//18
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
 #define DELTA_DUTY 8  //5
 /** Precisision of the angle when rotating (in degrees) **/
@@ -102,6 +102,10 @@ void foward(double distance);
 
 /* @author Mathieu CHAMPION */
 void aller_tout_droit(int time);
+/** shake the cube
+  * @author Mathieu CHAMPION **/
 void coup_vener(void);
+/** make sure that compass and gyroscope are both coherent
+  * @author Mathieu CHAMPION **/
 void correct_rotation(void);
 #endif // MOTION_H

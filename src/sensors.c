@@ -229,11 +229,12 @@ int drop_ball_in_pyramid(){
   close_hand();
   int distance_a_atteindre = 50; //
   int current_distance = get_distance();
+  foward((double) (100));
   while(current_distance > distance_a_atteindre ||  current_distance < (distance_a_atteindre - 10)){
     if(current_distance == 2550) {break;} //pcq des fois y'a un bug
 
     if(current_distance > distance_a_atteindre){
-      if(current_distance - distance_a_atteindre < 20){break;}
+      if(current_distance - distance_a_atteindre < 10){break;}
       foward((double) (50));
     }else {
       aller_tout_droit(-500);

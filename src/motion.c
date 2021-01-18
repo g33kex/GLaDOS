@@ -125,7 +125,7 @@ void move_to(Vector target) {
         ancienne_distance = vector_magnitude(vector_sub(target, robot_pos.p));
         // Update robot position using odometry and compass
         update_position();
-        if(vector_magnitude(vector_sub(target, robot_pos.p)) > ancienne_distance){
+        if((vector_magnitude(vector_sub(target, robot_pos.p)) > ancienne_distance) && ancienne_distance < 50){
           printf("[-] STOPPING ROBOT BECAUSE DISTANCE INCREASING\n");
           printf("Distance : %f\n",vector_magnitude(vector_sub(target, robot_pos.p)));
           distance_diminue = false;
