@@ -14,10 +14,13 @@
 #include "test_sensors.h"
 
 /* Functions */
+/* @author Mathieu CHAMPION */
 void run(void);
 
+/* @author Mathieu CHAMPION */
 void pick_and_place_normal(void);
 
+/* @author Mathieu CHAMPION */
 void pick_and_place_random(void);
 
 #endif // BRAIN_H

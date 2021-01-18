@@ -275,7 +275,7 @@ void coup_vener(){
 
   // Start the motors
 
-    set_motors_duty(-INITIAL_DUTY - 40 , -INITIAL_DUTY - 40);
+    set_motors_duty(-80 , -80);
 
 
   start_motors();
@@ -283,8 +283,7 @@ void coup_vener(){
   Sleep ( 300 );
 
   // Update robot position using odometry and compass
-  //update_position();
-  //Sleep( time );
+  update_position();
 
   stop_motors();
 

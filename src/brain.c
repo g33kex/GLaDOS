@@ -2,6 +2,7 @@
 
 void run(void) {
     printf("Starting world domination sequence\n");
+    lift();
     pick_and_place_normal();
     pick_and_place_normal();
     pick_and_place_normal();
@@ -33,6 +34,7 @@ void run(void) {
 }
 
 void pick_and_place_normal(){
+
   Vector dir = (Vector) {1725, 600};
   rotate_move_to(dir);
   dir = (Vector) {1725, 350};
@@ -52,14 +54,5 @@ void pick_and_place_normal(){
 }
 
 void pick_and_place_random(){
-  Vector dir = (Vector) {1720, 600};
-  rotate_move_to(dir);
-  dir = (Vector) {1720, 350};
-  rotate_to(dir);
-  grab_ball_in_cube();
-  dir = (Vector) {870, 600};
-  rotate_move_to(dir);
-  dir = (Vector) {870, 1150};
-  rotate_to(dir);
-  drop_ball_in_pyramid();
+  //TODO
 }

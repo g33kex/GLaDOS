@@ -31,7 +31,7 @@
 /* Parameters */
 /** Duty of the motors (percentage of maximum speed)
     Goes between 0 and 100% **/
-#define INITIAL_DUTY 80//35
+#define INITIAL_DUTY 60//35
 /** Same but for rotation **/
 #define ROTATE_DUTY 35//18
 /** Amount substracted from INITIAL_DUTY when correcting trajectory **/
