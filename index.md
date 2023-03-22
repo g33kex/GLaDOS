@@ -5,7 +5,7 @@ This project consist of programming a _LEGO MINDSTORMS EV3_ robot to complete th
 It is a challenge for our OS course at [Eurecom](https://www.eurecom.fr/). Here are our team members :
 * Florian Le Mouël
 * Mathieu Champion
-* Virgile Retault
+* Vi Retault
 
 ## Description of the robot
 
