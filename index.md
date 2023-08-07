@@ -281,7 +281,7 @@ In the source code, functions are defined in the headers (`.h`) files in the `in
     * Worked on the procedure to pickup the ball from the cube
     * Worked on the procedure to place the ball in the cube/pyramid
     * Effected the final debugging of the robot
-- Virgile : motion system and integration
+- Vi : motion system and integration
     * Did the Makefile, code structure, and integration
     * Took care of the motion system
     * Made a Vector library to support the motion system
