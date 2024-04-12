@@ -15,7 +15,7 @@ make
 
 ```
 GLaDOS : a not so self aware EV3 mind. 
-Copyright (C) 2021  Virgile Retault, Florian Le Mouël, Mathieu Champion
+Copyright (C) 2021  Vi Retault, Florian Le Mouël, Mathieu Champion
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
